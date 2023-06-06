@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-5.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+
+	<security:http pattern="/seller/**" auto-config="true" use-expressions="true">
+		<security:csrf disabled="true" />
+		<security:intercept-url pattern="/seller/**" access="hasRole('ROLE_SELLER')" />
+		<security:access-denied-handler error-page="/403" />
+		<security:form-login 
+			login-page="/sellerLogin"
+			login-processing-url="/seller/login"
+			default-target-url="/seller/home" 
+			username-parameter="usrId"
+			password-parameter="usrPassword"
+			authentication-failure-url="/sellerLogin?message=error" />
+		<security:logout 
+			logout-url="/seller/logout"
+			logout-success-url="/sellerLogin?message=logout"
+			delete-cookies="JSESSIONID" 
+			invalidate-session="true" />
+	</security:http>
+	<security:http auto-config="true" use-expressions="true">
+		<security:csrf disabled="true" />
+		<security:intercept-url 
+			pattern="/member/**"
+			access="hasRole('ROLE_MEMBER')" />
+		<security:access-denied-handler
+			error-page="/403" />
+		<security:form-login 
+			login-page="/login"
+			login-processing-url="/login" 
+			default-target-url="/"
+			username-parameter="usrId" 
+			password-parameter="usrPassword"
+			authentication-failure-url="/login?message=error" />
+		<security:logout 
+			logout-url="/logout"
+			logout-success-url="/?message=logout" 
+			delete-cookies="JSESSIONID"
+			invalidate-session="true" />
+	</security:http>
+
+	<beans:bean id="encryption" class="edu.global.whitebox.utilities.Encryption" />
+	<beans:bean id="whiteBoxUserDetailsService" class="edu.global.whitebox.security.WhiteBoxUserDetailsService" />
+
+	<security:authentication-manager id="authenticationManager">
+		<security:authentication-provider user-service-ref="whiteBoxUserDetailsService">
+			<security:password-encoder ref="encryption" />
+		</security:authentication-provider>
+	</security:authentication-manager>
+
+</beans>

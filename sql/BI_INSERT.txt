@@ -1,0 +1,222 @@
+-- KDB INSERT구문
+
+-- mem:member_db1 pw:Memberdb1!
+-- mem:member_db2 pw:Memberdb2@
+-- mem:member_db3 pw:Memberdb3#
+-- sel:seller_db1 pw:Sellerdb1! 洋服屋 出産/キッズ
+-- sel:seller_db2 pw:Sellerdb2! 電子機器屋
+-- sel:seller_db3 pw:Sellerdb3! 誕生日プレゼント屋
+
+--seller id 생성
+INSERT INTO USR VALUES ('seller_db1', 'Sellerdb1!', default, '服', '販売', '00000000000', 'hyphen217@gmail.com', '서울특별시 영등포구 영중로 56 글로벌인', '/res/img/usrImg/seller_db1/글로벌인.PNG', SYSDATE);
+INSERT INTO SEL VALUES ('seller_db1', '洋服屋', '服の販売');
+INSERT INTO USR VALUES ('seller_db2', 'Sellerdb2@', default, '電子', '機器', '00000000000', 'hyphen217@gmail.com', '서울특별시 영등포구 영중로 56 글로벌인', '/res/img/usrImg/seller_db2/글로벌인.PNG', SYSDATE);
+INSERT INTO SEL VALUES ('seller_db2', '電子機器屋', '電子機器の販売');
+
+--product 생성
+INSERT INTO PRO VALUES ('seller_db1', (SELECT NVL(MAX(PRO_CODE), 0) + 1 FROM PRO WHERE PRO_USRSELID =  'seller_db1'), 'CC', 'スウェット', 1000, 20, 'シンプルなスウェットです。', 'F');
+INSERT INTO PRO VALUES ('seller_db1', (SELECT NVL(MAX(PRO_CODE), 0) + 1 FROM PRO WHERE PRO_USRSELID =  'seller_db1'), 'CC', 'Tシャツ', 1000, 20, 'シンプルなTシャツです。', 'F');
+INSERT INTO PRO VALUES ('seller_db1', (SELECT NVL(MAX(PRO_CODE), 0) + 1 FROM PRO WHERE PRO_USRSELID =  'seller_db1'), 'CC', 'パーカー', 2000, 20, 'シンプルなパーカーです。', 'F');
+INSERT INTO PRO VALUES ('seller_db1', (SELECT NVL(MAX(PRO_CODE), 0) + 1 FROM PRO WHERE PRO_USRSELID =  'seller_db1'), 'CC', 'パーカー紐A', 2500, 20, 'シンプルなパーカーです。', 'F');
+INSERT INTO PRO VALUES ('seller_db1', (SELECT NVL(MAX(PRO_CODE), 0) + 1 FROM PRO WHERE PRO_USRSELID =  'seller_db1'), 'CC', 'パーカー紐B', 2500, 20, 'シンプルなパーカーです。', 'F');
+INSERT INTO PRO VALUES ('seller_db1', (SELECT NVL(MAX(PRO_CODE), 0) + 1 FROM PRO WHERE PRO_USRSELID =  'seller_db1'), 'CK', 'ベビーバス', 8500, 20, '赤ちゃんのためのベビーバスです。', 'F');
+INSERT INTO PRO VALUES ('seller_db1', (SELECT NVL(MAX(PRO_CODE), 0) + 1 FROM PRO WHERE PRO_USRSELID =  'seller_db1'), 'CK', '純金指輪', 12000, 20, '赤ちゃんのための純金指輪です。', 'F');
+INSERT INTO PRO VALUES ('seller_db1', (SELECT NVL(MAX(PRO_CODE), 0) + 1 FROM PRO WHERE PRO_USRSELID =  'seller_db1'), 'CK', 'ベビー洗剤', 500, 20, '赤ちゃんのためのベ洗剤と柔軟剤です。', 'F');
+INSERT INTO PIG VALUES('seller_db1', 1, 1, 'スウェット1.PNG', '/res/img/productImg/seller_db1/1/original/スウェット1.PNG', 'T');
+INSERT INTO PIG VALUES('seller_db1', 1, 2, 'スウェット2.PNG', '/res/img/productImg/seller_db1/1/original/スウェット2.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db1', 1, 3, 'スウェット3.PNG', '/res/img/productImg/seller_db1/1/original/スウェット3.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db1', 1, 4, 'スウェット4.PNG', '/res/img/productImg/seller_db1/1/original/スウェット4.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db1', 1, 5, 'スウェット5.PNG', '/res/img/productImg/seller_db1/1/original/スウェット5.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db1', 2, 1, 'Tシャツ1.PNG', '/res/img/productImg/seller_db1/2/original/Tシャツ1.PNG', 'T');
+INSERT INTO PIG VALUES('seller_db1', 2, 2, 'Tシャツ2.PNG', '/res/img/productImg/seller_db1/2/original/Tシャツ2.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db1', 2, 3, 'Tシャツ3.PNG', '/res/img/productImg/seller_db1/2/original/Tシャツ3.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db1', 2, 4, 'Tシャツ4.PNG', '/res/img/productImg/seller_db1/2/original/Tシャツ4.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db1', 2, 5, 'Tシャツ5.PNG', '/res/img/productImg/seller_db1/2/original/Tシャツ5.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db1', 3, 1, 'パーカー1.PNG', '/res/img/productImg/seller_db1/3/original/パーカー1.PNG', 'T');
+INSERT INTO PIG VALUES('seller_db1', 3, 2, 'パーカー2.PNG', '/res/img/productImg/seller_db1/3/original/パーカー2.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db1', 3, 3, 'パーカー3.PNG', '/res/img/productImg/seller_db1/3/original/パーカー3.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db1', 3, 4, 'パーカー4.PNG', '/res/img/productImg/seller_db1/3/original/パーカー4.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db1', 3, 5, 'パーカー5.PNG', '/res/img/productImg/seller_db1/3/original/パーカー5.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db1', 4, 1, 'パーカー紐A1.PNG', '/res/img/productImg/seller_db1/4/original/パーカー紐A1.PNG', 'T');
+INSERT INTO PIG VALUES('seller_db1', 4, 2, 'パーカー紐A2.PNG', '/res/img/productImg/seller_db1/4/original/パーカー紐A2.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db1', 4, 3, 'パーカー紐A3.PNG', '/res/img/productImg/seller_db1/4/original/パーカー紐A3.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db1', 4, 4, 'パーカー紐A4.PNG', '/res/img/productImg/seller_db1/4/original/パーカー紐A4.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db1', 5, 1, 'パーカー紐B1.PNG', '/res/img/productImg/seller_db1/5/original/パーカー紐B1.PNG', 'T');
+INSERT INTO PIG VALUES('seller_db1', 5, 2, 'パーカー紐B2.PNG', '/res/img/productImg/seller_db1/5/original/パーカー紐B2.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db1', 5, 3, 'パーカー紐B3.PNG', '/res/img/productImg/seller_db1/5/original/パーカー紐B3.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db1', 5, 4, 'パーカー紐B4.PNG', '/res/img/productImg/seller_db1/5/original/パーカー紐B4.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db1', 6, 1, 'ベビーバス1.PNG', '/res/img/productImg/seller_db1/6/original/ベビーバス1.PNG', 'T');
+INSERT INTO PIG VALUES('seller_db1', 6, 2, 'ベビーバス2.PNG', '/res/img/productImg/seller_db1/6/original/ベビーバス2.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db1', 6, 3, 'ベビーバス3.PNG', '/res/img/productImg/seller_db1/6/original/ベビーバス3.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db1', 6, 4, 'ベビーバス4.PNG', '/res/img/productImg/seller_db1/6/original/ベビーバス4.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db1', 7, 1, '純金指輪1.PNG', '/res/img/productImg/seller_db1/7/original/純金指輪1.PNG', 'T');
+INSERT INTO PIG VALUES('seller_db1', 7, 2, '純金指輪2.PNG', '/res/img/productImg/seller_db1/7/original/純金指輪2.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db1', 7, 3, '純金指輪3.PNG', '/res/img/productImg/seller_db1/7/original/純金指輪3.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db1', 7, 4, '純金指輪4.PNG', '/res/img/productImg/seller_db1/7/original/純金指輪4.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db1', 8, 1, 'ベビー洗剤1.PNG', '/res/img/productImg/seller_db1/8/original/ベビー洗剤1.PNG', 'T');
+INSERT INTO PIG VALUES('seller_db1', 8, 2, 'ベビー洗剤2.PNG', '/res/img/productImg/seller_db1/8/original/ベビー洗剤2.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db1', 8, 3, 'ベビー柔軟ー1.PNG', '/res/img/productImg/seller_db1/8/original/ベビー柔軟剤1.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db1', 8, 4, 'ベビー柔軟剤2.PNG', '/res/img/productImg/seller_db1/8/original/ベビー柔軟剤2.PNG', 'F');
+INSERT INTO PRO VALUES ('seller_db2', (SELECT NVL(MAX(PRO_CODE), 0) + 1 FROM PRO WHERE PRO_USRSELID =  'seller_db2'), 'CE', 'ノートパソコン', 90000, 20, 'シンプルなノートパソコンです。', 'F');
+INSERT INTO PRO VALUES ('seller_db2', (SELECT NVL(MAX(PRO_CODE), 0) + 1 FROM PRO WHERE PRO_USRSELID =  'seller_db2'), 'CE', 'プレステ5', 60000, 20, 'シンプルなプレステ5です。', 'F');
+INSERT INTO PRO VALUES ('seller_db2', (SELECT NVL(MAX(PRO_CODE), 0) + 1 FROM PRO WHERE PRO_USRSELID =  'seller_db2'), 'CE', 'モニター', 10000, 20, 'シンプルなモニターです。', 'F');
+INSERT INTO PRO VALUES ('seller_db2', (SELECT NVL(MAX(PRO_CODE), 0) + 1 FROM PRO WHERE PRO_USRSELID =  'seller_db2'), 'CE', 'ルフィキーボード', 4900, 20, '可愛いルフィキーボードです。', 'F');
+INSERT INTO PRO VALUES ('seller_db2', (SELECT NVL(MAX(PRO_CODE), 0) + 1 FROM PRO WHERE PRO_USRSELID =  'seller_db2'), 'CM', 'ウッドマグカップ', 4000, 20, 'シンプルなウッドマグカップです。', 'F');
+INSERT INTO PRO VALUES ('seller_db2', (SELECT NVL(MAX(PRO_CODE), 0) + 1 FROM PRO WHERE PRO_USRSELID =  'seller_db2'), 'CM', 'カプセルコーヒーマシン', 9000, 20, 'カプセルコーヒーマシンです。', 'F');
+INSERT INTO PRO VALUES ('seller_db2', (SELECT NVL(MAX(PRO_CODE), 0) + 1 FROM PRO WHERE PRO_USRSELID =  'seller_db2'), 'CM', 'LPブルートゥーススピーカー', 7000, 20, 'LPブルートゥーススピーカーです。', 'F');
+INSERT INTO PIG VALUES('seller_db2', 1, 1, 'ノートパソコン1.PNG', '/res/img/productImg/seller_db2/1/original/ノートパソコン1.PNG', 'T');
+INSERT INTO PIG VALUES('seller_db2', 1, 2, 'ノートパソコン2.PNG', '/res/img/productImg/seller_db2/1/original/ノートパソコン2.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db2', 1, 3, 'ノートパソコン3.PNG', '/res/img/productImg/seller_db2/1/original/ノートパソコン3.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db2', 1, 4, 'ノートパソコン4.PNG', '/res/img/productImg/seller_db2/1/original/ノートパソコン4.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db2', 1, 5, 'ノートパソコン5.PNG', '/res/img/productImg/seller_db2/1/original/ノートパソコン5.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db2', 2, 1, 'プレステ5_1.PNG', '/res/img/productImg/seller_db2/2/original/プレステ5_1.PNG', 'T');
+INSERT INTO PIG VALUES('seller_db2', 2, 2, 'プレステ5_2.PNG', '/res/img/productImg/seller_db2/2/original/プレステ5_2.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db2', 2, 3, 'プレステ5_3.PNG', '/res/img/productImg/seller_db2/2/original/プレステ5_3.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db2', 2, 4, 'プレステ5_4.PNG', '/res/img/productImg/seller_db2/2/original/プレステ5_4.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db2', 3, 1, 'モニター1.PNG', '/res/img/productImg/seller_db2/3/original/モニター1.PNG', 'T');
+INSERT INTO PIG VALUES('seller_db2', 3, 2, 'モニター2.PNG', '/res/img/productImg/seller_db2/3/original/モニター2.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db2', 3, 3, 'モニター3.PNG', '/res/img/productImg/seller_db2/3/original/モニター3.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db2', 3, 4, 'モニター4.PNG', '/res/img/productImg/seller_db2/3/original/モニター4.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db2', 4, 1, 'ルフィキーボード1.PNG', '/res/img/productImg/seller_db2/4/original/ルフィキーボード1.PNG', 'T');
+INSERT INTO PIG VALUES('seller_db2', 4, 2, 'ルフィキーボード1.PNG', '/res/img/productImg/seller_db2/4/original/ルフィキーボード2.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db2', 4, 3, 'ルフィキーボード1.PNG', '/res/img/productImg/seller_db2/4/original/ルフィキーボード3.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db2', 4, 4, 'ルフィキーボード1.PNG', '/res/img/productImg/seller_db2/4/original/ルフィキーボード4.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db2', 5, 1, 'ウッドマグカップ1.PNG', '/res/img/productImg/seller_db2/5/original/ウッドマグカップ1.PNG', 'T');
+INSERT INTO PIG VALUES('seller_db2', 5, 2, 'ウッドマグカップ2.PNG', '/res/img/productImg/seller_db2/5/original/ウッドマグカップ2.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db2', 5, 3, 'ウッドマグカップ3.PNG', '/res/img/productImg/seller_db2/5/original/ウッドマグカップ3.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db2', 5, 4, 'ウッドマグカップ4.PNG', '/res/img/productImg/seller_db2/5/original/ウッドマグカップ4.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db2', 6, 1, 'カプセルコーヒーマシン1.PNG', '/res/img/productImg/seller_db2/6/original/カプセルコーヒーマシン1.PNG', 'T');
+INSERT INTO PIG VALUES('seller_db2', 6, 2, 'カプセルコーヒーマシン2.PNG', '/res/img/productImg/seller_db2/6/original/カプセルコーヒーマシン2.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db2', 6, 3, 'カプセルコーヒーマシン3.PNG', '/res/img/productImg/seller_db2/6/original/カプセルコーヒーマシン3.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db2', 6, 4, 'カプセルコーヒーマシン4.PNG', '/res/img/productImg/seller_db2/6/original/カプセルコーヒーマシン4.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db2', 7, 1, 'LPブルートゥーススピーカー1.PNG', '/res/img/productImg/seller_db2/7/original/LPブルートゥーススピーカー1.PNG', 'T');
+INSERT INTO PIG VALUES('seller_db2', 7, 2, 'LPブルートゥーススピーカー2.PNG', '/res/img/productImg/seller_db2/7/original/LPブルートゥーススピーカー2.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db2', 7, 3, 'LPブルートゥーススピーカー3.PNG', '/res/img/productImg/seller_db2/7/original/LPブルートゥーススピーカー3.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db2', 7, 4, 'LPブルートゥーススピーカー4.PNG', '/res/img/productImg/seller_db2/7/original/LPブルートゥーススピーカー4.PNG', 'F');
+INSERT INTO PRO VALUES ('seller_db3', (SELECT NVL(MAX(PRO_CODE), 0) + 1 FROM PRO WHERE PRO_USRSELID =  'seller_db3'), 'CB', 'リップバーム', 3630, 20, 'MACグロープレイリップバームです。', 'F');
+INSERT INTO PRO VALUES ('seller_db3', (SELECT NVL(MAX(PRO_CODE), 0) + 1 FROM PRO WHERE PRO_USRSELID =  'seller_db3'), 'CB', '抹茶ミルクスプレッド', 1800, 20, 'オスロック抹茶ミルクスプレッドです。', 'F');
+INSERT INTO PRO VALUES ('seller_db3', (SELECT NVL(MAX(PRO_CODE), 0) + 1 FROM PRO WHERE PRO_USRSELID =  'seller_db3'), 'CB', 'ハンドクリーム', 3200, 20, 'ハンドクリームです。', 'F');
+INSERT INTO PRO VALUES ('seller_db3', (SELECT NVL(MAX(PRO_CODE), 0) + 1 FROM PRO WHERE PRO_USRSELID =  'seller_db3'), 'CB', '誕生日ケーキ', 4000, 20, '誕生日ケーキです。', 'F');
+INSERT INTO PRO VALUES ('seller_db3', (SELECT NVL(MAX(PRO_CODE), 0) + 1 FROM PRO WHERE PRO_USRSELID =  'seller_db3'), 'CL', 'ブラッククッション', 5600, 20, 'HERAのブラッククッションです。', 'F');
+INSERT INTO PRO VALUES ('seller_db3', (SELECT NVL(MAX(PRO_CODE), 0) + 1 FROM PRO WHERE PRO_USRSELID =  'seller_db3'), 'CL', 'サンローランカードケース', 66000, 20, 'サンローランのカードケースです。', 'F');
+INSERT INTO PRO VALUES ('seller_db3', (SELECT NVL(MAX(PRO_CODE), 0) + 1 FROM PRO WHERE PRO_USRSELID =  'seller_db3'), 'CL', 'ゴールデングース靴', 68800, 20, 'ゴールデングース靴です。', 'F');
+INSERT INTO PIG VALUES('seller_db3', 1, 1, 'MACグロープレイリップバーム1.PNG', '/res/img/productImg/seller_db3/1/original/MACグロープレイリップバーム1.PNG', 'T');
+INSERT INTO PIG VALUES('seller_db3', 1, 2, 'MACグロープレイリップバーム2.PNG', '/res/img/productImg/seller_db3/1/original/MACグロープレイリップバーム2.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db3', 1, 3, 'MACグロープレイリップバーム3.PNG', '/res/img/productImg/seller_db3/1/original/MACグロープレイリップバーム3.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db3', 1, 4, 'MACグロープレイリップバーム4.PNG', '/res/img/productImg/seller_db3/1/original/MACグロープレイリップバーム4.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db3', 1, 5, 'MACグロープレイリップバーム5.PNG', '/res/img/productImg/seller_db3/1/original/MACグロープレイリップバーム5.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db3', 2, 1, 'オスロック抹茶ミルクスプレッド1.PNG', '/res/img/productImg/seller_db3/2/original/オスロック抹茶ミルクスプレッド1.PNG', 'T');
+INSERT INTO PIG VALUES('seller_db3', 2, 2, 'オスロック抹茶ミルクスプレッド2.PNG', '/res/img/productImg/seller_db3/2/original/オスロック抹茶ミルクスプレッド2.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db3', 2, 3, 'オスロック抹茶ミルクスプレッド3.PNG', '/res/img/productImg/seller_db3/2/original/オスロック抹茶ミルクスプレッド3.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db3', 2, 4, 'オスロック抹茶ミルクスプレッド4.PNG', '/res/img/productImg/seller_db3/2/original/オスロック抹茶ミルクスプレッド4.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db3', 2, 5, 'オスロック抹茶ミルクスプレッド5.PNG', '/res/img/productImg/seller_db3/2/original/オスロック抹茶ミルクスプレッド5.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db3', 3, 1, 'ハンドクリーム1.PNG', '/res/img/productImg/seller_db3/3/original/ハンドクリーム1.PNG', 'T');
+INSERT INTO PIG VALUES('seller_db3', 3, 2, 'ハンドクリーム2.PNG', '/res/img/productImg/seller_db3/3/original/ハンドクリーム2.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db3', 3, 3, 'ハンドクリーム3.PNG', '/res/img/productImg/seller_db3/3/original/ハンドクリーム3.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db3', 3, 4, 'ハンドクリーム4.PNG', '/res/img/productImg/seller_db3/3/original/ハンドクリーム4.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db3', 3, 5, 'ハンドクリーム5.PNG', '/res/img/productImg/seller_db3/3/original/ハンドクリーム5.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db3', 4, 1, '誕生日ケーキ1.PNG', '/res/img/productImg/seller_db3/4/original/誕生日ケーキ1.PNG', 'T');
+INSERT INTO PIG VALUES('seller_db3', 4, 2, '誕生日ケーキ2.PNG', '/res/img/productImg/seller_db3/4/original/誕生日ケーキ2.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db3', 4, 3, '誕生日ケーキ3.PNG', '/res/img/productImg/seller_db3/4/original/誕生日ケーキ3.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db3', 4, 4, '誕生日ケーキ4.PNG', '/res/img/productImg/seller_db3/4/original/誕生日ケーキ4.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db3', 4, 5, '誕生日ケーキ5.PNG', '/res/img/productImg/seller_db3/4/original/誕生日ケーキ5.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db3', 5, 1, 'ブラッククッション1.PNG', '/res/img/productImg/seller_db3/5/original/ブラッククッション1.PNG', 'T');
+INSERT INTO PIG VALUES('seller_db3', 5, 2, 'ブラッククッション2.PNG', '/res/img/productImg/seller_db3/5/original/ブラッククッション2.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db3', 5, 3, 'ブラッククッション3.PNG', '/res/img/productImg/seller_db3/5/original/ブラッククッション3.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db3', 5, 4, 'ブラッククッション4.PNG', '/res/img/productImg/seller_db3/5/original/ブラッククッション4.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db3', 6, 1, 'サンローランカードケース1.PNG', '/res/img/productImg/seller_db3/6/original/サンローランカードケース1.PNG', 'T');
+INSERT INTO PIG VALUES('seller_db3', 6, 2, 'サンローランカードケース2.PNG', '/res/img/productImg/seller_db3/6/original/サンローランカードケース2.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db3', 6, 3, 'サンローランカードケース3.PNG', '/res/img/productImg/seller_db3/6/original/サンローランカードケース3.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db3', 6, 4, 'サンローランカードケース4.PNG', '/res/img/productImg/seller_db3/6/original/サンローランカードケース4.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db3', 6, 5, 'サンローランカードケース5.PNG', '/res/img/productImg/seller_db3/6/original/サンローランカードケース5.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db3', 8, 1, 'ゴールデングース靴1.PNG', '/res/img/productImg/seller_db3/8/original/ゴールデングース靴1.PNG', 'T');
+INSERT INTO PIG VALUES('seller_db3', 8, 2, 'ゴールデングース靴2.PNG', '/res/img/productImg/seller_db3/8/original/ゴールデングース靴2.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db3', 8, 3, 'ゴールデングース靴3.PNG', '/res/img/productImg/seller_db3/8/original/ゴールデングース靴3.PNG', 'F');
+INSERT INTO PIG VALUES('seller_db3', 8, 4, 'ゴールデングース靴4.PNG', '/res/img/productImg/seller_db3/8/original/ゴールデングース靴4.PNG', 'F');
+--------------------------------------------------------------------------------
+
+--欲しいもの、お気に入り、照会リスト追加
+INSERT INTO VHS VALUES('member_db1','seller_db1',1,SYSDATE,'T','T','T');
+INSERT INTO VHS VALUES('member_db1','seller_db1',2,SYSDATE,'T','T','T');
+INSERT INTO VHS VALUES('member_db1','seller_db1',3,SYSDATE,'T','T','T');
+INSERT INTO VHS VALUES('member_db1','seller_db1',4,SYSDATE,'T','T','T');
+INSERT INTO VHS VALUES('member_db1','seller_db1',5,SYSDATE,'T','T','T');
+INSERT INTO VHS VALUES('member_db1','seller_db1',6,SYSDATE,'T','T','T');
+INSERT INTO VHS VALUES('member_db1','seller_db1',7,SYSDATE,'T','T','T');
+INSERT INTO VHS VALUES('member_db1','seller_db1',8,SYSDATE,'T','T','T');
+
+INSERT INTO VHS VALUES('member_db2','seller_db2',1,SYSDATE,'T','T','T');
+INSERT INTO VHS VALUES('member_db2','seller_db2',2,SYSDATE,'T','T','T');
+INSERT INTO VHS VALUES('member_db2','seller_db2',3,SYSDATE,'T','T','T');
+INSERT INTO VHS VALUES('member_db2','seller_db2',4,SYSDATE,'T','T','T');
+INSERT INTO VHS VALUES('member_db2','seller_db2',5,SYSDATE,'T','T','T');
+INSERT INTO VHS VALUES('member_db2','seller_db2',6,SYSDATE,'T','T','T');
+INSERT INTO VHS VALUES('member_db2','seller_db2',7,SYSDATE,'T','T','T');
+
+INSERT INTO VHS VALUES('member_db3','seller_db3',1,SYSDATE,'T','T','T');
+INSERT INTO VHS VALUES('member_db3','seller_db3',2,SYSDATE,'T','T','T');
+INSERT INTO VHS VALUES('member_db3','seller_db3',3,SYSDATE,'T','T','T');
+INSERT INTO VHS VALUES('member_db3','seller_db3',4,SYSDATE,'T','T','T');
+INSERT INTO VHS VALUES('member_db3','seller_db3',5,SYSDATE,'T','T','T');
+INSERT INTO VHS VALUES('member_db3','seller_db3',6,SYSDATE,'T','T','T');
+INSERT INTO VHS VALUES('member_db3','seller_db3',7,SYSDATE,'T','T','T');
+INSERT INTO VHS VALUES('member_db3','seller_db3',8,SYSDATE,'T','T','T');
+
+--------------------------------------------------------------------------------
+
+INSERT INTO FRI VALUES('member_db1','member_db2',SYSDATE,'FC');
+INSERT INTO FRI VALUES('member_db1','member_db3',SYSDATE,'FC');
+INSERT INTO FRI VALUES('member_db2','member_db3',SYSDATE,'FC');
+
+--------------------------------------------------------------------------------
+
+--商品注文
+-- member1 → member1 プレゼント
+INSERT INTO ORD VALUES(TO_DATE('20230528082005', 'YYYYMMDDHH24MISS'), 'member_db1', 'OO', 'PK');
+INSERT INTO ODT VALUES(TO_DATE('20230528082005', 'YYYYMMDDHH24MISS'), 'member_db1', 'seller_db1', '1', 1, 'member_db1', DEFAULT);
+INSERT INTO ODT VALUES(TO_DATE('20230528082005', 'YYYYMMDDHH24MISS'), 'member_db1', 'seller_db1', '2', 1, 'member_db1', DEFAULT);
+INSERT INTO ODT VALUES(TO_DATE('20230528082005', 'YYYYMMDDHH24MISS'), 'member_db1', 'seller_db1', '3', 1, 'member_db1', DEFAULT);
+INSERT INTO ODT VALUES(TO_DATE('20230528082005', 'YYYYMMDDHH24MISS'), 'member_db1', 'seller_db1', '4', 1, 'member_db1', DEFAULT);
+INSERT INTO ODT VALUES(TO_DATE('20230528082005', 'YYYYMMDDHH24MISS'), 'member_db1', 'seller_db1', '5', 1, 'member_db1', DEFAULT);
+INSERT INTO ODT VALUES(TO_DATE('20230528082005', 'YYYYMMDDHH24MISS'), 'member_db1', 'seller_db1', '6', 1, 'member_db1', DEFAULT);
+INSERT INTO ODT VALUES(TO_DATE('20230528082005', 'YYYYMMDDHH24MISS'), 'member_db1', 'seller_db1', '7', 1, 'member_db1', DEFAULT);
+INSERT INTO ODT VALUES(TO_DATE('20230528082005', 'YYYYMMDDHH24MISS'), 'member_db1', 'seller_db1', '8', 1, 'member_db1', DEFAULT);
+
+-- member2 → member2 プレゼント
+INSERT INTO ORD VALUES(TO_DATE('20230528082006', 'YYYYMMDDHH24MISS'), 'member_db2', 'OO', 'PK');
+INSERT INTO ODT VALUES(TO_DATE('20230528082006', 'YYYYMMDDHH24MISS'), 'member_db2', 'seller_db2', '1', 1, 'member_db2', DEFAULT);
+INSERT INTO ODT VALUES(TO_DATE('20230528082006', 'YYYYMMDDHH24MISS'), 'member_db2', 'seller_db2', '2', 1, 'member_db2', DEFAULT);
+INSERT INTO ODT VALUES(TO_DATE('20230528082006', 'YYYYMMDDHH24MISS'), 'member_db2', 'seller_db2', '3', 1, 'member_db2', DEFAULT);
+INSERT INTO ODT VALUES(TO_DATE('20230528082006', 'YYYYMMDDHH24MISS'), 'member_db2', 'seller_db2', '4', 1, 'member_db2', DEFAULT);
+INSERT INTO ODT VALUES(TO_DATE('20230528082006', 'YYYYMMDDHH24MISS'), 'member_db2', 'seller_db2', '5', 1, 'member_db2', DEFAULT);
+INSERT INTO ODT VALUES(TO_DATE('20230528082006', 'YYYYMMDDHH24MISS'), 'member_db2', 'seller_db2', '6', 1, 'member_db2', DEFAULT);
+INSERT INTO ODT VALUES(TO_DATE('20230528082006', 'YYYYMMDDHH24MISS'), 'member_db2', 'seller_db2', '7', 1, 'member_db2', DEFAULT);
+
+-- member1 → member2 プレゼント
+INSERT INTO ORD VALUES(TO_DATE('20230529082005', 'YYYYMMDDHH24MISS'), 'member_db1', 'OO', 'PK');
+INSERT INTO ODT VALUES(TO_DATE('20230529082005', 'YYYYMMDDHH24MISS'), 'member_db1', 'seller_db1', '1', 1, 'member_db2', DEFAULT);
+INSERT INTO ODT VALUES(TO_DATE('20230529082005', 'YYYYMMDDHH24MISS'), 'member_db1', 'seller_db1', '2', 1, 'member_db2', DEFAULT);
+INSERT INTO ODT VALUES(TO_DATE('20230529082005', 'YYYYMMDDHH24MISS'), 'member_db1', 'seller_db1', '3', 1, 'member_db2', DEFAULT);
+INSERT INTO ODT VALUES(TO_DATE('20230529082005', 'YYYYMMDDHH24MISS'), 'member_db1', 'seller_db3', '1', 1, 'member_db2', DEFAULT);
+INSERT INTO ODT VALUES(TO_DATE('20230529082005', 'YYYYMMDDHH24MISS'), 'member_db1', 'seller_db3', '2', 1, 'member_db2', DEFAULT);
+INSERT INTO ODT VALUES(TO_DATE('20230529082005', 'YYYYMMDDHH24MISS'), 'member_db1', 'seller_db3', '3', 1, 'member_db2', DEFAULT);
+INSERT INTO ODT VALUES(TO_DATE('20230529082005', 'YYYYMMDDHH24MISS'), 'member_db1', 'seller_db3', '4', 1, 'member_db2', DEFAULT);
+
+-- member2 → member1 プレゼント
+INSERT INTO ORD VALUES(TO_DATE('20230527082005', 'YYYYMMDDHH24MISS'), 'member_db2', 'OO', 'PK');
+INSERT INTO ODT VALUES(TO_DATE('20230527082005', 'YYYYMMDDHH24MISS'), 'member_db2', 'seller_db2', '1', 1, 'member_db1', DEFAULT);
+INSERT INTO ODT VALUES(TO_DATE('20230527082005', 'YYYYMMDDHH24MISS'), 'member_db2', 'seller_db2', '2', 1, 'member_db1', DEFAULT);
+INSERT INTO ODT VALUES(TO_DATE('20230527082005', 'YYYYMMDDHH24MISS'), 'member_db2', 'seller_db2', '3', 1, 'member_db1', DEFAULT);
+INSERT INTO ODT VALUES(TO_DATE('20230527082005', 'YYYYMMDDHH24MISS'), 'member_db2', 'seller_db3', '1', 1, 'member_db1', DEFAULT);
+INSERT INTO ODT VALUES(TO_DATE('20230527082005', 'YYYYMMDDHH24MISS'), 'member_db2', 'seller_db3', '2', 1, 'member_db1', DEFAULT);
+INSERT INTO ODT VALUES(TO_DATE('20230527082005', 'YYYYMMDDHH24MISS'), 'member_db2', 'seller_db3', '3', 1, 'member_db1', DEFAULT);
+INSERT INTO ODT VALUES(TO_DATE('20230527082005', 'YYYYMMDDHH24MISS'), 'member_db2', 'seller_db3', '4', 1, 'member_db1', DEFAULT);
+
+-- member3 → member1 プレゼント
+INSERT INTO ORD VALUES(TO_DATE('20230410082005', 'YYYYMMDDHH24MISS'), 'member_db3', 'OO', 'PK');
+INSERT INTO ODT VALUES(TO_DATE('20230410082005', 'YYYYMMDDHH24MISS'), 'member_db3', 'seller_db2', '4', 1, 'member_db1', DEFAULT);
+INSERT INTO ODT VALUES(TO_DATE('20230410082005', 'YYYYMMDDHH24MISS'), 'member_db3', 'seller_db2', '5', 1, 'member_db1', DEFAULT);
+INSERT INTO ODT VALUES(TO_DATE('20230410082005', 'YYYYMMDDHH24MISS'), 'member_db3', 'seller_db2', '6', 1, 'member_db1', DEFAULT);
+INSERT INTO ODT VALUES(TO_DATE('20230410082005', 'YYYYMMDDHH24MISS'), 'member_db3', 'seller_db2', '7', 1, 'member_db1', DEFAULT);
+INSERT INTO ODT VALUES(TO_DATE('20230410082005', 'YYYYMMDDHH24MISS'), 'member_db3', 'seller_db3', '5', 1, 'member_db1', DEFAULT);
+--------------------------------------------------------------------------------

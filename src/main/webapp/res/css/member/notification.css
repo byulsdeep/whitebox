@@ -1,0 +1,100 @@
+.notification_modal {
+    display: none;
+    z-index: 2;
+    position: fixed;
+    top: 70px;
+    right: 30px;
+    border: 1px solid #222;
+    background-color: white;
+    border-radius: 5px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.notification_modal_top {
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    border: 1px solid #222;
+    border-radius: 5px;
+}
+.notification_modal_close_button {
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    border: 1px solid #222;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.notification_modal_content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90%;
+    border-radius: 5px;
+    max-height: 600px;
+    overflow: auto;
+}
+.notification_modal_feed {
+    border: 1px solid #222;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+.notification_modal_message_wrap {
+    border: 1px solid #222;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    box-sizing: border-box;
+    padding: 10px;
+}
+.notification_modal_profile_image_wrap {
+    width: 50px;
+    height: 50px;
+    border-radius: 100px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+.notification_modal_profile_image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.notification_modal_message {
+    margin-left: 10px;
+    width: 200px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.notification_modal_buttons_wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.notification_modal_buttons_wrap {
+}
+.notification_modal_button {
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 10px 0 10px;
+    border: 1px solid #222;
+    cursor: pointer;
+    background-color: white;
+}
+.notification_modal_return_button {
+    display: inline-block;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px;
+    border: 1px solid #222;
+    cursor: pointer;
+}

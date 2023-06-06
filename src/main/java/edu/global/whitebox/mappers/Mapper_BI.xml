@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.global.whitebox.mappers.Mapper_BI">
+	<!-- MyPage -->
+	<update id="updateUserPassword">
+		UPDATE USR SET USR_PASSWORD = #{usrPassword} WHERE
+		USR_ID = #{usrId}
+	</update>
+	<update id="updateUserImg">
+		UPDATE USR SET USR_IMAGE = #{usrImage}
+		WHERE USR_ID =
+		#{usrId}
+	</update>
+	<update id="updateUsr">
+		UPDATE USR SET
+		USR_LASTNAME = #{usrLastname},
+		USR_FIRSTNAME = #{usrFirstname},
+		USR_PHONE = #{usrPhone},
+		USR_EMAIL =
+		#{usrEmail},
+		USR_ADDRESS = #{usrAddress}
+		WHERE USR_ID = #{usrId}
+	</update>
+	<update id="updateMem">
+		UPDATE MEM SET
+		MEM_POSTAL = #{memPostal},
+		MEM_GENDER =
+		#{memGender},
+		MEM_BIRTHDAY = #{memBirthday}
+		WHERE MEM_USRID = #{usrId}
+	</update>
+
+	<select id="selectUserInfo" resultType="UserBean">
+		SELECT
+		USR_ID AS USRID,
+		USR_LASTNAME AS USRLASTNAME,
+		USR_FIRSTNAME AS USRFIRSTNAME,
+		USR_IMAGE AS
+		USRIMAGE
+		FROM
+		USR
+		WHERE
+		USR_ID = #{usrId}
+	</select>
+
+	<!-- wishList 관련 -->
+	<select id="userWishListCount" resultType="int">
+		SELECT COUNT(*) FROM VHS
+		WHERE
+		VHS_ISWISHED = 'T'
+		AND
+		VHS_USRMEMID = #{vhsUsrmemid}
+
+	</select>
+
+	<!-- 1. 1번 실행 -->
+	<select id="userWishListByPage" resultMap='viewWishListMap'>
+	<![CDATA[
+		SELECT * FROM (
+		SELECT ROWNUM AS RNUM, A. * FROM(
+		SELECT
+		     VHS_PROUSRSELID AS
+		     VHSPROUSRSELID,
+		     VHS_PROCODE AS VHSPROCODE,
+		     PRO_NAME AS PRONAME,
+		     PRO_INFO AS PROINFO,
+		     PRO_PRICE AS PROPRICE,
+		     VHS_DATE AS VHSDATE
+		  FROM
+		     VHS
+		         INNER JOIN PRO
+		            ON VHS_PROCODE = PRO_CODE
+		            AND VHS_PROUSRSELID = PRO_USRSELID
+		  WHERE
+		     VHS_ISWISHED = 'T'
+		     AND
+		     VHS_USRMEMID = #{vhsUsrmemid}
+		  ORDER BY
+		     VHS_DATE DESC
+		     ) A WHERE ROWNUM <= #{currentPage} * #{itemsPerPage}
+		     ) WHERE RNUM > (#{currentPage} - 1) * #{itemsPerPage}
+		     ]]>
+		<!-- WHERE ROWNUM > (#{currentPage} - 1) * #{itemsPerPage} = 페이지 시작 지점 -->
+	</select>
+	<!-- usrId 확인!!!!!!!!!!!! -->
+	<!-- 2. 1과 3을 연결 -->
+	<resultMap id="viewWishListMap" type="ViewHistoryBean">
+		<collection property="productImage"
+			column="pigProusrselid=vhsProusrselid pigProcode=vhsProcode"
+			select="viewWishListImg">
+		</collection>
+	</resultMap>
+
+	<!-- 3. n번 실행 -->
+	<select id="viewWishListImg" resultType='ProductImageBean'>
+		SELECT
+		PIG_PROUSRSELID AS
+		PIGPROUSRSELID,
+		PIG_PROCODE AS PIGPROCODE,
+		PIG_CODE AS PIGCODE,
+		PIG_NAME
+		AS PIGNAME,
+		PIG_PATH AS PIGPATH,
+		PIG_ISTHUMBNAIL AS PIGISTHUMBNAIL
+		FROM
+		PIG
+		WHERE
+		PIG_PROUSRSELID = #{pigProusrselid}
+		AND
+		PIG_PROCODE =
+		#{pigProcode}
+		AND
+		PIG_ISTHUMBNAIL = 'T'
+	</select>
+	
+	<!-- watchList 관련 -->
+	<select id="userWatchListCount" resultType="int">
+		SELECT COUNT(*) FROM VHS
+		WHERE
+		VHS_ISWATCHED = 'T'
+		AND
+		VHS_USRMEMID = #{vhsUsrmemid}
+
+	</select>
+
+	<!-- 1. 1번 실행 -->
+	<select id="userWatchListByPage" resultMap='viewWatchListMap'>
+	<![CDATA[
+		SELECT * FROM (
+		SELECT ROWNUM AS RNUM, A. * FROM(
+		SELECT
+		     VHS_PROUSRSELID AS
+		     VHSPROUSRSELID,
+		     VHS_PROCODE AS VHSPROCODE,
+		     PRO_NAME AS PRONAME,
+		     PRO_INFO AS PROINFO,
+		     PRO_PRICE AS PROPRICE,
+		     VHS_DATE AS VHSDATE
+		  FROM
+		     VHS
+		         INNER JOIN PRO
+		            ON VHS_PROCODE = PRO_CODE
+		            AND VHS_PROUSRSELID = PRO_USRSELID
+		  WHERE
+		     VHS_ISWATCHED = 'T'
+		     AND
+		     VHS_USRMEMID = #{vhsUsrmemid}
+		  ORDER BY
+		     VHS_DATE DESC
+		     ) A WHERE ROWNUM <= #{currentPage} * #{itemsPerPage}
+		     ) WHERE RNUM > (#{currentPage} - 1) * #{itemsPerPage}
+		     ]]>
+		<!-- WHERE ROWNUM > (#{currentPage} - 1) * #{itemsPerPage} = 페이지 시작 지점 -->
+	</select>
+	<!-- usrId 확인!!!!!!!!!!!! -->
+	<!-- 2. 1과 3을 연결 -->
+	<resultMap id="viewWatchListMap" type="ViewHistoryBean">
+		<collection property="productImage"
+			column="pigProusrselid=vhsProusrselid pigProcode=vhsProcode"
+			select="viewWatchListImg">
+		</collection>
+	</resultMap>
+
+	<!-- 3. n번 실행 -->
+	<select id="viewWatchListImg" resultType='ProductImageBean'>
+		SELECT
+		PIG_PROUSRSELID AS
+		PIGPROUSRSELID,
+		PIG_PROCODE AS PIGPROCODE,
+		PIG_CODE AS PIGCODE,
+		PIG_NAME
+		AS PIGNAME,
+		PIG_PATH AS PIGPATH,
+		PIG_ISTHUMBNAIL AS PIGISTHUMBNAIL
+		FROM
+		PIG
+		WHERE
+		PIG_PROUSRSELID = #{pigProusrselid}
+		AND
+		PIG_PROCODE =
+		#{pigProcode}
+		AND
+		PIG_ISTHUMBNAIL = 'T'
+	</select>
+	
+	<!-- viewList 관련 -->
+	<select id="userViewHistoryCount" resultType="int">
+		SELECT COUNT(*) FROM VHS
+		WHERE
+		VHS_ISVIEWED = 'T'
+		AND
+		VHS_USRMEMID = #{vhsUsrmemid}
+
+	</select>
+
+	<!-- 1. 1번 실행 -->
+	<select id="userViewHistoryByPage" resultMap='viewHistoryMap'>
+	<![CDATA[
+		SELECT * FROM (
+		SELECT ROWNUM AS RNUM, A. * FROM(
+		SELECT
+		     VHS_PROUSRSELID AS
+		     VHSPROUSRSELID,
+		     VHS_PROCODE AS VHSPROCODE,
+		     PRO_NAME AS PRONAME,
+		     PRO_INFO AS PROINFO,
+		     PRO_PRICE AS PROPRICE,
+		     VHS_DATE AS VHSDATE
+		  FROM
+		     VHS
+		         INNER JOIN PRO
+		            ON VHS_PROCODE = PRO_CODE
+		            AND VHS_PROUSRSELID = PRO_USRSELID
+		  WHERE
+		     VHS_ISVIEWED = 'T'
+		     AND
+		     VHS_USRMEMID = #{vhsUsrmemid}
+		  ORDER BY
+		     VHS_DATE DESC
+		     ) A WHERE ROWNUM <= #{currentPage} * #{itemsPerPage}
+		     ) WHERE RNUM > (#{currentPage} - 1) * #{itemsPerPage}
+		     ]]>
+		<!-- WHERE ROWNUM > (#{currentPage} - 1) * #{itemsPerPage} = 페이지 시작 지점 -->
+	</select>
+	<!-- usrId 확인!!!!!!!!!!!! -->
+	<!-- 2. 1과 3을 연결 -->
+	<resultMap id="viewHistoryMap" type="ViewHistoryBean">
+		<collection property="productImage"
+			column="pigProusrselid=vhsProusrselid pigProcode=vhsProcode"
+			select="viewHistoryImg">
+		</collection>
+	</resultMap>
+
+	<!-- 3. n번 실행 -->
+	<select id="viewHistoryImg" resultType='ProductImageBean'>
+		SELECT
+		PIG_PROUSRSELID AS
+		PIGPROUSRSELID,
+		PIG_PROCODE AS PIGPROCODE,
+		PIG_CODE AS PIGCODE,
+		PIG_NAME
+		AS PIGNAME,
+		PIG_PATH AS PIGPATH,
+		PIG_ISTHUMBNAIL AS PIGISTHUMBNAIL
+		FROM
+		PIG
+		WHERE
+		PIG_PROUSRSELID = #{pigProusrselid}
+		AND
+		PIG_PROCODE =
+		#{pigProcode}
+		AND
+		PIG_ISTHUMBNAIL = 'T'
+	</select>
+</mapper>

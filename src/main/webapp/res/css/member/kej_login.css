@@ -1,0 +1,93 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap");
+body {
+  margin: 0;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 15px;
+}
+.login_container {
+  display: flex;
+  width: 1280px;
+  height: 800px;
+  margin: 0 auto;
+  flex-direction: column;
+  align-items: center;
+}
+.login_title {
+  font-weight: bold;
+  display: flex;
+  font-size: 30px;
+  margin-top: 100px;
+  color: #222;
+}
+.login_input {
+  margin-top: 40px;
+}
+.login_box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.login_box input {
+  border-radius: 5px;
+  margin-top: 10px;
+  width: 350px;
+  height: 45px;
+  border: 1px solid #333333;
+}
+.member_login-button {
+  display: flex;
+  width: 350px;
+  height: 45px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #222;
+  color: white;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.member_join-button {
+  border: 1px solid #333333;
+  display: flex;
+  width: 350px;
+  height: 45px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: white;
+  color: #222;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+.login_box a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border-radius: 5px;
+  text-align: center;
+  line-height: 45px;
+  width: 350px;
+  height: 35px;
+}
+.login_box img {
+  width: 35px;
+  height: 35px;
+  margin-right: 10px;
+}
+.id_save {
+  margin: 10px;
+  display: flex;
+  justify-content: space-around;
+}
+.line {
+  background-color: #00b800;
+  color: white;
+}
+.google {
+  border: 1px solid #333333;
+}
+.kakao {
+  background-color: #ffe812;
+}

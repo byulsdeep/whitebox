@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap');
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+.use_selshop_container {
+  margin: 0 auto;
+  width: 1200px;
+}
+.usr_selshop_info {
+  width: 1125px;
+  height: 160px;
+  background-color: #f5f5f5;
+  display: flex;
+  align-items: center;
+}
+.usr_selshop_proList li a {
+  text-decoration: none;
+  color: #222;
+}
+.usr_selshop_ranking_List li a {
+  text-decoration: none;
+  color: #222;
+}
+.usr_selshop_image {
+  display: flex;
+  width: 160px;
+  justify-content: center;
+}
+.sel_shop_img {
+  width: 100px;
+  height: 100px;
+}
+
+.usr_selshop_coment {
+  width: 920px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+}
+
+.usr_selshop_title {
+  width: 920px;
+  height: 30px;
+  font-weight: bold;
+  font-size: 20px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.usr_selshop_inner {
+  width: 920px;
+  height: 5px;
+  margin-bottom: 30px;
+  align-items: flex-start;
+  display: flex;
+}
+.usr_selshop_ranking {
+  padding: 50px 0px 10px 0px;
+  width: 1200px;
+}
+.usr_selshop_ranking_title {
+  height: 50px;
+  margin-left: 10px;
+  font-weight: bold;
+}
+.usr_selshop_ranking_List {
+  display: flex !important;
+  margin-bottom: 40px;
+}
+.usr_selshop_ranking_List li {
+  flex: 0 0 306.667px;
+  margin-right: 20px;
+  list-style: none;
+}
+.usr_selshop_ranking_List li img {
+  max-width: 100%;
+}
+.usr_selshop_pro_3x3 {
+  width: 1200px;
+  margin: 0 auto;
+}
+.usr_selshop_proList_3x3 {
+  display: none;
+  width: 1200px;
+}
+.usr_selshop_proList {
+  display: flex !important;
+  width: 1200px;
+  flex-wrap: wrap;
+}
+.usr_selshop_pro_title {
+  width: 1200px;
+  display: flex;
+  align-items: center;
+  height: 60px;
+  margin-bottom: 10px;
+}
+
+.pro_title_text {
+  font-weight: bold;
+  margin-left: 10px;
+}
+.usr_selshop_proList li {
+  flex: 0 0 306.667px;
+  margin-right: 20px;
+  margin-bottom: 15px;
+  list-style: none;
+}
+
+.usr_selshop_proList li img {
+  max-width: 100%;
+}
+
+#more_button {
+  text-align: center;
+  margin-top: 55px;
+}
+
+#load {
+  background-color: white;
+  text-align: center;
+  width: 200px;
+  height: 40px;
+  border: solid 1px;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+dl,
+ul,
+ol,
+menu,
+li {
+  list-style: none;
+}
+
+.card_product {
+  display: flex;
+  flex-direction: column;
+  width: 360px;
+  position: relative;
+}
+
+.card_product img {
+  width: 360px;
+  height: 350px;
+  border-radius: 5px;
+}
+
+.txt_ranking {
+  padding-right: 4px;
+  line-height: 32px;
+  box-sizing: border-box;
+  position: absolute;
+  left: 16px;
+  top: 0;
+  width: 32px;
+  height: 40px;
+  font-size: 16px;
+  line-height: 36px;
+  background-position: -140px -270px;
+  text-align: center;
+  text-indent: 0;
+  color: #fff;
+  background: url(/res/img/kej/pro_number1.png);
+}
+
+.txt_ranking2 {
+  padding-right: 4px;
+  line-height: 32px;
+  box-sizing: border-box;
+  position: absolute;
+  left: 16px;
+  top: 0;
+  width: 32px;
+  height: 40px;
+  font-size: 16px;
+  line-height: 36px;
+  background-position: -140px -270px;
+  text-align: center;
+  text-indent: 0;
+  color: #fff;
+  background: url(/res/img/kej/pro_number2.png);
+}
+
+.card_product .txt_brand,
+.card_product .txt_product {
+  margin-top: 10px;
+  display: block;
+  overflow: hidden;
+  font-size: 15px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-break: break-all;
+}
+
+.txt_price {
+  font-size: 20px;
+}
+
+.txt_tax {
+  font-size: 15px;
+}

@@ -1,0 +1,157 @@
+* {
+  box-sizing: border-box;
+}
+
+.pro_info {
+  width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.store_title {
+  margin: 0 auto;
+  height: 120px;
+  padding-left: 20px;
+  line-height: 120px;
+  width: 1200px;
+  font-size: 35px;
+  background-color: #f5f5f5;
+}
+
+.pro_form input[type="text"],
+.pro_form select,
+.pro_form textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+.pro_form label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+.pro_form input[type="submit"] {
+  width: 100px;
+  background-color: black;
+  color: #f5f5f5;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  border: solid 1px;
+  display: flex;
+  justify-content: center;
+}
+
+.pro_form input[type="submit"]:hover {
+  background-color: f5f5f5;
+  color: black;
+  border: solid 1px;
+}
+
+.store_info_name {
+  display: flex;
+  width: 300px;
+  margin-top: 6px;
+  justify-content: left;
+}
+
+.store_info_contents {
+  text-align: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.store_info_contents_name {
+  width: 500px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.store_info_submit {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+/* Clear floats after the columns */
+.store_info_box::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.pro_image {
+  width: 100px;
+  height: 100px;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.pro_image img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.pro_image_container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.pro_image_item {
+  width: 100px;
+  height: 100px;
+  margin: 5px;
+  border: 2px solid #dddddd;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pro_image_item.selected {
+  border-color: blue;
+}
+
+.pro_image_container br {
+  clear: both;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.pro_image_item.empty {
+  background-color: #f1f1f1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pro_image_item.empty .empty-text {
+  font-size: 40px;
+  font-weight: bold;
+  color: #cccccc;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .store_info_name,
+  .store_info_contents,
+  .pro_form input[type="submit"] {
+    width: 100%;
+    margin-top: 0;
+  }
+}

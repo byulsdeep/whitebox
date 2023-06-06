@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.global.whitebox.mappers.Mapper_Auth">
+	<select id="checkUsrIdDuplicate" resultType="boolean">
+		SELECT COUNT(*) FROM USR WHERE USR_ID = #{usrId}
+	</select>
+	<insert id="insertUser">
+	    INSERT INTO USR VALUES (
+	        #{usrId}, #{usrPassword}, DEFAULT,
+	        #{usrLastname}, #{usrFirstname}, #{usrPhone}, #{usrEmail},
+	        #{usrAddress}, #{usrImage}, DEFAULT
+	    )
+	</insert>
+	<insert id="insertMember">
+		INSERT INTO MEM VALUES (
+	        #{usrId}, #{memPostal}, #{memGender}, 
+	        TO_DATE(#{memBirthday}, 'YYYY-MM-DD'),
+	        #{memIssocial}
+	    )
+	</insert>
+	<insert id="insertSeller">
+		INSERT INTO SEL VALUES (
+	        #{usrId}, #{selShopname}, #{selInfo}
+	    )
+	</insert>
+	<insert id="insertRole">
+		INSERT INTO AUT VALUES (
+			#{usrId}, #{authority}
+		)
+	</insert>
+	<!-- 
+	AS 인증코드 발송
+    AN 인증 완료 (알림 용)
+    AC 완료 확인 (알림 중단)
+	 -->
+	<insert id="insertAuthenticationLog">
+		INSERT INTO AUL VALUES(#{aulUsrid}, DEFAULT, #{aulAurcode})
+	</insert>
+	<select id="getAulDate" resultType="string">
+		SELECT TO_CHAR(MAX(AUL_DATE), 'YYYYMMDDHH24MISS') FROM AUL WHERE AUL_AURCODE = 'AS' AND AUL_USRID = #{aulUsrid}
+	</select>
+	<select id="authenticateEmail" resultType="boolean">
+		SELECT COUNT(*) FROM AUL WHERE AUL_AURCODE = 'AS' AND AUL_USRID = #{aulUsrid} AND AUL_DATE = TO_DATE(#{aulDate}, 'YYYYMMDDHH24MISS')
+	</select>
+	<update id="updateRole">
+		UPDATE AUT SET AUT_AUTHORITY = #{autAuthority} WHERE AUT_USRID = #{autUsrid}
+	</update>
+	<select id="isAuthenticated" resultType="boolean"><!-- 로그인 상태가 아닐시 이메일 인증 할 경우 필요 -->
+		SELECT COUNT(*) FROM AUT WHERE AUT_AUTHORITY != 'ROLE_UNAUTHENTICATED' AND AUT_USRID = #{autUsrid}
+	</select>
+	<resultMap id="userMap" type="UserBean">
+		<result property="usrId" column="usr_id" />
+		<result property="usrPassword" column="usr_password" />
+		<result property="usrEnabled" column="usr_enabled" />
+		<result property="usrLastname" column="usr_lastname" />
+		<result property="usrFirstname" column="usr_firstname" />
+		<result property="usrPhone" column="usr_phone" />
+		<result property="usrEmail" column="usr_email" />
+		<result property="usrAddress" column="usr_address" />
+		<result property="usrImage" column="usr_image" />
+		<result property="usrDate" column="usr_date" />
+		<result property="memPostal" column="mem_postal" />
+		<result property="memGender" column="mem_gender" />
+		<result property="memBirthday" column="mem_birthday" />
+		<result property="memIssocial" column="mem_issocial" />
+		<result property="selShopname" column="sel_shopname" />
+		<result property="selInfo" column="sel_info" />
+		<collection property="authorities" resultMap="authMap"></collection>
+	</resultMap>
+	<resultMap id="authMap" type="AuthorityBean">
+		<result property="autUsrid" column="aut_usrid" />
+		<result property="autAuthority" column="aut_authority" />
+	</resultMap>
+	<!-- 환경에 따라 date type 불러오는 형식이 다른게 확인돼 형식을 지정해줌 =>TO_CHAR(USR_DATE, 'YYYY-MM-DD') -->
+	<select id="getUserInfo" resultMap="userMap">
+		SELECT
+		    USR_ID,
+		    USR_PASSWORD,
+		    USR_ENABLED,
+		    USR_LASTNAME,
+		    USR_FIRSTNAME,
+		    USR_PHONE,
+		    USR_EMAIL,
+		    USR_ADDRESS,
+		    USR_IMAGE,
+    		TO_CHAR(USR_DATE, 'YYYY-MM-DD') AS USR_DATE,
+		    AUT_USRID,
+		    AUT_AUTHORITY,
+		    MEM_USRID,
+		    MEM_POSTAL,
+		    MEM_GENDER,
+    		TO_CHAR(MEM_BIRTHDAY, 'YYYY-MM-DD') AS MEM_BIRTHDAY,
+		    MEM_ISSOCIAL,
+		    SEL_USRID,
+		    SEL_SHOPNAME,
+		    SEL_INFO
+		FROM 
+		    USR INNER JOIN AUT ON USR_ID = AUT_USRID
+		    LEFT OUTER JOIN MEM ON USR_ID = MEM_USRID
+		    LEFT OUTER JOIN SEL ON USR_ID = SEL_USRID
+		WHERE USR_ID = #{usrId}
+	</select>
+</mapper>

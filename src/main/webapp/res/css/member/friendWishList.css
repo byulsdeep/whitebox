@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap');
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+}
+.main_fri {
+    border: solid whitesmoke 1px;
+    width: 1600px;
+    height: 1380px;
+    margin: 0 auto;
+}
+.section_left {
+    float: left;
+    width: 330px;
+    padding: 15px;
+    border-right: solid whitesmoke 1px;
+}
+.section_profile {
+    height: 150px;
+    padding: 15px;
+    background-color: whitesmoke;
+    margin-bottom: 10px;
+}
+.my_profile {
+    display: flex;
+    margin-top: 15px;
+    margin-left: 90px;
+}
+.my_profile_list {
+    margin-right: 5px;
+    display: flex;
+    text-align: center;
+    box-sizing: border-box;
+    width: 110px;
+    border: solid #222 1px;
+    border-radius: 5px;
+    padding: 10px;
+    justify-content: center;
+}
+.my_profile_name {
+    margin-right: 10px;
+    display: flex;
+    text-align: center;
+    box-sizing: border-box;
+    width: 100px;
+    border-radius: 5px;
+    padding: 10px;
+}
+.my_profile_box {
+    position: absolute;
+    float: left;
+    width: 80px;
+    height: 80px;
+    border-radius: 70%;
+    overflow: hidden;
+}
+.my_profile_box_modify {
+    position: absolute;
+    float: left;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    border-radius: 70%;
+    overflow: hidden;
+}
+.my_profile_img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.section_list {
+    height: 1130px;
+    padding: 15px;
+    background-color: whitesmoke;
+}
+.my_list {
+    margin: 0 auto;
+    padding: 0;
+}
+.my_list li {
+    margin-top: 10px;
+    list-style: none;
+    padding: 12px;
+    border: 1px solid #222;
+    border-radius: 5px;
+}
+.section_content {
+    float: right;
+    width: 1200px;
+    height: 100%;
+    padding: 15px;
+}
+.section_content_top {
+    padding: 20px 20px;
+    border: 1px solid whitesmoke;
+    margin-bottom: 28px;
+}
+.friend_profile_wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.friend_profile_wrap > * {
+    margin: 10px 10px;
+}
+.friend_profile_image_wrap {
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+    overflow: hidden;
+}
+.friend_profile_image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.friend_profile_title {
+    font-size: 2rem;
+}
+.section_content_friend_wish_list {
+    padding: 10px 10px;
+    background-color: whitesmoke;
+    display: flex;
+    flex-wrap: wrap;
+}
+/* card */
+.card_product {
+    display: flex;
+    flex-direction: column;
+    width: 360px;
+    border: 1px solid #222;
+    padding: 10px;
+    margin: 5px;
+    background-color: white;
+}
+.card_product img {
+    width: 360px;
+    height: 350px;
+    border-radius: 5px;
+}
+.txt_ranking {
+    padding-right: 4px;
+    line-height: 32px;
+    box-sizing: border-box;
+    position: absolute;
+    left: 16px;
+    top: 0;
+    width: 32px;
+    height: 40px;
+    font-size: 16px;
+    line-height: 36px;
+    background-position: -140px -270px;
+    text-align: center;
+    text-indent: 0;
+    color: #fff;
+    background: url(/res/img/pro_number1.png);
+}
+.card_product .txt_brand,
+.card_product .txt_product {
+    margin-top: 10px;
+    display: block;
+    overflow: hidden;
+    font-size: 15px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-break: break-all;
+}
+.txt_price {
+    font-size: 20px;
+}
+.txt_tax {
+    font-size: 15px;
+}

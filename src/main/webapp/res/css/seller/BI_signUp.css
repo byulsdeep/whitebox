@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 15px;
+}
+
+.main {
+    text-align: center;
+    width: 354px;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+.title-text {
+    font-weight: 500;
+    font-size: 35px;
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
+.content-text {
+    font-weight: 500;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.write-box {
+    width: 350px;
+    height: 45px;
+    border-radius: 5px 5px 5px 5px;
+    border: none;
+    background-color: #e5e5e5;
+    margin-bottom: 15px;
+}
+
+.write-box2 {
+    width: 170px;
+    height: 45px;
+    border-radius: 5px 5px 5px 5px;
+    border: none;
+    background-color: #e5e5e5;
+    margin-bottom: 15px;
+}
+
+.write-box3 {
+    width: 110px;
+    height: 45px;
+    border-radius: 5px 5px 5px 5px;
+    border: none;
+    background-color: #e5e5e5;
+    margin-bottom: 15px;
+}
+
+img {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    max-width: 150px;
+    max-height: 150px;
+}
+#usrImageLabel {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.file-button {
+    background-color: white;
+}
+
+.join-button {
+    width: 350px;
+    height: 45px;
+    border-radius: 5px 5px 5px 5px;
+    cursor: pointer;
+    background-color: #222;
+    color: white;
+    margin-top: 15px;
+    margin-bottom: 30px;
+}
+/*태블릿*/
+@media screen and (max-width: 768px) {
+    body {
+        margin: 0;
+        font-family: 'Noto Sans JP', sans-serif;
+        font-size: 13px;
+    }
+
+    .main {
+        text-align: center;
+        width: 252px;
+        margin: 0 auto;
+        justify-content: center;
+    }
+
+    .title-text {
+        font-weight: 500;
+        font-size: 22px;
+        text-align: center;
+    }
+
+    .content-text {
+        font-weight: 500;
+        margin-bottom: 5px;
+        text-align: left;
+    }
+
+    .write-box {
+        width: 250px;
+        height: 40px;
+        border-radius: 5px 5px 5px 5px;
+        border: none;
+        background-color: #e5e5e5;
+        margin-bottom: 15px;
+    }
+
+    .write-box2 {
+        width: 120px;
+        height: 40px;
+        border-radius: 5px 5px 5px 5px;
+        border: none;
+        background-color: #e5e5e5;
+        margin-bottom: 15px;
+    }
+
+    .write-box3 {
+        width: 78px;
+        height: 40px;
+        border-radius: 5px 5px 5px 5px;
+        border: none;
+        background-color: #e5e5e5;
+        margin-bottom: 15px;
+    }
+
+    img {
+        text-align: center;
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+
+    .join-button {
+        width: 250px;
+        height: 40px;
+        background-color: #222;
+        color: white;
+    }
+}

@@ -1,0 +1,93 @@
+-- mem:yeong, sel:testmart, sel:samson
+
+SELECT * FROM USR;
+SELECT * FROM MEM;
+SELECT * FROM SEL;
+
+INSERT INTO PRO VALUES('testmart', 1, 'CC', '服', 1250, 5, 'ふく', 'F');
+INSERT INTO PRO VALUES('testmart', (SELECT COUNT(*) FROM PRO WHERE PRO_USRSELID = 'testmart')+1, 'CC', '財布', 750, 5, 'さいふ', 'F');
+INSERT INTO PRO VALUES('testmart', (SELECT COUNT(*) FROM PRO WHERE PRO_USRSELID = 'testmart')+1, 'CC', '傘', 1750, 5, 'かさ', 'F');
+INSERT INTO PRO VALUES('testmart', (SELECT COUNT(*) FROM PRO WHERE PRO_USRSELID = 'testmart')+1, 'CC', 'マウス', 250, 5, 'ネズミ', 'F');
+INSERT INTO PRO VALUES('testmart', (SELECT COUNT(*) FROM PRO WHERE PRO_USRSELID = 'testmart')+1, 'CC', '1ドル', 110, 5, 'ドル', 'F');
+INSERT INTO PRO VALUES('testmart', (SELECT COUNT(*) FROM PRO WHERE PRO_USRSELID = 'testmart')+1, 'CC', '鞄', 2750, 5, 'カバン', 'F');
+INSERT INTO PRO VALUES('testmart', (SELECT COUNT(*) FROM PRO WHERE PRO_USRSELID = 'testmart')+1, 'CC', '帽子', 9050, 5, 'ぼうし', 'F');
+INSERT INTO PRO VALUES('testmart', (SELECT COUNT(*) FROM PRO WHERE PRO_USRSELID = 'testmart')+1, 'CC', '靴下', 750, 5, 'くつした', 'F');
+INSERT INTO PRO VALUES('testmart', (SELECT COUNT(*) FROM PRO WHERE PRO_USRSELID = 'testmart')+1, 'CC', 'シャツ', 1750, 5, 'シャツです', 'F');
+INSERT INTO PRO VALUES('testmart', (SELECT COUNT(*) FROM PRO WHERE PRO_USRSELID = 'testmart')+1, 'CC', '服', 1250, 5, 'ふく', 'F');
+INSERT INTO PRO VALUES('testmart', (SELECT COUNT(*) FROM PRO WHERE PRO_USRSELID = 'testmart')+1, 'CC', '財布', 750, 5, 'さいふ', 'F');
+INSERT INTO PRO VALUES('testmart', (SELECT COUNT(*) FROM PRO WHERE PRO_USRSELID = 'testmart')+1, 'CC', '傘', 1750, 5, 'かさ', 'F');
+INSERT INTO PRO VALUES('testmart', (SELECT COUNT(*) FROM PRO WHERE PRO_USRSELID = 'testmart')+1, 'CC', 'マウス', 250, 5, 'ネズミ', 'F');
+INSERT INTO PRO VALUES('testmart', (SELECT COUNT(*) FROM PRO WHERE PRO_USRSELID = 'testmart')+1, 'CC', '1ドル', 110, 5, 'ドル', 'F');
+INSERT INTO PRO VALUES('testmart', (SELECT COUNT(*) FROM PRO WHERE PRO_USRSELID = 'testmart')+1, 'CC', '鞄', 2750, 5, 'カバン', 'F');
+INSERT INTO PRO VALUES('testmart', (SELECT COUNT(*) FROM PRO WHERE PRO_USRSELID = 'testmart')+1, 'CC', '帽子', 9050, 5, 'ぼうし', 'F');
+INSERT INTO PRO VALUES('testmart', (SELECT COUNT(*) FROM PRO WHERE PRO_USRSELID = 'testmart')+1, 'CC', '靴下', 750, 5, 'くつした', 'F');
+INSERT INTO PRO VALUES('testmart', (SELECT COUNT(*) FROM PRO WHERE PRO_USRSELID = 'testmart')+1, 'CC', 'シャツ', 1750, 5, 'シャツです', 'F');
+INSERT INTO PRO VALUES('testmart', (SELECT COUNT(*) FROM PRO WHERE PRO_USRSELID = 'testmart')+1, 'CC', '服', 1250, 5, 'ふく', 'F');
+INSERT INTO PRO VALUES('testmart', (SELECT COUNT(*) FROM PRO WHERE PRO_USRSELID = 'testmart')+1, 'CC', '財布', 750, 5, 'さいふ', 'F');
+INSERT INTO PRO VALUES('testmart', (SELECT COUNT(*) FROM PRO WHERE PRO_USRSELID = 'testmart')+1, 'CC', '傘', 1750, 5, 'かさ', 'F');
+INSERT INTO PRO VALUES('testmart', (SELECT COUNT(*) FROM PRO WHERE PRO_USRSELID = 'testmart')+1, 'CC', 'マウス', 250, 5, 'ネズミ', 'F');
+INSERT INTO PRO VALUES('testmart', (SELECT COUNT(*) FROM PRO WHERE PRO_USRSELID = 'testmart')+1, 'CC', '1ドル', 110, 5, 'ドル', 'F');
+INSERT INTO PRO VALUES('testmart', (SELECT COUNT(*) FROM PRO WHERE PRO_USRSELID = 'testmart')+1, 'CC', '鞄', 2750, 5, 'カバン', 'F');
+INSERT INTO PRO VALUES('testmart', (SELECT COUNT(*) FROM PRO WHERE PRO_USRSELID = 'testmart')+1, 'CC', '帽子', 9050, 5, 'ぼうし', 'F');
+INSERT INTO PRO VALUES('testmart', (SELECT COUNT(*) FROM PRO WHERE PRO_USRSELID = 'testmart')+1, 'CC', '靴下', 750, 5, 'くつした', 'F');
+INSERT INTO PRO VALUES('testmart', (SELECT COUNT(*) FROM PRO WHERE PRO_USRSELID = 'testmart')+1, 'CC', 'シャツ', 1750, 5, 'シャツです', 'F');
+
+INSERT INTO PIG VALUES('testmart', 1, 1, 'testmart', 'https://placeimg.com/360/350/animals', 'T');
+INSERT INTO PIG VALUES('testmart', (SELECT COUNT(*) FROM PIG WHERE PIG_PROUSRSELID = 'testmart')+1, 1, 'testmart', 'https://placeimg.com/360/350/animals', 'T');
+INSERT INTO PIG VALUES('testmart', (SELECT COUNT(*) FROM PIG WHERE PIG_PROUSRSELID = 'testmart')+1, 1, 'testmart', 'https://placeimg.com/360/350/animals', 'T');
+INSERT INTO PIG VALUES('testmart', (SELECT COUNT(*) FROM PIG WHERE PIG_PROUSRSELID = 'testmart')+1, 1, 'testmart', 'https://placeimg.com/360/350/animals', 'T');
+INSERT INTO PIG VALUES('testmart', (SELECT COUNT(*) FROM PIG WHERE PIG_PROUSRSELID = 'testmart')+1, 1, 'testmart', 'https://placeimg.com/360/350/animals', 'T');
+INSERT INTO PIG VALUES('testmart', (SELECT COUNT(*) FROM PIG WHERE PIG_PROUSRSELID = 'testmart')+1, 1, 'testmart', 'https://placeimg.com/360/350/animals', 'T');
+INSERT INTO PIG VALUES('testmart', (SELECT COUNT(*) FROM PIG WHERE PIG_PROUSRSELID = 'testmart')+1, 1, 'testmart', 'https://placeimg.com/360/350/animals', 'T');
+INSERT INTO PIG VALUES('testmart', (SELECT COUNT(*) FROM PIG WHERE PIG_PROUSRSELID = 'testmart')+1, 1, 'testmart', 'https://placeimg.com/360/350/animals', 'T');
+INSERT INTO PIG VALUES('testmart', (SELECT COUNT(*) FROM PIG WHERE PIG_PROUSRSELID = 'testmart')+1, 1, 'testmart', 'https://placeimg.com/360/350/animals', 'T');
+INSERT INTO PIG VALUES('testmart', (SELECT COUNT(*) FROM PIG WHERE PIG_PROUSRSELID = 'testmart')+1, 1, 'testmart', 'https://placeimg.com/360/350/animals', 'T');
+INSERT INTO PIG VALUES('testmart', (SELECT COUNT(*) FROM PIG WHERE PIG_PROUSRSELID = 'testmart')+1, 1, 'testmart', 'https://placeimg.com/360/350/animals', 'T');
+INSERT INTO PIG VALUES('testmart', (SELECT COUNT(*) FROM PIG WHERE PIG_PROUSRSELID = 'testmart')+1, 1, 'testmart', 'https://placeimg.com/360/350/animals', 'T');
+INSERT INTO PIG VALUES('testmart', (SELECT COUNT(*) FROM PIG WHERE PIG_PROUSRSELID = 'testmart')+1, 1, 'testmart', 'https://placeimg.com/360/350/animals', 'T');
+INSERT INTO PIG VALUES('testmart', (SELECT COUNT(*) FROM PIG WHERE PIG_PROUSRSELID = 'testmart')+1, 1, 'testmart', 'https://placeimg.com/360/350/animals', 'T');
+INSERT INTO PIG VALUES('testmart', (SELECT COUNT(*) FROM PIG WHERE PIG_PROUSRSELID = 'testmart')+1, 1, 'testmart', 'https://placeimg.com/360/350/animals', 'T');
+INSERT INTO PIG VALUES('testmart', (SELECT COUNT(*) FROM PIG WHERE PIG_PROUSRSELID = 'testmart')+1, 1, 'testmart', 'https://placeimg.com/360/350/animals', 'T');
+INSERT INTO PIG VALUES('testmart', (SELECT COUNT(*) FROM PIG WHERE PIG_PROUSRSELID = 'testmart')+1, 1, 'testmart', 'https://placeimg.com/360/350/animals', 'T');
+INSERT INTO PIG VALUES('testmart', (SELECT COUNT(*) FROM PIG WHERE PIG_PROUSRSELID = 'testmart')+1, 1, 'testmart', 'https://placeimg.com/360/350/animals', 'T');
+INSERT INTO PIG VALUES('testmart', (SELECT COUNT(*) FROM PIG WHERE PIG_PROUSRSELID = 'testmart')+1, 1, 'testmart', 'https://placeimg.com/360/350/animals', 'T');
+INSERT INTO PIG VALUES('testmart', (SELECT COUNT(*) FROM PIG WHERE PIG_PROUSRSELID = 'testmart')+1, 1, 'testmart', 'https://placeimg.com/360/350/animals', 'T');
+INSERT INTO PIG VALUES('testmart', (SELECT COUNT(*) FROM PIG WHERE PIG_PROUSRSELID = 'testmart')+1, 1, 'testmart', 'https://placeimg.com/360/350/animals', 'T');
+INSERT INTO PIG VALUES('testmart', (SELECT COUNT(*) FROM PIG WHERE PIG_PROUSRSELID = 'testmart')+1, 1, 'testmart', 'https://placeimg.com/360/350/animals', 'T');
+INSERT INTO PIG VALUES('testmart', (SELECT COUNT(*) FROM PIG WHERE PIG_PROUSRSELID = 'testmart')+1, 1, 'testmart', 'https://placeimg.com/360/350/animals', 'T');
+INSERT INTO PIG VALUES('testmart', (SELECT COUNT(*) FROM PIG WHERE PIG_PROUSRSELID = 'testmart')+1, 1, 'testmart', 'https://placeimg.com/360/350/animals', 'T');
+INSERT INTO PIG VALUES('testmart', (SELECT COUNT(*) FROM PIG WHERE PIG_PROUSRSELID = 'testmart')+1, 1, 'testmart', 'https://placeimg.com/360/350/animals', 'T');
+INSERT INTO PIG VALUES('testmart', (SELECT COUNT(*) FROM PIG WHERE PIG_PROUSRSELID = 'testmart')+1, 1, 'testmart', 'https://placeimg.com/360/350/animals', 'T');
+INSERT INTO PIG VALUES('testmart', (SELECT COUNT(*) FROM PIG WHERE PIG_PROUSRSELID = 'testmart')+1, 1, 'testmart', 'https://placeimg.com/360/350/animals', 'T');
+
+SELECT * FROM ORD;
+SELECT TO_CHAR(ORD_DATE, 'YYYYMMDDHH24MISS') FROM ORD;
+
+COMMIT;
+
+INSERT INTO ORD VALUES(TO_DATE('20230512082005', 'YYYYMMDDHH24MISS'), 'yeong', 'OO', 'PK');
+INSERT INTO ODT VALUES(TO_DATE('20230512082005', 'YYYYMMDDHH24MISS'), 'yeong', 'testmart', '1', 1, 'yeong', DEFAULT);
+INSERT INTO ODT VALUES(TO_DATE('20230512082005', 'YYYYMMDDHH24MISS'), 'yeong', 'testmart', '10', 1, 'yeong', DEFAULT);
+INSERT INTO ODT VALUES(TO_DATE('20230512082005', 'YYYYMMDDHH24MISS'), 'yeong', 'testmart', '11', 1, 'yeong', DEFAULT);
+INSERT INTO ODT VALUES(TO_DATE('20230512082005', 'YYYYMMDDHH24MISS'), 'yeong', 'testmart', '19', 1, 'yeong', DEFAULT);
+
+
+INSERT INTO ORD VALUES(TO_DATE('20230515085232','YYYYMMDDHH24MISS'), 'yeong', 'OO', 'PK');
+INSERT INTO ODT VALUES(TO_DATE('20230515085232','YYYYMMDDHH24MISS'), 'yeong', 'testmart', '1', 1, 'yeong', DEFAULT);
+INSERT INTO ODT VALUES(TO_DATE('20230515085232','YYYYMMDDHH24MISS'), 'yeong', 'testmart', '10', 1, 'yeong', DEFAULT);
+INSERT INTO ODT VALUES(TO_DATE('20230515085232','YYYYMMDDHH24MISS'), 'yeong', 'testmart', '11', 1, 'yeong', DEFAULT);
+INSERT INTO ODT VALUES(TO_DATE('20230515085232','YYYYMMDDHH24MISS'), 'yeong', 'testmart', '19', 1, 'yeong', DEFAULT);
+
+
+INSERT INTO ORD VALUES(TO_DATE('20230512082005', 'YYYYMMDDHH24MISS'), 'whitebox', 'OO', 'PK');
+INSERT INTO ODT VALUES(TO_DATE('20230512082005', 'YYYYMMDDHH24MISS'), 'whitebox', 'testmart', '1', 1, 'yeong', DEFAULT);
+INSERT INTO ODT VALUES(TO_DATE('20230512082005', 'YYYYMMDDHH24MISS'), 'whitebox', 'testmart', '10', 1, 'yeong', DEFAULT);
+INSERT INTO ODT VALUES(TO_DATE('20230512082005', 'YYYYMMDDHH24MISS'), 'whitebox', 'testmart', '11', 1, 'yeong', DEFAULT);
+INSERT INTO ODT VALUES(TO_DATE('20230512082005', 'YYYYMMDDHH24MISS'), 'whitebox', 'testmart', '19', 1, 'yeong', DEFAULT);
+
+INSERT INTO ORD VALUES(TO_DATE('20230515085232','YYYYMMDDHH24MISS'), 'whitebox', 'OO', 'PK');
+INSERT INTO ODT VALUES(TO_DATE('20230515085232','YYYYMMDDHH24MISS'), 'whitebox', 'testmart', '1', 1, 'yeong', DEFAULT);
+INSERT INTO ODT VALUES(TO_DATE('20230515085232','YYYYMMDDHH24MISS'), 'whitebox', 'testmart', '10', 1, 'yeong', DEFAULT);
+INSERT INTO ODT VALUES(TO_DATE('20230515085232','YYYYMMDDHH24MISS'), 'whitebox', 'testmart', '11', 1, 'yeong', DEFAULT);
+INSERT INTO ODT VALUES(TO_DATE('20230515085232','YYYYMMDDHH24MISS'), 'whitebox', 'testmart', '19', 1, 'yeong', DEFAULT);
+INSERT INTO ODT VALUES(TO_DATE('20230515085232','YYYYMMDDHH24MISS'), 'whitebox', 'testmart', '20', 5, 'yeong', DEFAULT);

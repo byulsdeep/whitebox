@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap');
+/* PC버전
+
+검정색 : #222
+윗 여백 : 40
+
+*글자 크기
+-작은 글씨(댓글미리보기) : 13px
+-기본 폰트(상품소개) : 15px
+-더보기/상품 : 17px
+-제목 : 28px
+-소제목 : 24px
+-소제목 밑 소개 : 18px */
+body {
+    margin: 0;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 15px;
+}
+.main {
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+}
+.title {
+    border-top: 1px solid #222;
+    padding: 10px;
+    font-size: 28px;
+}
+table,
+th,
+td {
+    border: 1px solid #222;
+}
+th,
+td {
+    text-align: center;
+    vertical-align: middle;
+
+}
+th {
+    background-color: #d9d9d9;
+    padding: 10px 0 10px 0;
+}
+td {
+    padding: 10px 0 10px 0;
+}
+.product_detail_price_input {
+    width: 10%;
+}
+.product_detail_stock_input {
+
+}

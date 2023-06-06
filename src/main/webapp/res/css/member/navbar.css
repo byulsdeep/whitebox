@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
+
+/* 2023-05-23 소순영*/
+body{
+	margin-top: 70px !important;
+}
+
+.navbar {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    list-style: none;
+    text-align: center;
+    
+    /* 2023-05-23 소순영*/
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    background: #ffffff;
+}
+.navbar_container {
+    display: flex;
+    margin: 0 20px;
+    align-items: flex-end;
+    flex-direction: row;
+}
+a {
+    text-decoration: none;
+    color: #161616;
+    display: block;
+}
+.navbar_logo {
+    padding: 8px 12px;
+    font-size: 24px;
+    color: #161616;
+}
+.navbar_menu {
+    display: flex;
+    margin: 0 20px;
+    padding-left: 0;
+}
+.navbar_menu li {
+    padding: 8px 12px;
+}
+.navbar_links {
+    list-style: none;
+    display: flex;
+    margin: 0 20px;
+    float: right;
+    /* 2023-05-10 */
+    /* 강한별 */
+    align-items: center;
+}
+.navbar_links li {
+    padding: 8px 12px;
+}
+.navbar_toogleBtn {
+    display: none;
+}
+/* 2023-05-10 */
+/* 강한별 */
+
+.navbar_links :last-child {
+    margin-right: 10px;
+}
+/* 2023-05-18 */
+/* 강한별 */
+.navbar_cart,
+.search,
+.report {
+    cursor: pointer;
+}
+.navbar_profile_wrap {
+    width: 40px;
+    height: 40px;
+    border-radius: 100px;
+    overflow: hidden;
+}
+.navbar_profile_image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

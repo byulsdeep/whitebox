@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button onclick="insertCart()">장바구니 담기</button>
+  </body>
+  <script src="/res/js/projectUtils.js"></script>
+  <script>
+    let userInfo;
+    // if ('${userInfo}' !== '') {
+    // 	userInfo = JSON.parse('${userInfo}');
+    // }
+    // userInfo = {
+    //   usrId: "member",
+    //   usrPassword:
+    //     "$2a$10$WadIvd6ItpB2qGWHpsOroejjD9l4olEpz5YwB8.NQpff624Ik11N.",
+    //   usrEnabled: 1,
+    //   usrLastname: "good",
+    //   usrFirstname: "man",
+    //   usrPhone: "2400",
+    //   usrEmail: "whitebox-japan@outlook.com",
+    //   usrAddress: "my home dude",
+    //   usrImage: "/res/img/usrImg/member/IMG_6816.jpg",
+    //   usrDate: "2023-05-12",
+    //   authorities: [{ autUsrid: "member", autAuthority: "ROLE_MEMBER" }],
+    //   memPostal: "2400",
+    //   memGender: "M",
+    //   memBirthday: "1999-01-01",
+    //   isDecoded: true,
+    //   memIssocial: "F",
+    // };
+    console.log(userInfo.usrId);
+
+    function insertCart() {
+      //if (userInfo !== undefined) {
+      const keys = ["odtProusrselid", "odtProcode"];
+      const values = ["testmart", "1"];
+      // odtProusrselid=seller&odtProcode=3
+      const formData = makeFormData(keys, values);
+      sendAjaxPost("/insertCart", formData, "insertCartCallBack");
+      //} else {
+      //alert("로그인 후 이용해 주세요.");
+      //}
+    }
+    function insertCartCallBack(data) {
+      console.log(data);
+      alert(data);
+    }
+  </script>
+</html>

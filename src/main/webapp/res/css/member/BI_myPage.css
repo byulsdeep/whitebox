@@ -1,0 +1,409 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap");
+
+body {
+    font-family: "Noto Sans JP", sans-serif;
+}
+
+.main_fri {
+    border: solid whitesmoke 1px;
+    width: 1600px;
+    height: 1400px;
+    /* width:80vw;
+    height:100vh; */
+    margin: 0 auto;
+    /* background-color: beige; */
+}
+
+.section_left {
+    float: left;
+    width: 330px;
+    /* height: 1200px; */
+    /* width:20vw; */
+    padding: 15px;
+    border-right: solid whitesmoke 1px;
+}
+
+.section_profile {
+    padding: 15px;
+    /* background-color: whitesmoke; */
+    margin-bottom: 10px;
+}
+
+.my_profile {
+    display: flex;
+    margin-top: 15px;
+    margin-left: 90px;
+}
+
+.my_profile_list {
+    margin-right: 5px;
+    display: flex;
+    text-align: center;
+    box-sizing: border-box;
+    width: 110px;
+    border: solid #666 1px;
+    border-radius: 5px;
+    padding: 10px;
+    justify-content: center;
+}
+
+.my_profile_name {
+    margin-right: 10px;
+    display: flex;
+    text-align: center;
+    box-sizing: border-box;
+    width: 100px;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.my_profile_box {
+    position: absolute;
+    float: left;
+    width: 80px;
+    height: 80px;
+    border-radius: 70%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.my_profile_box_modify {
+    position: absolute;
+    float: left;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    border-radius: 70%;
+    overflow: hidden;
+}
+
+.my_profile_img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* flex-basis:33.33% 전체 가로 사이즈에서 1/3 사이즈 크기
+flex-direction: column; : 옆으로 나누기
+flex-direction: row; : 아래로 나누기 */
+
+.section_list {
+    height: 1200px;
+    /* height:80vh; */
+    padding: 15px;
+    /* background-color: whitesmoke; */
+}
+
+.my_list {
+    margin: 0 auto;
+    padding: 0;
+}
+
+.my_list li {
+    margin-top: 10px;
+    list-style: none;
+    padding: 12px;
+    border: 1px solid #666;
+    border-radius: 5px;
+}
+
+.section_content {
+    float: right;
+    width: 1200px;
+    /* height: 1350px; */
+    /* width:70vw;
+    height:100vh; */
+    padding: 15px;
+    /* border: solid 1px; */
+    /* background-color: cornflowerblue; */
+}
+
+.section_content_div1 {
+    width: 1200px;
+    height: 400px;
+    padding: 20px 20px 20px 20px;
+    background-color: whitesmoke;
+    margin: 0 auto;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 10px;
+}
+
+.section_content_div1_accountSetting {
+    height: 150px;
+    padding: 20px 20px 20px 20px;
+    background-color: whitesmoke;
+    margin: 0 auto;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 10px;
+}
+
+.section_content_div1_wishList {
+    display: flex;
+    flex-wrap: wrap;
+    /* background-color: whitesmoke; */
+    border: solid 1px whitesmoke;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.section_content_div1_watchList {
+    display: flex;
+    flex-wrap: wrap;
+    /* background-color: whitesmoke; */
+    border: solid 1px whitesmoke;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.section_content_div1_viewHistory {
+    display: flex;
+    flex-wrap: wrap;
+    /* background-color: whitesmoke; */
+    border: solid 1px whitesmoke;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#updateUserImg {
+    display: flex;
+    justify-content: center;
+}
+
+.section_content_div2 {
+    width: 1200px;
+    /* margin-left: 0px; */
+    /* margin-right: 0px; */
+    background-color: whitesmoke;
+    margin: 0 auto;
+    /* overflow: hidden; */
+
+}
+
+.section_content_div2_accountSetting {
+    width: 350px;
+    background-color: whitesmoke;
+    margin: 0 auto;
+}
+
+.section_content_sub_title{
+    font-size: 20px;
+    font-weight: 500;
+    margin-left: 20px;
+    margin-top: 40px;
+    padding-bottom: 10px;
+    display: flex;
+}
+
+/* 상품 */
+.index_prd_100 {
+    padding: 0px 0px 50px 0px;
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 30px;
+    float: left;
+    width: 330px;
+    height: 437px;
+    padding-left: 30px;
+}
+
+.prdList {
+    display: flex !important;
+    /* justify-content: space-between; */
+    flex-wrap: wrap;
+}
+
+.prdList-rt {
+    width: 1100px;
+}
+.sent {
+    /* display: none; */
+}
+.received {
+    display: none;
+}
+.prdList li {
+    /* flex: 0 0 306.667px; */
+    margin-bottom: 20px;
+    list-style: none;
+    background-color: whitesmoke;
+    padding: 20px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+
+}
+
+.prdList li img {
+    max-width: 100%;
+}
+
+#more_button {
+    text-align: center;
+    margin-top: 70px;
+}
+
+#load {
+    background-color: white;
+    text-align: center;
+    width: 200px;
+    height: 40px;
+    border: solid 1px;
+}
+
+dl,
+ul,
+ol,
+menu,
+li {
+    list-style: none;
+}
+
+.card_product1 {
+    display: flex;
+    flex-direction: column;
+    width: 225px;
+    position: relative;
+    padding: 10px;
+    /* border: solid 1px whitesmoke; */
+    background-color: whitesmoke;
+    margin-left: 10px;
+}
+
+.card_product1 img {
+    width: 225px;
+    height: 250px;
+    border-radius: 5px;
+}
+
+.txt_ranking {
+    padding-right: 4px;
+    line-height: 32px;
+    box-sizing: border-box;
+    position: absolute;
+    left: 16px;
+    top: 0;
+    width: 32px;
+    height: 40px;
+    font-size: 16px;
+    line-height: 36px;
+    background-position: -140px -270px;
+    text-align: center;
+    text-indent: 0;
+    color: #fff;
+    background: url(/res/img/kej/pro_number1.png);
+}
+
+.txt_ranking2 {
+    padding-right: 4px;
+    line-height: 32px;
+    box-sizing: border-box;
+    position: absolute;
+    left: 16px;
+    top: 0;
+    width: 32px;
+    height: 40px;
+    font-size: 16px;
+    line-height: 36px;
+    background-position: -140px -270px;
+    text-align: center;
+    text-indent: 0;
+    color: #fff;
+    background: url(/res/img/kej/pro_number2.png);
+}
+
+.card_product .txt_brand,
+.card_product .txt_product {
+    margin-top: 10px;
+    display: block;
+    overflow: hidden;
+    font-size: 15px;
+    text-overflow: ellipsis;
+    /* white-space: nowrap; */
+    word-break: break-all;
+}
+
+.card_product_list{
+    margin: 8px;
+    display: block;
+    overflow: hidden;
+    font-size: 15px;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    /* border: solid 1px whitesmoke; */
+    background-color: whitesmoke;
+    padding: 10px;
+}
+
+.txt_price {
+    font-size: 18px;
+}
+
+.txt_tax {
+    font-size: 15px;
+}
+
+/* pagination */
+.pagination {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.page_button {
+    padding: 10px;
+}
+
+.page_button:hover {
+    color: #2e9cdf;
+}
+
+/* pagination ends here */
+
+/* give & take tap */
+.pc .tab_receive .link_tab {
+    font-size: 20px;
+}
+
+.tab_receive .on .link_tab {
+    font-weight: 500;
+    border-bottom: 3px solid #2e9cdf;
+    color: #000;
+    opacity: 1;
+    margin-left: 20px;
+    margin-right: 15px;
+}
+
+.tab_receive .link_tab {
+    display: block;
+    padding: 0 2px 2px;
+    font-size: 20px;
+    color: #666;
+    opacity: .6;
+}
+
+user agent stylesheet a:-webkit-any-link {
+    color: -webkit-link;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.pc .receive_giftbox .tab_receive {
+    margin: 30px 0 40px;
+    padding: 0;
+    border-bottom: 1px solid #ededed;
+}
+
+.receive_giftbox .tab_receive {
+    display: flex;
+    overflow: hidden;
+    padding: 40px 0 10px;
+    vertical-align: top;
+}

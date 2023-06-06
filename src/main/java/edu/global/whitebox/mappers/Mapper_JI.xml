@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.global.whitebox.mappers.Mapper_JI">
+	<!-- 전체 상품 가져오기 -->
+	<resultMap id="selectProductListImageMap" type="ProductBean">
+		<collection property="productImage"
+			column="pigProusrselid=proUsrselid pigProcode=proCode"
+			select="selectProductListImage">
+		</collection>
+	</resultMap>
+	<select id="selectProductList"
+		resultMap="selectProductListImageMap">
+		SELECT
+			PRO_USRSELID AS PROUSRSELID,
+			PRO_CODE AS PROCODE,
+			PRO_CATCODE AS PROCATCODE,
+			CAT_NAME AS CATNAME,
+			PRO_NAME AS PRONAME,
+			PRO_PRICE AS PROPRICE,
+			PRO_STOCK AS PROSTOCK,
+			PRO_INFO AS PROINFO,
+			PRO_ISDELETED AS PROISDELETED
+		FROM
+			PRO INNER JOIN CAT ON PRO_CATCODE = CAT_CODE
+		WHERE
+			PRO_USRSELID = #{usrId}
+	</select>
+	<select id="selectProductListImage"
+		resultType="ProductImageBean">
+		SELECT
+			PIG_PROUSRSELID AS PIGPROUSRSELID,
+			PIG_PROCODE AS PIGPROCODE,
+			PIG_CODE AS PIGCODE,
+			PIG_NAME AS PIGNAME,
+			PIG_PATH AS PIGPATH,
+			PIG_ISTHUMBNAIL AS PIGISTHUMBNAIL
+		FROM PIG
+		WHERE
+			PIG_ISTHUMBNAIL = 'T'
+		AND
+			PIG_PROUSRSELID = #{pigProusrselid}
+		AND
+			PIG_PROCODE = #{pigProcode}
+	</select>
+	<select id="selectTopThreeProducts"
+		resultMap="selectProductListImageMap">
+		<![CDATA[	
+			SELECT * FROM 
+			    (SELECT 
+			        PRO_USRSELID AS PROUSRSELID,
+			        PRO_CODE AS PROCODE,
+			        PRO_NAME AS PRONAME,
+			        PRO_INFO AS PROINFO,
+			        PRO_PRICE AS PROPRICE,
+			        SUM(ODT_QTY) AS SALES
+			    FROM 
+			        PRO INNER JOIN ODT 
+			        	ON 
+				        PRO_USRSELID = ODT_PROUSRSELID 
+				        AND 
+				        PRO_CODE = ODT_PROCODE
+			    WHERE
+			        PRO_USRSELID = #{proUsrselid}
+			    GROUP BY 
+			        PRO_USRSELID,
+			        PRO_CODE,
+			        PRO_NAME,
+			        PRO_INFO,
+			        PRO_PRICE
+			        )
+			WHERE ROWNUM <= 3
+			ORDER BY SALES DESC
+		]]>
+	</select>
+	
+	<!--판매자 주문 리스트 -->
+
+	<select id="getSellerOrders" resultMap="getSellerOrdersMap">
+		SELECT
+			ORD_DATE AS ORDDATE,
+			ORD_USRMEMID AS ORDUSRMEMID,
+			ODT_PROUSRSELID AS ODTPROUSRSELID
+		FROM
+			ORD INNER JOIN ODT
+			ON ORD_DATE = ODT_ORDDATE
+			AND ORD_USRMEMID = ODT_ORDMEMID
+		WHERE 
+			ODT_PROUSRSELID = #{usrId}
+			AND
+            ORD_OSTSTATE = 'OO' 
+		GROUP BY
+			ORD_DATE,
+			ORD_USRMEMID,
+			ODT_PROUSRSELID
+			
+	</select>
+	<resultMap id="getSellerOrdersMap" type="OrderBean">
+		<collection property="orderDetail"
+			column="odtOrddate=ordDate odtProusrselid=odtProusrselid"
+			select="getSellerOrderDetails">
+		</collection>
+	</resultMap>
+	<select id="getSellerOrderDetails" resultType="OrderDetailBean">
+		SELECT
+			ODT_ORDDATE AS ODTORDDATE,
+			ODT_ORDMEMID AS ODTORDMEMID,
+			ODT_PROUSRSELID AS ODTPROUSRSELID,
+			ODT_PROCODE AS ODTPROCODE,
+			ODT_QTY AS ODTQTY,
+			ODT_MEMRECIPIENT AS ODTMEMRECIPIENT,
+			ODT_GSTCODE AS ODTGSTCODE,
+			PRO_NAME AS PRONAME,
+            PRO_INFO AS PROINFO,
+            PRO_PRICE AS PROPRICE
+		FROM
+            ODT 
+            	INNER JOIN 
+            PRO 
+            	ON ODT_PROUSRSELID = PRO_USRSELID 
+            AND 
+            	ODT_PROCODE = PRO_CODE
+        WHERE 
+            ODT_ORDDATE = #{odtOrddate}
+            AND
+            ODT_PROUSRSELID = #{odtProusrselid}
+            AND
+            PRO_ISDELETED = 'F'
+	</select>	
+</mapper>

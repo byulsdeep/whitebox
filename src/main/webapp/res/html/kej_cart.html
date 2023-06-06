@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/member/kej_cart.css" />
+    <link rel="stylesheet" href="../css/reset.css" />
+    <script src="../js/member/kej_cart.js" defer></script>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="navbar_logo">
+        <a href="#" class="navbar_toogleBtn">
+          <i class="fa-solid fa-bars"></i>
+        </a>
+        <a href="">White Box</a>
+      </div>
+      <ul class="navbar_menu">
+        <li><a href="">Home</a></li>
+        <li><a href="">Best</a></li>
+        <li><a href="">友達リスト</a></li>
+        <li><a href="">ギフトボックス</a></li>
+        <li><a href="">カテゴリー</a></li>
+      </ul>
+      <ul class="navbar_links">
+        <li class="search">
+          <i class="fa-solid fa-magnifying-glass" style="color: #161616"></i>
+        </li>
+        <li class="report">
+          <i class="fa-regular fa-bell" style="color: #161616"></i>
+        </li>
+        <li class="join">会員加入</li>
+        <li class="login">ログイン</li>
+      </ul>
+    </nav>
+    <!-- box 시작 -->
+    <div class="cart">
+      <div class="cart_title">
+        <div>カート</div>
+      </div>
+      <div class="cart_container">
+        <div class="cart_menu">
+          <div class="cart_mene_inner">
+            <input type="checkbox" />
+            <div>全体</div>
+            <div>(n/n)</div>
+          </div>
+          <div>全体削除</div>
+        </div>
+        <div class="cart_Information">
+          <div class="cart_01">
+            <div class="cart_01_inner">
+              <input type="checkbox" />
+              <div>ショップ名</div>
+            </div>
+            <div>X</div>
+          </div>
+          <div class="division-line"></div>
+          <div class="cart_02">
+            <input type="checkbox" />
+            <div><img src="../img/kej/130x130명품.png" alt="" /></div>
+            <div>
+              [ MAC ] [刻印/ギフトラッピング] 「マックベスト」 テンダートーク
+              リップバーム (3G)
+            </div>
+            <div class="cart_btn">
+              <button id="btn-modal_sum">数量変更</button>
+              <button id="btn-modal">受信者選択</button>
+            </div>
+          </div>
+          <!-- 친구 프로필 선택 모달창 -->
+
+          <div id="modal" class="modal-overlay">
+            <div class="modal-window">
+              <div class="fri_title">
+                <h2>友達選択</h2>
+                <div>プレゼントを送る友達を選択してください.</div>
+              </div>
+              <div class="close-area">X</div>
+              <div class="content">
+                <!-- 1행 -->
+                <div class="cart_fri">
+                  <div class="cart_fri_Information">
+                    <input type="radio" />
+                    <div class="cart_fri_img"><img src="" alt="" /></div>
+                    <div class="cart_fri_name">강한별</div>
+                  </div>
+                  <div class="cart_fri_Information">
+                    <input type="radio" />
+                    <div class="cart_fri_img"><img src="" alt="" /></div>
+                    <div class="cart_fri_name">권단비</div>
+                  </div>
+                </div>
+                <!-- 2행 -->
+                <div class="cart_fri">
+                  <div class="cart_fri_Information">
+                    <input type="radio" />
+                    <div class="cart_fri_img"><img src="" alt="" /></div>
+                    <div class="cart_fri_name">권혁현</div>
+                  </div>
+                  <div class="cart_fri_Information">
+                    <input type="radio" />
+                    <div class="cart_fri_img"><img src="" alt="" /></div>
+                    <div class="cart_fri_name">김은지</div>
+                  </div>
+                </div>
+                <!-- 3행 -->
+                <div class="cart_fri">
+                  <div class="cart_fri_Information">
+                    <input type="radio" />
+                    <div class="cart_fri_img"><img src="" alt="" /></div>
+                    <div class="cart_fri_name">소순영</div>
+                  </div>
+                  <div class="cart_fri_Information">
+                    <input type="radio" />
+                    <div class="cart_fri_img"><img src="" alt="" /></div>
+                    <div class="cart_fri_name">다람쥐</div>
+                  </div>
+                </div>
+                <div class="cart_fri_btn">
+                  <button class="close-area">選択完了</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- 수량 모달 -->
+          <div id="modal_sum" class="modal_sum-overlay">
+            <div class="modal_sum-window">
+              <div class="title_sum">
+                <h2>数量変更</h2>
+              </div>
+              <div class="content"></div>
+              <div class="cart_pro_num">
+                <input type="button" onclick='count("minus")' value="-" />
+                <div id="result">1</div>
+                <input type="button" onclick='count("plus")' value="+" />
+              </div>
+              <div class="cart_pro_btn_area">
+                <button class="pro_num_btn" id="close-area_sum">取消</button>
+                <button class="pro_num_btn" id="close-area_sum_info">
+                  選択完了
+                </button>
+              </div>
+            </div>
+          </div>
+          <!--  -->
+          <div class="division-line"></div>
+          <div class="cart_03">
+            <div class="cart_03_inner1">
+              <div>商品金額</div>
+              <div>16,900￥</div>
+              <div>選択数量</div>
+              <div>x 1個</div>
+            </div>
+            <div class="cart_03_inner1">
+              <div>決済金額</div>
+              <div>16,900￥</div>
+            </div>
+          </div>
+        </div>
+        <div class="cart_sum">
+          <div class="cart_sum_inner">
+            <div>総計</div>
+            <div>16,900￥</div>
+          </div>
+        </div>
+        <div class="cart_btn_Payment">
+          <button>プレゼントする</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

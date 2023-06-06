@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
+		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+	<bean id="whiteboxDBCP" class="com.zaxxer.hikari.HikariConfig">
+		<!-- <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property> -->
+		<!-- <property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:xe"></property> -->
+		<property name="driverClassName"
+			value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
+		<property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@localhost:1521/xe"></property>
+		<property name="username" value="BYUL"></property>
+		<property name="password" value="BYUL"></property>
+		<property name="maximumPoolSize" value="5"></property>
+	</bean>
+	<bean id="whiteboxDataSource"
+		class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+		<constructor-arg ref="whiteboxDBCP"></constructor-arg>
+	</bean>
+	<bean id="whiteboxSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="whiteboxDataSource"></property>
+		<property name="typeAliasesPackage"
+			value="edu.global.whitebox" />
+	</bean>
+	<bean id="whiteboxSession"
+		class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg name="sqlSessionFactory"
+			ref="whiteboxSessionFactory"></constructor-arg>
+	</bean>
+	<bean id="whiteboxTransaction"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="whiteboxDataSource"></property>
+	</bean>
+
+	<bean id="myMail"
+		class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.office365.com"></property>
+		<property name="port" value="587"></property>
+		<property name="username" value="YOUR_EMAIL_HERE"></property>
+		<property name="password" value="YOUR_PASSWORD_HERE"></property>
+		<property name="defaultEncoding" value="utf-8"></property>
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.debug">false</prop>
+				<prop key="mail.transport.protocol">smtp</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.smtp.ssl.checkserveridentity">true</prop>
+				<prop key="mail.stmp.ssl.trust">*</prop>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.stmp.socketFactory">javax.net.ssl.SSLSocketFactory</prop>
+			</props>
+		</property>
+	</bean>
+
+	<tx:annotation-driven></tx:annotation-driven>
+	<mybatis-spring:scan
+		base-package="edu.global.whitebox.mappers" />
+
+</beans>
+
+
+
+<!-- log4j 1 -->
+<!-- <bean name="dataSourceSpied" class="org.springframework.jdbc.datasource.DriverManagerDataSource" 
+	> <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" 
+	/> <property name="url" value="jdbc:oracle:thin:@192.168.0.135:1521:XE" /> 
+	<property name="username" value="YEONG" /> <property name="password" value="YEONG" 
+	/> </bean> <bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource"> 
+	<constructor-arg ref="dataSourceSpied" /> <property name="logFormatter"> 
+	<bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter"> <property name="loggingType" 
+	value="MULTI_LINE" /> <property name="sqlPrefix" value="SQL : "/> </bean> 
+	</property> </bean> <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"> 
+	<property name="dataSource" ref="dataSource" /> <property name="mapperLocations" 
+	value="classpath:/sqlmap/*.xml" /> <property name="typeAliasesPackage" value="edu.global.whitebox"/> 
+	</bean> <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate"> 
+	<constructor-arg index="0" ref="sqlSessionFactory" /> </bean> <bean id="transactionManager" 
+	class="org.springframework.jdbc.datasource.DataSourceTransactionManager"> 
+	<property name="dataSource" ref="dataSource" /> </bean> <tx:annotation-driven 
+	transaction-manager="transactionManager"/> -->

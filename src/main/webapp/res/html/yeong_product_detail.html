@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WhiteBox</title>
+    <link rel="stylesheet" href="../css/member/yeong_style.css" />
+    <link rel="stylesheet" href="../css/reset.css" />
+    <script src="" defer></script>
+  </head>
+  <body>
+    <div class="product_detail_wrap">
+      <div class="product_detail_head">
+        <div class="product_detail_image">
+          <div class="product_detail_image_head">
+            <img src="../img/YEONG/produect_detail_thumbnail.png" alt="" />
+          </div>
+          <div class="product_detail_image_list">
+            <div>
+              <img src="../img/YEONG/produect_detail_list1.png" alt="" />
+            </div>
+            <div>
+              <img src="../img/YEONG/produect_detail_list1.png" alt="" />
+            </div>
+            <div>
+              <img src="../img/YEONG/produect_detail_list1.png" alt="" />
+            </div>
+            <div>
+              <img src="" alt="" />
+            </div>
+          </div>
+        </div>
+        <div class="product_detail_head_content">
+          <form action="#" method="post">
+            <div class="product_detail_head_content_top">
+              <p>
+                [甘酸っぱいお菓子プレゼント]<br />さわやかなイチゴがそのまますっぽり！
+              </p>
+              <div>
+                <p>★★★★☆</p>
+                <p>[ 3000件 プレゼントレビュー ]</p>
+              </div>
+            </div>
+            <div class="product_detail_head_content_mid">
+              <div>
+                <img src="../img/YEONG/product_detail_head_content_mid_seller.svg">
+                <span>ルピー餅屋</span>
+              </div>
+              <div>
+                数量
+                <input type="number" name="number" value="1" onchange="productDetailQuantityCheck(this)"/>
+              </div>
+              <div>¥1,695税込</div>
+            </div>
+            <div class="product_detail_head_content_bot">
+              <div>
+                <button class="product_detail_button button">
+                  ウィッシュリスト
+                </button>
+                <button class="product_detail_button button">お気に入り</button>
+              </div>
+              <button class="product_detail_button button">
+                ギフトカートに入れる
+              </button>
+              <button class="product_detail_button button">
+                私にプレゼント
+              </button>
+              <button class="product_detail_button button">
+                友達へのプレゼント
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="product_detail_content">
+        <div class="product_detail_content_head">
+          <div class="product_detail_content_head_wrap">
+            <div class="product_detail_content_head_nav active" onclick="productDetailChangeContent(this, 0)">商品説明</div>
+            <div class="product_detail_content_head_nav" onclick="productDetailChangeContent(this, 1)">プレゼントレビュー</div>
+            <div class="product_detail_content_head_nav" onclick="productDetailChangeContent(this, 2)">詳細情報</div>
+          </div>
+          
+        </div>
+        <div class="product_detail_content_product_description product_detail_content_item active">
+          <img src="../img/YEONG/product_detail_content_product_description.jpg" alt="">
+        </div>
+        
+        <div class="product_detail_content_product_review product_detail_content_item">
+          <div class="product_detail_content_product_review_list">
+
+            <div class="product_detail_content_product_review_item">
+              <div class="product_detail_content_product_review_item_head">
+                <img src="../img/YEONG/product_detail_content_product_review_item.png">
+                <div class="product_detail_content_product_review_item_info">
+                  <p>★★★★☆</p>
+                  <h4>明智 光秀</h4>
+                  <span>2023. 05. 09.</span>
+                </div>
+              </div>
+              <div class="product_detail_content_product_review_item_content">
+                美味しかったです。ただ想像より小さい。<br>
+                一口で食べれちゃいそうですが、もったいないので数口で味わって食べました。
+              </div>
+              <img src="../img/YEONG/product_detail_content_product_review_other.svg">
+            </div>
+            
+            <div class="product_detail_content_product_review_item">
+              <div class="product_detail_content_product_review_item_head">
+                <img src="../img/YEONG/product_detail_content_product_review_item.png">
+                <div class="product_detail_content_product_review_item_info">
+                  <p>★★★★☆</p>
+                  <h4>明智 光秀</h4>
+                  <span>2023. 05. 09.</span>
+                </div>
+              </div>
+              <div class="product_detail_content_product_review_item_content">
+                美味しかったです。ただ想像より小さい。<br>
+                一口で食べれちゃいそうですが、もったいないので数口で味わって食べました。
+              </div>
+              <img src="../img/YEONG/product_detail_content_product_review_other.svg">
+            </div>
+            
+            <div class="product_detail_content_product_review_item">
+              <div class="product_detail_content_product_review_item_head">
+                <img src="../img/YEONG/product_detail_content_product_review_item.png">
+                <div class="product_detail_content_product_review_item_info">
+                  <p>★★★★☆</p>
+                  <h4>明智 光秀</h4>
+                  <span>2023. 05. 09.</span>
+                </div>
+              </div>
+              <div class="product_detail_content_product_review_item_content">
+                美味しかったです。ただ想像より小さい。<br>
+                一口で食べれちゃいそうですが、もったいないので数口で味わって食べました。<br>
+                美味しかったです。ただ想像より小さい。<br>
+                一口で食べれちゃいそうですが、もったいないので数口で味わって食べました。<br>
+                美味しかったです。ただ想像より小さい。<br>
+                一口で食べれちゃいそうですが、もったいないので数口で味わって食べました。<br>
+                美味しかったです。ただ想像より小さい。<br>
+                一口で食べれちゃいそうですが、もったいないので数口で味わって食べました。<br>
+              </div>
+              <img src="../img/YEONG/product_detail_content_product_review_other.svg">
+            </div>
+
+          </div>
+        </div>
+        
+        <div class="product_detail_content_product_detail product_detail_content_item">
+          <p>
+            餡については、赤い小豆餡を使う地域と白餡を使う地域に大別される。また、餡を使わずに苺のみを入れるものや、苺と生クリームを入れるものなどがあり、多様性に富む。生鮮食品であるイチゴ果実を使用するため、冬から春にかけての季節限定商品として売り出されることが多い。イチゴから次第に水気が出て餡が水っぽくなったり、水気が餅から漏れ出したりしやすいことから、比較的日持ちが短い。
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="../js/member/yeong_main.js"></script>
+</html>

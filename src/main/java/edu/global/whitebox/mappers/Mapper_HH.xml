@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.global.whitebox.mappers.Mapper_HH">
+
+	<select id="selectProcode" resultType="string">
+		SELECT NVL(MAX(PRO_CODE),
+		0) + 1 FROM PRO WHERE PRO_USRSELID = #{proUsrselid}
+	</select>
+	<insert id="insertProduct">
+		INSERT INTO PRO VALUES (
+		#{proUsrselid},
+		(SELECT NVL(MAX(PRO_CODE), 0) + 1 FROM PRO WHERE PRO_USRSELID =
+		#{proUsrselid}),
+		#{proCatcode}, #{proName},
+		#{proPrice}, #{proStock},
+		#{proInfo}, #{proIsdeleted}
+		)
+	</insert>
+	<insert id="insertProductImage">
+		INSERT INTO PIG VALUES (
+		#{pigProusrselid},
+		(SELECT MAX(PRO_CODE) FROM PRO WHERE PRO_USRSELID = #{pigProusrselid}),
+		(SELECT NVL(MAX(PIG_CODE), 0) + 1 FROM PIG WHERE PIG_PROUSRSELID =
+		#{pigProusrselid} AND PIG_PROCODE = (SELECT MAX(PRO_CODE) FROM PRO
+		WHERE PRO_USRSELID = #{pigProusrselid})),
+		#{pigName}, #{pigPath}, #{pigIsthumbnail}
+		)
+	</insert>
+
+	<update id="updateEditStore">
+		UPDATE USR SET
+		USR_LASTNAME = #{usrLastname}, USR_FIRSTNAME = #{usrFirstname},
+		USR_PHONE = #{usrPhone}, USR_EMAIL = #{usrEmail}, USR_ADDRESS = #{usrAddress}
+		WHERE USR_ID = #{usrId}
+	</update>
+	<update id="updateEditStore2">
+		UPDATE SEL SET
+		SEL_SHOPNAME = #{selShopname}, SEL_INFO = #{selInfo}
+		WHERE SEL_USRID = #{usrId}
+	</update>
+
+	<update id="updateEditprofile">
+		UPDATE USR SET
+		USR_IMAGE = #{usrImage}
+		WHERE USR_ID = #{usrId}
+	</update>
+
+	<select id="selectUsrDate" resultType="string">
+		SELECT TO_CHAR(USR_DATE,
+		'YYYY-MM-DD') AS USR_DATE
+		FROM USR
+		WHERE USR_ID = #{usrId}
+	</select>
+
+	<!-- PRO_USRSELID NVARCHAR2(500), PRO_CODE NUMBER(4), PRO_CATCODE CHAR(2) 
+		NOT NULL, PRO_NAME NVARCHAR2(20) NOT NULL, PRO_PRICE NUMBER(7) DEFAULT -1, 
+		PRO_STOCK NUMBER(5) DEFAULT -1, PRO_INFO NVARCHAR2(2000) NOT NULL, PRO_ISDELETED 
+		CHAR(1) CHECK (PRO_ISDELETED IN ('T', 'F')), PRIMARY KEY (PRO_USRSELID, PRO_CODE), 
+		FOREIGN KEY (PRO_USRSELID) REFERENCES SELLER (SEL_USRID), FOREIGN KEY (PRO_CATCODE) 
+		REFERENCES CATEGORY (CAT_CODE) -->
+</mapper>

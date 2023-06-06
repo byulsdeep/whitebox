@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.global.whitebox.mappers.Mapper_YEONG">
+	<select id="getMemberId" resultType="boolean">
+	  	<![CDATA[
+		SELECT COUNT(*) FROM USR WHERE USR_ID = #{param1}
+	   ]]>
+	</select>
+	
+	<resultMap id="getProductImageMap" type="ProductBean">
+		<collection
+			property="productImage"
+			column="pigProusrselid=proUsrselid pigProcode=proCode"
+			select="getProductImage">
+		</collection>
+	</resultMap>
+	
+	<select id="getProductDetail" resultMap="getProductImageMap">
+	  	<![CDATA[
+		SELECT 
+			PRO_USRSELID AS PROUSRSELID,
+            SEL_SHOPNAME AS SELSHOPNAME,
+			PRO_CODE AS PROCODE,
+			PRO_CATCODE AS PROCATCODE,
+			PRO_NAME AS PRONAME,
+			PRO_PRICE AS PROPRICE,
+			PRO_STOCK AS PROSTOCK,
+			PRO_INFO AS PROINFO,
+			PRO_ISDELETED AS PROISDELETED
+		FROM PRO 
+		INNER JOIN SEL ON PRO_USRSELID = SEL_USRID
+		WHERE PRO_USRSELID = #{proUsrselid} AND PRO_CODE = #{proCode}
+	   ]]>
+	</select>
+	
+	<select id="getProductImage" resultType="ProductImageBean">
+		SELECT
+			    PIG_PROUSRSELID AS PIGPROUSRSELID,
+			    PIG_PROCODE AS PIGPROCODE,
+			    PIG_CODE AS PIGCODE,
+			    PIG_NAME AS PIGNAME,
+			    PIG_PATH AS PIGPATH,
+			    PIG_ISTHUMBNAIL AS PIGISTHUMBNAIL
+			FROM PIG 
+			WHERE 
+			    PIG_PROUSRSELID = #{pigProusrselid} AND PIG_PROCODE = #{pigProcode}
+	</select>
+	
+	<select id="getHomeRecommendProductList" resultMap="getProductImageMap">
+		<![CDATA[
+			SELECT 
+			    ODT_PROUSRSELID AS PROUSRSELID,
+			    ODT_PROCODE AS PROCODE,
+			    CAT_CODE AS CATCODE,
+			    PRO_NAME AS PRONAME,
+			    PRO_PRICE AS PROPRICE,
+			    PRO_STOCK AS PROSTOCK,
+			    PRO_INFO AS PROINFO,
+			    PRO_ISDELETED AS PROISDELETED
+			FROM
+			    ODT
+			    INNER JOIN PRO ON ODT_PROUSRSELID = PRO_USRSELID AND ODT_PROCODE = PRO_CODE
+			    INNER JOIN CAT ON PRO_CATCODE = CAT_CODE
+			    INNER JOIN MEM ON ODT_ORDMEMID = MEM_USRID
+			    INNER JOIN SEL ON ODT_PROUSRSELID = SEL_USRID
+			WHERE 
+			    MEM_GENDER LIKE DECODE(#{filterGender}, 'default', '%', #{filterGender})
+			    AND PRO_PRICE > TO_NUMBER(DECODE(#{filterMinPrice}, 'default', 0, #{filterMinPrice}))
+			    AND PRO_PRICE < TO_NUMBER(DECODE(#{filterMaxPrice}, 'default', 9999999, #{filterMaxPrice}))
+    			AND MEM_BIRTHDAY > DECODE(#{filterStudent}, 'default', TO_DATE('19000101000000', 'YYYYMMDDHH24MISS'), 'S', SYSDATE - INTERVAL '18' YEAR)
+			    AND ROWNUM <= 18
+			GROUP BY 
+			    ODT_PROUSRSELID,
+			    ODT_PROCODE,
+			    CAT_CODE,
+			    PRO_NAME,
+			    PRO_PRICE,
+			    PRO_STOCK,
+			    PRO_INFO,
+			    PRO_ISDELETED
+			ORDER BY
+    			DECODE(#{filterType},'gift', SUM(ODT_QTY) ,'wish', COUNT(*)) DESC
+	   ]]>
+	</select>
+	
+	<select id="getHomeProductList" resultMap="getProductImageMap">
+		<![CDATA[
+			SELECT * FROM(
+				SELECT 
+				    ODT_PROUSRSELID AS PROUSRSELID,
+				    ODT_PROCODE AS PROCODE,
+				    CAT_CODE AS CATCODE,
+				    PRO_NAME AS PRONAME,
+				    PRO_PRICE AS PROPRICE,
+				    PRO_STOCK AS PROSTOCK,
+				    PRO_INFO AS PROINFO,
+				    PRO_ISDELETED AS PROISDELETED,
+				    SUM(ODT_QTY)
+				FROM
+				    ODT
+				    INNER JOIN PRO ON ODT_PROUSRSELID = PRO_USRSELID AND ODT_PROCODE = PRO_CODE
+				    INNER JOIN CAT ON PRO_CATCODE = CAT_CODE
+				    INNER JOIN MEM ON ODT_ORDMEMID = MEM_USRID
+				    INNER JOIN SEL ON ODT_PROUSRSELID = SEL_USRID
+				GROUP BY 
+				    ODT_PROUSRSELID,
+				    ODT_PROCODE,
+				    CAT_CODE,
+				    PRO_NAME,
+				    PRO_PRICE,
+				    PRO_STOCK,
+				    PRO_INFO,
+				    PRO_ISDELETED
+				ORDER BY
+				    SUM(ODT_QTY) DESC)
+				WHERE
+				    ROWNUM <= 5
+	   ]]>
+	</select>
+	
+	
+	<resultMap id="getOrderImageMap" type="OrderBean">
+		<collection
+			property="productImage"
+			column="pigProusrselid=proUsrselid pigProcode=proCode"
+			select="getOrderImage">
+		</collection>
+	</resultMap>
+	
+	<select id="getOrderImage" resultType="ProductImageBean">
+		SELECT
+			    PIG_PROUSRSELID AS PIGPROUSRSELID,
+			    PIG_PROCODE AS PIGPROCODE,
+			    PIG_CODE AS PIGCODE,
+			    PIG_NAME AS PIGNAME,
+			    PIG_PATH AS PIGPATH,
+			    PIG_ISTHUMBNAIL AS PIGISTHUMBNAIL
+			FROM PIG 
+			WHERE 
+			    PIG_PROUSRSELID = #{pigProusrselid} AND PIG_PROCODE = #{pigProcode}
+	</select>
+	
+	<select id="getOrderList" resultMap="getOrderImageMap">
+		<![CDATA[
+			SELECT 
+			    ODT_ORDDATE AS ORDDATE, 
+			    ODT_ORDMEMID AS ORDUSRMEMID, 
+			    ODT_MEMRECIPIENT AS ODTMEMRECIPIENT,
+			    ODT_PROUSRSELID AS PROUSRSELID, 
+			    SEL_SHOPNAME AS SELSHOPNAME,
+			    ODT_PROCODE AS PROCODE, 
+			    PRO_PRICE AS PROPRICE,
+			    ODT_QTY AS ORDQTY, 
+			    PRO_NAME AS PRONAME,
+			    ORD_OSTSTATE AS ORDOSTSTATE, 
+			    ORD_PAYCODE AS ORDPAYCODE
+			FROM (
+			    SELECT ODT_ORDDATE, ODT_ORDMEMID, ODT_MEMRECIPIENT, ODT_PROCODE, PRO_PRICE, ODT_PROUSRSELID, SEL_SHOPNAME, ODT_QTY, PRO_NAME, ORD_OSTSTATE, ORD_PAYCODE,
+           			ROW_NUMBER() OVER (PARTITION BY ODT_ORDDATE, ODT_ORDMEMID ORDER BY ODT_ORDDATE) AS rn
+			    FROM (
+        			SELECT ODT_ORDDATE, ODT_ORDMEMID, ODT_MEMRECIPIENT, ODT_PROUSRSELID, SEL_SHOPNAME, ODT_PROCODE, PRO_PRICE, ODT_QTY, PRO_NAME, ORD_OSTSTATE, ORD_PAYCODE, COUNT(ODT_ORDDATE)
+        			FROM ODT
+			        INNER JOIN PRO ON ODT_PROUSRSELID = PRO_USRSELID AND ODT_PROCODE = PRO_CODE
+			        INNER JOIN ORD ON ODT_ORDDATE = ODT_ORDDATE AND ODT_ORDMEMID = ORD_USRMEMID
+			        INNER JOIN MEM ON ODT_ORDMEMID = MEM_USRID
+			        INNER JOIN SEL ON ODT_PROUSRSELID = SEL_USRID
+			        WHERE ODT_ORDMEMID = #{filterUsrmemid}
+			        AND ODT_ORDDATE >= DECODE(#{filterStartDate}, NULL, TO_DATE('1900-01-01', 'YYYY-MM-DD'), TO_DATE(#{filterStartDate}, 'YYYY-MM-DD'))
+			        AND ODT_ORDDATE <= DECODE(#{filterEndDate}, NULL, TO_DATE('2099-12-31', 'YYYY-MM-DD'), TO_DATE(#{filterEndDate}, 'YYYY-MM-DD'))
+        			GROUP BY ODT_ORDDATE, ODT_ORDMEMID, ODT_MEMRECIPIENT, ODT_PROUSRSELID, SEL_SHOPNAME, ODT_PROCODE, PRO_PRICE, ODT_QTY, PRO_NAME, ORD_OSTSTATE, ORD_PAYCODE
+    			) temp
+			) final
+			WHERE rn <= 1
+	   ]]>
+	</select>
+	
+	<resultMap id="getOrderDetailImageMap" type="OrderDetailBean">
+		<collection
+			property="productImage"
+			column="pigProusrselid=proUsrselid pigProcode=odtProcode"
+			select="getOrderImage">
+		</collection>
+	</resultMap>
+	
+	<resultMap id="getOrderDetailImageMap2" type="OrderDetailBean">
+		<collection
+			property="productImage"
+			column="pigProusrselid=odtProusrselid pigProcode=odtProcode"
+			select="getOrderImage">
+		</collection>
+	</resultMap>
+	
+	<select id="getOrderDetail" resultMap="getOrderDetailImageMap2">
+		SELECT ODT_ORDDATE AS ODTORDDATE,
+		ODT_ORDMEMID AS ODTORDMEMID,
+		ODT_PROUSRSELID AS ODTPROUSRSELID,
+        SEL_SHOPNAME AS SELSHOPNAME,
+        PRO_NAME AS PRONAME,
+        PRO_PRICE AS PROPRICE,
+		ODT_PROCODE AS ODTPROCODE,
+		ODT_QTY AS ODTQTY,
+		ODT_MEMRECIPIENT AS ODTMEMRECIPIENT,
+		ODT_GSTCODE AS ODTGSTCODE
+		FROM ODT
+        INNER JOIN PRO ON PRO_USRSELID = ODT_PROUSRSELID AND PRO_CODE = ODT_PROCODE
+        INNER JOIN SEL ON SEL_USRID = ODT_PROUSRSELID
+		WHERE ODT_ORDDATE = TO_DATE(#{ordDate}, 'YYYY-MM-DD HH24:MI:SS')
+		AND ODT_ORDMEMID = #{ordUsrmemid}
+	</select>
+	
+	<select id="getOrder" resultMap="getOrderDetailImageMap">
+		<![CDATA[
+			SELECT ORD_DATE AS ORDDATE, 
+			ORD_USRMEMID AS ORDUSRMEMID, 
+            SEL_SHOPNAME AS SELSHOPNAME,
+			ODT_PROUSRSELID AS PROUSRSELID, 
+			ODT_PROCODE AS ODTPROCODE,:
+			ODT_MEMRECIPIENT AS ODTMEMRECIPIENT,
+            PRO_NAME AS PRONAME,
+            PRO_PRICE AS PROPRICE,
+			ORD_OSTSTATE AS ORDOSTSTATE, 
+			ORD_PAYCODE AS ORDPAYCODE
+			FROM ORD, ODT, PRO, SEL
+			WHERE ORD_DATE = TO_DATE(#{ordDate}, 'YYYY-MM-DD HH24:MI:SS')
+			AND ORD_USRMEMID = ODT_ORDMEMID
+			AND ORD_USRMEMID = #{ordUsrmemid}
+            AND ODT_PROUSRSELID = PRO_USRSELID
+            AND ODT_PROCODE = PRO_CODE
+            AND ODT_PROUSRSELID = SEL_USRID
+            AND ORD_OSTSTATE = 'OO'
+	   ]]>
+	</select>
+</mapper>

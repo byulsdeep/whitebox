@@ -1,0 +1,79 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/e59267a363.js" crossorigin="anonymous"></script>
+    <link rel='stylesheet' href='/res/css/reset.css' />
+    <link rel='stylesheet' href='/res/css/seller/BYUL_productList.css' />
+</head>
+<body>
+    <div class="modal" style="display: flex;">
+        <div class="modal_top_bar">
+            <div class="modal_top_bar_title">
+                商品情報
+            </div>
+            <div class="modal_top_bar_exit_button" onclick="closeModal()">
+                <i class="fa-solid fa-x"></i>
+            </div>
+        </div>
+        <div class="modal_content">
+            <div class="modal_product_img_info">
+                <!-- card starts here -->
+                <div class="card_product">
+                    <span class="wrap_thumb">
+                        <img cuimg="" uselazyloading="" class="img_g" src="https://img1.kakaocdn.net/thumb/C306x306@2x.q82.fwebp/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20230315154042_18142860e30348aa81b257f108b94c26.jpg" alt="'숙면선물' 쿤달">
+                    </span>
+                    <span class="wrap_info">
+                        <strong class="txt_ranking">1</strong>
+                        <strong>
+                            <a class="txt_brand">쿤달(리빙) 필로우미스트</a>
+                        </strong>
+                    <div>
+                        <a class="txt_product">'숙면선물' 쿤달 릴랙싱 슬립 배럴 아로마 필로우미스트 150ml</a>
+                    </div>
+                    <div class="txt_price">
+                        <strong>
+                            ¥<span class="txt_yen">2,500</span>
+                        </strong>
+                        <span class="txt_tax">税込</span>
+                    </div>
+                    </span>
+                </div>
+                <!-- card ends here -->
+                <div class="modal_product_info">
+                    <div class="modal_product_info_top">
+                        <table>
+                            <tr>
+                                <th>商品コード</th>
+                                <th>カテゴリ</th>
+                                <th>商品名</th>
+                                <th>価格</th>
+                                <th>在庫</th>
+                            </tr>
+                            <tr>
+                                <td id='modal_product_info_proCode'>asdfasdf</td>
+                                <td id='modal_product_info_catName'>asdfasdf</td>
+                                <td id='modal_product_info_proName'>asdfasdf</td>
+                                <td id='modal_product_info_proPrice'>asdfasdf</td>
+                                <td id='modal_product_info_proStock'>asdfasdf</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="modal_product_info_bottom">
+                        <textarea id='modal_product_info_proInfo' rows='13' cols='40'></textarea>
+                    </div>
+                    <div class="modal_product_info_button_wrap">
+                        <button class='modal_product_info_button'>修正</button>
+                        <button class='modal_product_info_button' onclick='closeModal()'>戻る</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

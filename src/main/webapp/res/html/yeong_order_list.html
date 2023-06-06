@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script
+      src="https://kit.fontawesome.com/e59267a363.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- jQuery 라이브러리 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Slick 라이브러리 -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"
+    ></script>
+    <link
+    rel="stylesheet"
+    type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"
+  />
+  <link
+    rel="stylesheet"
+    type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"
+  />
+    <link rel="stylesheet" href="/res/css/reset.css" />
+    <!-- NAVBAR CSS -->
+    <link rel="stylesheet" href="/res/css/member/navbar.css" />
+    <link rel="stylesheet" href="/res/css/member/BI_myPage.css" />
+    <link rel="stylesheet" href="/res/css/member/yeong_myPage.css" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>マイページ</title>
+  </head>
+  <body>
+    <nav class="navbar"></nav>
+    <script src="/res/js/member/navbar.js"></script>
+    <main class="main_fri">
+      <section class="section_left">
+        <section class="section_profile">
+          <div class="my_profile_box">
+            <img class="my_profile_img" src="/res/img/BI/nino.jpg" />
+          </div>
+          <div class="my_profile">
+            <div class="my_profile_name">二宮和也</div>
+            <div class="my_profile_list">
+              <a href="">情報修正</a>
+            </div>
+          </div>
+          <div class="my_profile">
+            <div class="my_profile_list">
+              <a href="">友達リスト</a>
+            </div>
+            <div class="my_profile_list">
+              <a href="">友達要請</a>
+            </div>
+          </div>
+        </section>
+        <section class="section_list">
+          <ul class="my_list">
+            <li><a href="">ギフトボックス</a></li>
+            <li><a href="">欲しいものリスト</a></li>
+            <li><a href="">お気に入り</a></li>
+            <li><a href="">注文内訳</a></li>
+            <li><a href="">プレゼントレビュー</a></li>
+            <li><a href="">照会リスト</a></li>
+          </ul>
+        </section>
+      </section>
+      <section class="section_content">
+        <div class="order_list_wrap">
+          <div class="order_list_title">
+            注文内訳
+          </div>
+          <div class="order_list_top">
+            <div class="order_list_top_left">
+              <input type="date" id="orderDateStart" class="order_list_top_right_search" onchange="getOrderList()">
+              ~
+              <input type="date" id="orderDateEnd" class="order_list_top_right_search" onchange="getOrderList()">
+            </div>
+            <div class="order_list_top_right">
+              <div class="order_list_top_right_button" onclick="setDateRange(1)">1ヵ月</div>
+              <div class="order_list_top_right_button" onclick="setDateRange(3)">3ヵ月</div>
+              <div class="order_list_top_right_button" onclick="setDateRange(6)">6ヵ月</div>
+              <div class="order_list_top_right_button" onclick="setDateRange(12)">12ヵ月</div>
+              <div class="order_list_top_right_button" onclick="setDateRange()">すべて</div>
+            </div>
+          </div>
+          <div id="orderList" class="order_list_bottom">
+
+            <div class="order_list_item">
+              <div class="order_list_item_top">
+                <div class="order_list_item_top_left">
+                  <p>OOO</p>
+                </div>
+                <div class="order_list_item_top_right">
+                  <div onclick="openReviewForm(this)">レビュー</div>
+                  <div>注文詳細</div>
+                </div>
+              </div>
+              <a href="/order/" class="order_list_item_bottom">
+                <div class="order_list_item_bottom_left">
+                  <img src="https://via.placeholder.com/100" alt="">
+                </div>
+                <div class="order_list_item_bottom_right">
+                  <div class="order_list_item_bottom_right_brand">スタバックス</div>
+                  <div class="order_list_item_bottom_right_title">[ STARBUCKS ] Eカード3万ウォン引換券</div>
+                  <div class="order_list_item_bottom_right_bottom">
+                    <div class="order_list_item_bottom_right_bottom_price">1695</div>
+                    <div class="order_list_item_bottom_right_bottom_qty">1</div>
+                  </div>
+                </div>
+              </a>
+              <div class="order_list_item_review">
+                <textarea name="" id="" cols="30" rows="10"></textarea>
+                <div class="order_list_item_review_bottom">
+                  <span class="star">
+                    	★★★★★
+                    <span>★★★★★</span>
+                    <input type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="10">
+                  </span>
+                  <div href="" onclick="checkScore(this)">作成する</div>
+                </div>
+              </div>
+            </div>
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+  <script>
+    let orderList = '';
+    let today = new Date();
+    window.onload = function() {
+      loadOrderList();
+    };
+
+    let openReviewForm = (e) => {
+      let reviewForm = e.parentNode.parentNode.parentNode.querySelector('.order_list_item_review');
+      reviewForm.style.display = (reviewForm.style.display == 'block' ? 'none' : 'block');
+    }
+
+    let loadOrderList = () => {
+      for(let i = 0;i < 10; i++){
+        orderList += '<div class="order_list_item"><div class="order_list_item_top"><div class="order_list_item_top_left"><p>OOO</p></div><div class="order_list_item_top_right"><div onclick="openReviewForm(this)">レビュー</div><div>注文詳細</div></div></div><div class="order_list_item_bottom"><div class="order_list_item_bottom_left"><img src="https://via.placeholder.com/100" alt=""></div><div class="order_list_item_bottom_right"><div class="order_list_item_bottom_right_brand">スタバックス</div><div class="order_list_item_bottom_right_title">[ STARBUCKS ] Eカード3万ウォン引換券</div><div class="order_list_item_bottom_right_bottom"><div class="order_list_item_bottom_right_bottom_price">1695</div><div class="order_list_item_bottom_right_bottom_qty">1</div></div></div></div><div class="order_list_item_review"><textarea name="" id="" cols="30" rows="10"></textarea><div class="order_list_item_review_bottom"><span class="star">★★★★★<span>★★★★★</span><input type="range" oninput="drawStar(this)" value="0" step="1" min="0" max="10"></span><div href="" onclick="checkScore(this)">作成する</div></div></div></div>';
+      }
+      document.querySelector('#orderList').innerHTML = orderList;
+    }
+
+    document.querySelector(`.star span`).addEventListener('oninput', drawStar);
+    function drawStar(e) {
+      e.parentNode.querySelector(`.star span`).style.width = `${e.value * 10}%`;
+    }
+
+	let checkScore = (e) => {
+	  if(e.parentNode.querySelector('input').value == 0){
+	    alert('評点を付けてください。')
+	  }else{
+	    console.log(e.parentNode.querySelector('input').value + ' rest');
+	    console.log(document.querySelector('#dateStart').value);
+	    console.log(document.querySelector('#dateEnd').value);
+	  }
+	}
+
+    let setDateRange = (e) => {
+      document.querySelector('#orderDateStart').value = 
+      1 > (((today.getMonth()) + 1) - e)
+      ? (today.getFullYear() - 1) + '-' + ('0' + ((today.getMonth()) + 1 + (12 - e))).slice(-2) + '-' + ('0' + today.getDate()).slice(-2)
+      : (today.getFullYear() + '-' + ('0' + ((today.getMonth()) + 1 - e)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2))
+      ;
+      document.querySelector('#orderDateEnd').value = today.getFullYear() + '-' + ('0' + ((today.getMonth()) + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
+
+      if(e == null){
+        document.querySelector('#orderDateStart').value = '';
+        document.querySelector('#orderDateEnd').value = '';
+      }
+      console.log(document.querySelector('#orderDateStart').value);
+      console.log(document.querySelector('#orderDateEnd').value);
+      getOrderList();
+    }
+
+    let getOrderList = () => {console.log('getOrderList');
+	fetch("http://localhost/mypage/orders", {
+		  method: "POST",
+		  headers: {
+		    "Content-Type": "application/json",
+		  },
+		  body: JSON.stringify({
+			filterusrmemid: filterusrmemid,
+			filterStartDate: filterStartDate,
+			filterEndDate: filterEndDate,
+		  }),
+		})
+		.then((response) => {
+			if (response.ok) {
+				const clonedResponse = response.clone();
+				return response.json().catch(() => clonedResponse.text());
+			} else {
+				throw new Error("Network response was not ok.");
+			}
+		})
+		.then((data) => {
+			console.log(data);
+			let proList = '';
+			if(data != null){
+			data.forEach((e,i) => {
+				console.log(i);
+			});
+		}
+	});
+    }
+
+  </script>
+</html>

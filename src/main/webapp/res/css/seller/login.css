@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap');
+/* 검정색 : #222
+윗 여백 : 40
+
+*글자 크기
+-작은 글씨(댓글미리보기) : 13px
+-기본 폰트(상품소개) : 15px
+-더보기/상품 : 17px
+-제목 : 28px
+-소제목 : 24px
+-소제목 밑 소개 : 18px */
+body {
+    margin: 0;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 15px;
+}
+.main {
+    text-align: center;
+    width: 354px;
+    margin: 0 auto;
+    justify-content: center;
+}
+.title-text {
+    font-weight: 500;
+    font-size: 35px;
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+.content-text {
+    margin-bottom: 30px;
+    font-weight: 500;
+    margin-bottom: 5px;
+    text-align: left;
+}
+.write-box {
+    width: 350px;
+    height: 45px;
+    border-radius: 5px 5px 5px 5px;
+    border: none;
+    background-color: #e5e5e5;
+    margin-bottom: 15px;
+}
+.login-button {
+    width: 350px;
+    height: 45px;
+    border-radius: 5px 5px 5px 5px;
+    background-color: #222;
+    color: white;
+    cursor: pointer;
+    margin-bottom: 30px;
+}
+input[type='checkbox'] {
+    width: 13.33px;
+    height: 13.33px;
+    margin-right: 13.33px;
+}
+.checkbox_wrap {
+    margin-bottom: 15px;
+}
+.join-button {
+    width: 350px;
+    height: 45px;
+    border-radius: 5px 5px 5px 5px;
+    border: 1px solid #222;
+    background-color: white;
+    color: #222;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+form div {
+    display: flex;
+    justify-content: space-between;
+}

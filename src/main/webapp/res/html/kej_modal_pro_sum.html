@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Modal_sum</title>
+    <style>
+      #modal_sum.modal_sum-overlay {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        background: rgba(255, 255, 255, 0.25);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        backdrop-filter: blur(1.5px);
+        -webkit-backdrop-filter: blur(1.5px);
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+      }
+
+      #modal_sum .modal_sum-window {
+        background: #f5f5f5;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        backdrop-filter: blur(13.5px);
+        -webkit-backdrop-filter: blur(13.5px);
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+
+        width: 400px;
+        height: 200px;
+        position: relative;
+        top: -100px;
+        padding: 10px;
+      }
+
+      #modal_sum .title_sum {
+        padding-left: 10px;
+        display: inline;
+        text-shadow: 1px 1px 2px gray;
+        color: #222222;
+        margin-left: 20px;
+      }
+
+      #modal_sum .title_sum h2 {
+        display: inline;
+      }
+
+      #modal_sum .close-area {
+        display: inline;
+        float: right;
+        padding-right: 10px;
+        cursor: pointer;
+        text-shadow: 1px 1px 2px gray;
+        color: #222222;
+      }
+
+      #modal_sum .content {
+        margin-top: 20px;
+        padding: 0px 10px;
+        text-shadow: 1px 1px 2px gray;
+        color: #222222;
+      }
+
+      .cart_pro_num {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 350px;
+        height: 40px;
+        font-size: 20px;
+        text-decoration: none;
+        border: 1px solid #222222;
+        border-radius: 5px;
+        margin: 0 auto;
+      }
+
+      .cart_pro_btn_area {
+        display: flex;
+        justify-content: center;
+      }
+
+      .pro_num_btn {
+        background-color: #f5f5f5;
+        border-radius: 5px;
+        color: #222222;
+        font-size: 15px;
+        width: 166px;
+        height: 45px;
+        margin: 8px;
+        border: 1px solid #222222;
+        border-radius: 5px;
+        text-shadow: 1px 1px 2px gray;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="container">
+      <h2>Lorem Ipsum</h2>
+      <button id="btn-modal_sum">모달 창 열기 버튼</button>
+      <div id="lorem-ipsum"></div>
+    </div>
+
+    <div id="modal_sum" class="modal_sum-overlay">
+      <div class="modal_sum-window">
+        <div class="title_sum">
+          <h2>数量変更</h2>
+        </div>
+        <div class="content"></div>
+        <div class="cart_pro_num">
+          <a href="#" class="minus">-</a>
+          <div id="result">1</div>
+          <a href="#" class="puls">+</a>
+        </div>
+        <div class="cart_pro_btn_area">
+          <button class="pro_num_btn" id="close-area_sum">取消</button>
+          <button class="pro_num_btn" id="close-area_sum_info">選択完了</button>
+        </div>
+      </div>
+    </div>
+    <script>
+      const modal_sum = document.getElementById("modal_sum");
+      const btnModal_sum = document.getElementById("btn-modal_sum");
+      btnModal_sum.addEventListener("click", (e) => {
+        modal_sum.style.display = "flex";
+      });
+      const closeBtn_sum = modal_sum.querySelector("#close-area_sum");
+      closeBtn_sum.addEventListener("click", (e) => {
+        modal_sum.style.display = "none";
+      });
+      const closeBtn_sum1 = modal_sum.querySelector("#close-area_sum_info");
+      closeBtn_sum1.addEventListener("click", (e) => {
+        modal_sum.style.display = "none";
+      });
+    </script>
+  </body>
+</html>

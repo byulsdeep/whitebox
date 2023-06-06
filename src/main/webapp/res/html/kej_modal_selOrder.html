@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Modal</title>
+    <style>
+      #modal.modal-overlay {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        background: rgba(255, 255, 255, 0.25);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        backdrop-filter: blur(1.5px);
+        -webkit-backdrop-filter: blur(1.5px);
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+      }
+
+      #modal .modal-window {
+        background: #f5f5f5;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        backdrop-filter: blur(13.5px);
+        -webkit-backdrop-filter: blur(13.5px);
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+
+        width: 600px;
+        height: 700px;
+        position: relative;
+        top: -100px;
+        padding: 20px;
+      }
+
+      #modal .title {
+        padding-left: 10px;
+        display: inline;
+        text-shadow: 1px 1px 2px gray;
+        color: #222222;
+      }
+
+      #modal .title h2 {
+        display: inline;
+      }
+
+      #modal .close-area {
+        display: inline;
+        float: right;
+        padding-right: 10px;
+        cursor: pointer;
+        text-shadow: 1px 1px 2px gray;
+        color: #222222;
+      }
+
+      #modal .content {
+        margin-top: 20px;
+        padding: 0px 10px;
+        color: #222222;
+      }
+
+      .odt_modal_table {
+        border-collapse: separate;
+        border-spacing: 0;
+        width: 100%;
+        color: #666;
+        font: 14px;
+      }
+      .odt_modal_table th,
+      td {
+        padding: 6px 15px;
+      }
+      .odt_modal_table th {
+        background: #42444e;
+        color: #fff;
+        text-align: left;
+      }
+      .odt_modal_table tr:first-child th:first-child {
+        border-top-left-radius: 6px;
+      }
+      .odt_modal_table tr:first-child th:last-child {
+        border-top-right-radius: 6px;
+      }
+      .odt_modal_table td {
+        border-right: 1px solid #c6c9cc;
+        border-bottom: 1px solid #c6c9cc;
+      }
+      .odt_modal_table td:first-child {
+        border-left: 1px solid #c6c9cc;
+      }
+      .odt_modal_table tr:nth-child(even) td {
+        background: #eaeaed;
+      }
+      .odt_modal_table tr:last-child td:first-child {
+        border-bottom-left-radius: 6px;
+      }
+      .odt_modal_table tr:last-child td:last-child {
+        border-bottom-right-radius: 6px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="container">
+      <h2>友達選択</h2>
+      <button id="btn-modal">모달 창 열기 버튼</button>
+      <div id="lorem-ipsum"></div>
+    </div>
+
+    <div id="modal" class="modal-overlay">
+      <div class="modal-window">
+        <div class="fri_title">
+          <div class="close-area">X</div>
+          <h2>注文の詳細</h2>
+        </div>
+        <div class="content">
+          <table class="odt_modal_table">
+            <tr>
+              <th>商品名</th>
+              <th>商品コード</th>
+              <th>数量</th>
+              <th>価格</th>
+            </tr>
+            <tr>
+              <td>귀걸이</td>
+              <td>0001</td>
+              <td>1個</td>
+              <td>10円</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const modal = document.getElementById('modal');
+      const btnModal = document.getElementById('btn-modal');
+      btnModal.addEventListener('click', (e) => {
+        modal.style.display = 'flex';
+      });
+      const closeBtn = modal.querySelector('.close-area');
+      closeBtn.addEventListener('click', (e) => {
+        modal.style.display = 'none';
+      });
+      const closeBtn2 = modal.querySelector('.cart_fri_btn');
+      closeBtn2.addEventListener('click', (e) => {
+        modal.style.display = 'none';
+      });
+    </script>
+  </body>
+</html>

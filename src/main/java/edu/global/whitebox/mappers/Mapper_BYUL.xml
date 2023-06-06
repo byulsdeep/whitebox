@@ -1,0 +1,818 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.global.whitebox.mappers.Mapper_BYUL">
+	<!-- 알림용 GS인 받은 선물 가져오기 -->
+	<select id="selectReceivedGiftListGS" resultType="OrderDetailBean">
+		SELECT
+		    ODT_ORDDATE AS ODTORDDATE,
+		    ODT_ORDMEMID AS ODTORDMEMID,
+		    ODT_PROUSRSELID AS ODTPROUSRSELID,
+		    ODT_PROCODE AS ODTPROCODE,
+		    ODT_MEMRECIPIENT AS ODTMEMRECIPIENT,
+		    USR_IMAGE AS USRIMAGE,
+            USR_LASTNAME AS USRLASTNAME,
+            USR_FIRSTNAME AS USRFIRSTNAME		    
+		FROM
+		    ODT 
+		    INNER JOIN
+            USR
+                ON
+                    ODT_ORDMEMID = USR_ID		    
+		WHERE 
+		    ODT_MEMRECIPIENT = #{usrId}
+		    AND
+		    ODT_ORDMEMID != #{usrId}
+		    AND 
+		    ODT_GSTCODE = 'GS'
+	</select>
+	<!-- 알림용 GS인 받은 선물 가져오기 종료 -->
+	<!-- 선물 페이지 접속시 받은 선물 있는 경우 GS-> GA로 업데이트 -->
+	<update id="updateGStoGA">
+		    UPDATE ODT SET
+                ODT_GSTCODE = 'GA'
+            WHERE
+                ODT_ORDDATE = TO_DATE(#{odtOrddate}, 'YYYYMMDDHH24MISS')
+                AND
+                ODT_ORDMEMID = #{odtOrdmemid}
+                AND
+                ODT_PROUSRSELID = #{odtProusrselid}
+                AND 
+                ODT_PROCODE = #{odtProcode}
+                AND
+                ODT_MEMRECIPIENT = #{odtMemrecipient}
+                AND
+                ODT_GSTCODE = 'GS'
+	</update>
+	<!-- 선물 페이지 접속시 받은 선물 있는 경우 GS-> GA로 업데이트 종료-->
+	<resultMap id="selectOrderDetailMap" type="OrderDetailBean">
+		<collection
+			property="productImage"
+			column="pigProusrselid=odtProusrselid pigProcode=odtProcode" 
+			select="selectProductThumbnailImage">
+		</collection>
+	</resultMap>
+	<select id="selectProductThumbnailImage" resultType="ProductImageBean">
+		<![CDATA[
+			SELECT * FROM (
+				SELECT
+				    PIG_PROUSRSELID AS PIGPROUSRSELID,
+				    PIG_PROCODE AS PIGPROCODE,
+				    PIG_CODE AS PIGCODE,
+				    PIG_NAME AS PIGNAME,
+				    PIG_PATH AS PIGPATH,
+				    PIG_ISTHUMBNAIL AS PIGISTHUMBNAIL
+				FROM PIG 
+				WHERE 
+				    PIG_PROUSRSELID = #{pigProusrselid} 
+				    AND 
+				    PIG_PROCODE = #{pigProcode}
+				    AND PIG_ISTHUMBNAIL = 'T'
+				)
+			WHERE ROWNUM <= 1
+		]]>
+	</select>	
+	<!-- 보낸 선물 정보 가져오기 -->
+	<select id="selectSentGiftList" resultMap="selectOrderDetailMap">
+		SELECT
+		    ODT_ORDDATE AS ODTORDDATE,
+		    ODT_ORDMEMID AS ODTORDMEMID,
+		    ODT_PROUSRSELID AS ODTPROUSRSELID,
+		    ODT_PROCODE AS ODTPROCODE,
+		    ODT_QTY AS ODTQTY,
+		    ODT_MEMRECIPIENT AS ODTMEMRECIPIENT,
+		    ODT_GSTCODE AS ODTGSTCODE,
+		    GST_NAME AS GSTNAME,
+		    PRO_NAME AS PRONAME,
+		    PRO_PRICE AS PROPRICE,
+		    PRO_INFO AS PROINFO,
+		    PRO_ISDELETED AS PROISDELETED,
+		    USR_IMAGE AS USRIMAGE,
+            USR_LASTNAME AS USRLASTNAME,
+            USR_FIRSTNAME AS USRFIRSTNAME
+		FROM
+		    ODT 
+		    INNER JOIN
+		    GST
+		        ON 
+		            ODT_GSTCODE = GST_CODE
+		    INNER JOIN
+		    PRO
+		        ON 
+		            ODT_PROUSRSELID = PRO_USRSELID
+		            AND
+		            ODT_PROCODE = PRO_CODE 
+		    INNER JOIN
+            USR
+                ON
+                    ODT_ORDMEMID = USR_ID
+		WHERE 
+		    ODT_ORDMEMID = #{usrId}
+		    AND
+		    ODT_MEMRECIPIENT != #{usrId}
+	</select>
+	<!-- 보낸 선물 정보 가져오기 종료 -->
+	<!-- 받은 선물 정보 가져오기 -->
+	<select id="selectReceivedGiftList" resultMap="selectOrderDetailMap">
+		SELECT
+		    ODT_ORDDATE AS ODTORDDATE,
+		    ODT_ORDMEMID AS ODTORDMEMID,
+		    ODT_PROUSRSELID AS ODTPROUSRSELID,
+		    ODT_PROCODE AS ODTPROCODE,
+		    ODT_QTY AS ODTQTY,
+		    ODT_MEMRECIPIENT AS ODTMEMRECIPIENT,
+		    ODT_GSTCODE AS ODTGSTCODE,
+		    GST_NAME AS GSTNAME,
+		    PRO_NAME AS PRONAME,
+		    PRO_PRICE AS PROPRICE,
+		    PRO_INFO AS PROINFO,
+		    PRO_ISDELETED AS PROISDELETED,
+		    USR_IMAGE AS USRIMAGE,
+            USR_LASTNAME AS USRLASTNAME,
+            USR_FIRSTNAME AS USRFIRSTNAME		    
+		FROM
+		    ODT 
+		    INNER JOIN
+		    GST
+		        ON 
+		            ODT_GSTCODE = GST_CODE
+		    INNER JOIN
+		    PRO
+		        ON 
+		            ODT_PROUSRSELID = PRO_USRSELID
+		            AND
+		            ODT_PROCODE = PRO_CODE 
+		    INNER JOIN
+            USR
+                ON
+                    ODT_ORDMEMID = USR_ID		    
+		WHERE 
+		    ODT_MEMRECIPIENT = #{usrId}
+		    AND
+		    ODT_ORDMEMID != #{usrId}
+	</select>
+	<!-- 받은 선물 정보 가져오기 종료 -->
+	<!-- 내게한 선물 정보 가져오기 -->
+	<select id="selectSelfGiftList" resultMap="selectOrderDetailMap">
+		SELECT
+		    ODT_ORDDATE AS ODTORDDATE,
+		    ODT_ORDMEMID AS ODTORDMEMID,
+		    ODT_PROUSRSELID AS ODTPROUSRSELID,
+		    ODT_PROCODE AS ODTPROCODE,
+		    ODT_QTY AS ODTQTY,
+		    ODT_MEMRECIPIENT AS ODTMEMRECIPIENT,
+		    ODT_GSTCODE AS ODTGSTCODE,
+		    GST_NAME AS GSTNAME,
+		    PRO_NAME AS PRONAME,
+		    PRO_PRICE AS PROPRICE,
+		    PRO_INFO AS PROINFO,
+		    PRO_ISDELETED AS PROISDELETED,
+		    USR_IMAGE AS USRIMAGE,
+            USR_LASTNAME AS USRLASTNAME,
+            USR_FIRSTNAME AS USRFIRSTNAME		    
+		FROM
+		    ODT 
+		    INNER JOIN
+		    GST
+		        ON 
+		            ODT_GSTCODE = GST_CODE
+		    INNER JOIN
+		    PRO
+		        ON 
+		            ODT_PROUSRSELID = PRO_USRSELID
+		            AND
+		            ODT_PROCODE = PRO_CODE 
+		    INNER JOIN
+            USR
+                ON
+                    ODT_ORDMEMID = USR_ID		            
+		WHERE 
+		    ODT_MEMRECIPIENT = #{usrId}
+		    AND
+		    ODT_ORDMEMID = #{usrId}
+	</select>
+	<!-- 내게한 선물 정보 가져오기 종료 -->
+	<!-- 알림 정보 가져오기 -->
+	<select id="selectNotificationInfo" resultType="FriendBean">
+		SELECT
+		    FRI_SENDER AS FRISENDER,
+		    FRI_RECEIVER AS FRIRECEIVER,
+		    USR_LASTNAME AS USRLASTNAME,
+		    USR_FIRSTNAME AS USRFIRSTNAME,
+		    USR_IMAGE AS USRIMAGE,
+		    FRI_STATE AS FRISTATE,
+		    FRI_DATE AS FRIDATE
+		FROM 
+		    USR INNER JOIN FRI ON USR_ID = FRI_SENDER
+		WHERE 
+		    FRI_RECEIVER = #{usrId}
+		    AND
+		    FRI_STATE = 'FS'
+			    
+		UNION
+		
+		SELECT
+		    FRI_SENDER AS FRISENDER,
+		    FRI_RECEIVER AS FRIRECEIVER,
+		    USR_LASTNAME AS USRLASTNAME,
+		    USR_FIRSTNAME AS USRFIRSTNAME,
+		    USR_IMAGE AS USRIMAGE,
+		    FRI_STATE AS FRISTATE,
+		    FRI_DATE AS FRIDATE
+		FROM 
+		    USR INNER JOIN FRI ON USR_ID = FRI_RECEIVER
+		WHERE 
+		    FRI_SENDER = #{usrId}
+		    AND
+		    FRI_STATE = 'FA'		
+	</select>
+	<!-- 알림 정보 가져오기 종료 -->
+	<!-- 친구  수락 -->
+	<update id="acceptRequest">
+		UPDATE FRI SET 
+		    FRI_STATE = 'FA',
+		    FRI_DATE = SYSDATE
+		WHERE 
+		    FRI_SENDER = #{friSender}
+		    AND 
+		    FRI_RECEIVER = #{friReceiver}
+		    AND 
+		    FRI_STATE = 'FS'
+	</update>
+	<!-- 친구  수락 종료 -->
+	<!-- 친구  거부 -->
+	<delete id="declineRequest">
+		DELETE FROM FRI
+		WHERE 
+		    FRI_SENDER = #{friSender}
+		    AND 
+		    FRI_RECEIVER = #{friReceiver}
+		    AND 
+		    FRI_STATE = 'FS'
+	</delete>
+	<!-- 친구  거부 종료 -->
+	<!-- 친구 수락 알림 확인 -->
+	<update id="confirmRequest">
+		UPDATE FRI SET 
+			FRI_STATE = 'FC', 
+			FRI_DATE = SYSDATE
+		WHERE 
+			FRI_SENDER = #{friSender}
+			AND 
+			FRI_RECEIVER = #{friReceiver}
+			AND
+			FRI_STATE = 'FA'
+	</update>
+	<!-- 친구 수락 알림 확인 종료 -->
+	<!-- 친구  요청 -->
+	<insert id="sendRequest">
+		INSERT INTO FRI VALUES (#{myId}, #{friendId}, SYSDATE, 'FS')
+	</insert>
+	<!-- 친구  요청 종료 -->
+	<!-- 친구 삭제 -->
+	<delete id="deleteFriend">
+	    DELETE FROM FRI
+           WHERE 
+               FRI_SENDER = #{friendId}
+               OR
+               FRI_RECEIVER = #{friendId}
+	</delete>
+	<!-- 친구 삭제 종료 -->
+	<!-- 사용자 정보 가져오기 -->
+	<select id="selectLightUserInfo" resultType="UserBean">
+		SELECT 
+			USR_ID AS USRID,
+			USR_LASTNAME AS USRLASTNAME,
+			USR_FIRSTNAME AS USRFIRSTNAME,
+			USR_IMAGE AS USRIMAGE
+		FROM 
+			USR
+		WHERE 
+			USR_ID = #{usrId}
+	</select>
+	<!-- 사용자 정보 가져오기 종료 -->
+	<!-- 위시리스트 가져오기 -->
+	<resultMap id="selectWishListMap" type="ViewHistoryBean">
+		<collection
+			property="productImage"
+			column="pigProusrselid=vhsProusrselid pigProcode=vhsProcode" 
+			select="selectProductImage">
+		</collection>
+	</resultMap>
+	<select id="selectWishList" resultMap='selectWishListMap'>  
+		SELECT 
+		    VHS_USRMEMID AS VHSUSRMEMID,
+		    VHS_PROUSRSELID AS VHSPROUSRSELID,
+		    VHS_PROCODE AS VHSPROCODE,
+		    CAT_NAME AS CATNAME,
+		    PRO_NAME AS PRONAME,
+		    PRO_INFO AS PROINFO,
+		    PRO_PRICE AS PROPRICE,
+		    VHS_DATE AS VHSDATE
+		FROM
+		    VHS INNER JOIN PRO ON VHS_PROUSRSELID = PRO_USRSELID AND VHS_PROCODE = PRO_CODE
+		    INNER JOIN CAT ON PRO_CATCODE = CAT_CODE
+		WHERE
+		    VHS_USRMEMID = #{vhsUsrmemid}
+		    AND
+		    VHS_ISWISHED = 'T'
+		    AND 
+		    PRO_ISDELETED = 'F'
+	</select>
+	<!-- 위시리스트 가져오기 종료 -->
+	<!-- 장바구니 주문완료로 업데이트 -->
+	<update id="completeOrder">
+		<![CDATA[
+			UPDATE ORD SET 
+			    ORD_DATE = SYSDATE, 
+			    ORD_OSTSTATE = 'OO',
+			    ORD_PAYCODE = #{ordPaycode}
+			WHERE 
+			    ORD_DATE = 
+			    	(
+				    	SELECT * 
+				    	FROM 
+				    		(
+					    	SELECT ORD_DATE
+					    	FROM ORD 
+					    	WHERE 
+					    		ORD_USRMEMID = #{ordUsrmemid}
+					    		AND 
+					    		ORD_OSTSTATE = 'OC'
+					    	ORDER BY ORD_DATE DESC
+				    		)
+				    	WHERE ROWNUM <= 1
+			    	)
+			    AND 
+			    ORD_USRMEMID = #{ordUsrmemid}
+			    AND
+			    ORD_OSTSTATE = 'OC'
+		]]>
+	</update>
+	<!-- 장바구니 주문완료로 업데이트 종료 -->
+	<!-- 주문 성공에 따른 재고 수정 -->
+	<update id="updateStock">
+		UPDATE PRO SET 
+		PRO_STOCK = ( 
+			SELECT 
+				PRO_STOCK 
+			FROM PRO 
+			WHERE 
+				PRO_USRSELID = #{odtProusrselid}
+				AND 
+				PRO_CODE = #{odtProcode} 
+			) - #{odtQty} 
+		WHERE 
+			PRO_USRSELID = #{odtProusrselid}
+			AND 
+			PRO_CODE = #{odtProcode}
+	</update>
+	<!-- 주문 성공에 따른 재고 수정 종료 -->
+	<!-- 장바구니 삭제 -->
+	<delete id="emptyCartItem">
+		DELETE FROM ODT 
+		WHERE 
+			ODT_ORDDATE = TO_DATE(#{odtOrddate}, 'YYYYMMDDHH24MISS')
+			AND 
+			ODT_ORDMEMID = #{odtOrdmemid}
+			AND
+			ODT_PROUSRSELID = #{odtProusrselid}
+			AND
+			ODT_PROCODE = #{odtProcode}
+			AND
+			ODT_MEMRECIPIENT = #{odtMemrecipient}
+	</delete>
+	<delete id="emptyCartItems">
+		DELETE FROM ODT 
+		WHERE 
+			ODT_ORDDATE = (
+				SELECT 
+					ORD_DATE 
+				FROM 
+					ORD 
+				WHERE 
+					ORD_OSTSTATE = 'OC' 
+					AND 
+					ORD_USRMEMID = #{ordUsrmemid}
+				) 
+			AND 
+			ODT_ORDMEMID = #{ordUsrmemid}
+	</delete>
+	<delete id="emptyCart">
+		DELETE FROM ORD 
+		WHERE 
+			ORD_OSTSTATE = 'OC' 
+			AND 
+			ORD_USRMEMID = #{ordUsrmemid}		
+	</delete>
+	<!-- 장바구니 삭제 종료 -->
+	<!-- 장바구니 담기 -->
+	<resultMap id="selectCartMap" type="OrderBean">
+		<collection
+			property="orderDetail"
+			column="odtOrdmemid=ordUsrmemid odtOrddate=ordDate"
+			select="selectCartPro">
+		</collection>
+	</resultMap>
+	<select id="selectCart" resultMap="selectCartMap">	
+		<![CDATA[
+			SELECT * 
+			FROM (
+			    SELECT 
+			    	TO_CHAR(ORD_DATE, 'YYYYMMDDHH24MISS') AS ORDDATE, 
+				    ORD_USRMEMID AS ORDUSRMEMID, 
+				    ORD_OSTSTATE AS ORDOSTSTATE, 
+				    ORD_PAYCODE AS ORDPAYCODE 
+			    FROM ORD 
+			    WHERE 
+			    	ORD_USRMEMID = #{ordUsrmemid} 
+			    	AND 
+			    	ORD_OSTSTATE = 'OC' 
+			    ORDER BY ORD_DATE DESC
+			) 
+			WHERE ROWNUM <= 1
+		]]>
+	</select>
+	<select id="selectCartPro" resultType="OrderDetailBean">
+		SELECT
+		    ODT_ORDDATE AS ODTORDDATE,
+		    ODT_ORDMEMID AS ODTORDMEMID,
+		    ODT_PROUSRSELID AS ODTPROUSRSELID,
+		    ODT_PROCODE AS ODTPROCODE,
+		    ODT_QTY AS ODTQTY,
+		    ODT_MEMRECIPIENT AS ODTMEMRECIPIENT,
+		    ODT_GSTCODE AS ODTGSTCODE
+		FROM
+		    ODT
+		WHERE
+		    ODT_ORDDATE = TO_DATE(#{odtOrddate}, 'YYYYMMDDHH24MISS')
+		    AND
+		    ODT_ORDMEMID = #{odtOrdmemid}
+	</select>
+	<!-- 장바구니 담기 종료 -->
+	
+	<!-- 장바구니 보기 -->
+	<resultMap id="selectCartPageMap" type="OrderBean">
+		<collection
+			property="orderDetail"
+			column="odtOrdmemid=ordUsrmemid odtOrddate=ordDate"
+			select="selectCartPagePro">
+		</collection>
+	</resultMap>
+	<select id="selectCartPage" resultMap="selectCartPageMap">	
+		<![CDATA[
+			SELECT * 
+			FROM (
+			    SELECT 
+			    	TO_CHAR(ORD_DATE, 'YYYYMMDDHH24MISS') AS ORDDATE, 
+				    ORD_USRMEMID AS ORDUSRMEMID, 
+				    ORD_OSTSTATE AS ORDOSTSTATE, 
+				    ORD_PAYCODE AS ORDPAYCODE 
+			    FROM ORD 
+			    WHERE 
+			    	ORD_USRMEMID = #{ordUsrmemid} 
+			    	AND 
+			    	ORD_OSTSTATE = 'OC' 
+			    ORDER BY ORD_DATE DESC
+			) 
+			WHERE ROWNUM <= 1
+		]]>
+	</select>
+	<select id="selectCartPagePro" resultMap="selectCartPageProMap">
+		SELECT
+		    ODT_ORDDATE AS ODTORDDATE,
+		    ODT_ORDMEMID AS ODTORDMEMID,
+		    ODT_PROUSRSELID AS ODTPROUSRSELID,
+		    ODT_PROCODE AS ODTPROCODE,
+            PRO_NAME AS PRONAME,
+            PRO_PRICE AS PROPRICE,
+            PRO_STOCK AS PROSTOCK,
+            PRO_INFO AS PROINFO,
+            PRO_ISDELETED AS PROISDELETED,
+		    ODT_QTY AS ODTQTY,
+		    ODT_MEMRECIPIENT AS ODTMEMRECIPIENT,
+		    USR_IMAGE AS USRIMAGE,
+		    USR_LASTNAME AS USRLASTNAME,
+		    USR_FIRSTNAME AS USRFIRSTNAME,
+		    ODT_GSTCODE AS ODTGSTCODE,
+		    SEL_SHOPNAME AS SELSHOPNAME,
+            SEL_INFO AS SELINFO
+		FROM
+		    ODT INNER JOIN PRO ON ODT_PROUSRSELID = PRO_USRSELID AND ODT_PROCODE = PRO_CODE
+		    INNER JOIN SEL ON ODT_PROUSRSELID = SEL_USRID
+		    INNER JOIN USR ON ODT_MEMRECIPIENT = USR_ID
+		WHERE
+		    ODT_ORDDATE = TO_DATE(#{odtOrddate}, 'YYYYMMDDHH24MISS')
+		    AND
+		    ODT_ORDMEMID = #{odtOrdmemid}
+	</select>
+	<resultMap id="selectCartPageProMap" type="OrderDetailBean">
+		<collection
+			property="productImage"
+			column="pigProusrselid=odtProusrselid pigProcode=odtProcode" 
+			select="selectProductThumbnailImage">
+		</collection>
+	</resultMap>
+	<select id="selectProductImage" resultType="ProductImageBean">
+		SELECT
+		    PIG_PROUSRSELID AS PIGPROUSRSELID,
+		    PIG_PROCODE AS PIGPROCODE,
+		    PIG_CODE AS PIGCODE,
+		    PIG_NAME AS PIGNAME,
+		    PIG_PATH AS PIGPATH,
+		    PIG_ISTHUMBNAIL AS PIGISTHUMBNAIL
+		FROM PIG 
+		WHERE 
+		    PIG_PROUSRSELID = #{pigProusrselid} 
+		    AND 
+		    PIG_PROCODE = #{pigProcode}
+	</select>	
+	<!-- 장바구니 보기 종료 -->
+	<!-- 친구 목록 가져오기 -->
+	<select id="selectFriendList" resultType="FriendBean">
+		SELECT 
+		    MEM_USRID AS FRIENDID,
+		    MEM_GENDER AS MEMGENDER,
+		    MEM_BIRTHDAY AS MEMBIRTHDAY,
+		    USR_LASTNAME AS USRLASTNAME,
+		    USR_FIRSTNAME AS USRFIRSTNAME,
+		    USR_IMAGE AS USRIMAGE,
+		    FRI_DATE AS FRIDATE
+		FROM
+		    FRI INNER JOIN MEM ON (FRI_SENDER = MEM_USRID OR FRI_RECEIVER = MEM_USRID)
+		    INNER JOIN USR ON MEM_USRID = USR_ID
+		WHERE
+		    (FRI_SENDER = #{usrId} OR FRI_RECEIVER = #{usrId})
+		    AND 
+		    MEM_USRID != #{usrId}
+		    AND
+		    (FRI_STATE = 'FA' OR FRI_STATE = 'FC')
+	</select>
+	<!-- 친구 목록 가져오기 종료  -->
+	<!-- 친구 요청 정보 가져오기 -->
+	<select id="selectFriendRequests" resultType="FriendBean">
+		SELECT
+		    FRI_SENDER AS FRISENDER,
+		    FRI_RECEIVER AS FRIRECEIVER,
+		    USR_LASTNAME AS USRLASTNAME,
+		    USR_FIRSTNAME AS USRFIRSTNAME,
+		    USR_IMAGE AS USRIMAGE,
+		    FRI_STATE AS FRISTATE,
+		    FRI_DATE AS FRIDATE
+		FROM 
+		    MEM INNER JOIN FRI ON (MEM_USRID = FRI_RECEIVER OR MEM_USRID = FRI_SENDER)
+		    INNER JOIN USR ON MEM_USRID = USR_ID
+		WHERE MEM_USRID != #{usrId}
+		    AND 
+		    FRI_STATE != 'FC'
+		    AND
+		    FRI_STATE != 'FA'
+	</select>
+	<!-- 친구 요청 정보 가져오기 종료 -->
+	<!-- 친구 요청 정보 + 검색결과 가져오기 -->
+	<select id="selectFriendRequestsAndQueryResult" resultType="FriendBean">
+		SELECT
+		    M.MEM_USRID AS FRIENDID,
+		    F.FRI_SENDER AS FRISENDER,
+		    F.FRI_RECEIVER AS FRIRECEIVER,
+		    U.USR_LASTNAME AS USRLASTNAME,
+		    U.USR_FIRSTNAME AS USRFIRSTNAME,
+		    U.USR_IMAGE AS USRIMAGE,
+		    F.FRI_STATE AS FRISTATE,
+		    F.FRI_DATE AS FRIDATE
+		FROM
+		    MEM M
+		    INNER JOIN USR U ON M.MEM_USRID = U.USR_ID
+		    LEFT JOIN FRI F ON (M.MEM_USRID = F.FRI_SENDER AND F.FRI_RECEIVER = #{myId}) OR (M.MEM_USRID = F.FRI_RECEIVER AND F.FRI_SENDER = #{myId})
+		WHERE
+		    M.MEM_USRID != #{myId}
+		    AND (
+		        U.USR_ID = #{query}
+		        OR UPPER(U.USR_LASTNAME || U.USR_FIRSTNAME) LIKE '%' || UPPER(#{query}) || '%'
+		        OR UPPER(U.USR_FIRSTNAME || U.USR_LASTNAME) LIKE '%' || UPPER(#{query}) || '%'
+		        OR UPPER(U.USR_LASTNAME || ' ' || U.USR_FIRSTNAME) LIKE '%' || UPPER(#{query}) || '%'
+		        OR UPPER(U.USR_FIRSTNAME || ' ' || U.USR_LASTNAME) LIKE '%' || UPPER(#{query}) || '%'
+		    )
+	</select>
+	<!-- 친구 요청 정보 가져오기 종료-->
+	<!-- 전체 상품 가져오기 종료 -->
+	<insert id="insertOrder">
+		INSERT INTO ORD VALUES (DEFAULT, #{ordUsrmemid}, DEFAULT, DEFAULT)
+	</insert>
+	<insert id="insertOrderDetail">
+		INSERT INTO ODT VALUES (TO_DATE(#{odtOrddate}, 'YYYYMMDDHH24MISS'), #{odtOrdmemid}, #{odtProusrselid}, #{odtProcode}, #{odtQty}, #{odtMemrecipient}, #{odtGstcode})
+	</insert>
+	<update id="updateOrderDetailQty">
+		UPDATE ODT 
+		SET ODT_QTY = #{odtQty} 
+		WHERE 
+			ODT_ORDDATE = TO_DATE(#{odtOrddate}, 'YYYYMMDDHH24MISS') 
+			AND 
+			ODT_ORDMEMID = #{odtOrdmemid} 
+			AND 
+			ODT_PROUSRSELID = #{odtProusrselid}
+			AND 
+			ODT_PROCODE = #{odtProcode} 
+			AND 
+			ODT_MEMRECIPIENT = #{odtMemrecipient}
+	</update>
+	<update id="updateOrderDetailRecipient">
+		UPDATE ODT SET 
+			ODT_MEMRECIPIENT = #{odtMemrecipient},
+			ODT_GSTCODE = #{odtGstcode}
+		WHERE 
+			ODT_ORDDATE = TO_DATE(#{odtOrddate}, 'YYYYMMDDHH24MISS') 
+			AND 
+			ODT_ORDMEMID = #{odtOrdmemid} 
+			AND 
+			ODT_PROUSRSELID = #{odtProusrselid}
+			AND 
+			ODT_PROCODE = #{odtProcode} 
+			AND 
+			ODT_MEMRECIPIENT = #{oldOdtMemrecipient}
+	</update>
+	<update id="updateCartDate">
+		UPDATE ORD
+        SET ORD_DATE = SYSDATE
+        WHERE 
+        	ORD_USRMEMID = #{ordUsrmemid}
+        	AND 
+          	ORD_OSTSTATE = 'OC'
+        	AND 
+          	ORD_DATE = (SELECT MAX(ORD_DATE) FROM ORD WHERE ORD_USRMEMID = #{ordUsrmemid} AND ORD_OSTSTATE = 'OC')
+	</update>
+	<!-- MyPage -->
+<!-- 	<update id="updateUsrPassword">
+		UPDATE USR SET USR_PASSWORD = #{usrPassword} WHERE USR_ID = #{usrId}
+	</update>
+	<update id="updateUsrImage">
+		UPDATE USR SET USR_IMAGE = #{usrImage}
+	</update>
+	<update id="updateUsr">
+		UPDATE USR SET
+			USR_LASTNAME = #{usrLastname}
+			USR_FIRSTNAME = #{usrFirstname}
+			USR_PHONE = #{usrPhone}
+			USR_EMAIL = #{usrEmail}
+			USR_ADDRESS = #{usrAddress}
+		WHERE USR_ID = #{usrId}
+	</update>
+	<update id="updateMem">
+		UPDATE MEM SET 
+			MEM_POSTAL = #{memPostal}, 
+			MEM_GENDER = #{memGender}, 
+			MEM_BIRTHDAY = #{memBirthday}
+		WHERE MEM_USRID = #{memUsrid}
+	</update> -->
+	<!-- Seller -->
+	<!-- Product, Product Image 하위 쿼리 -->
+	<resultMap id="selectProductImageMap" type="ProductBean">
+		<collection 
+			property="productImage" 
+			column="pigProusrselid=proUsrselid pigProcode=proCode" 
+			select="selectProductImage">
+		</collection>
+	</resultMap>
+	<select id="selectProduct" resultMap="selectProductImageMap">
+		SELECT 
+		    PRO_USRSELID AS PROUSRSELID,
+		    PRO_CODE AS PROCODE,
+		    PRO_CATCODE AS PROCATCODE,
+		    CAT_NAME AS CATNAME,
+		    PRO_NAME AS PRONAME,
+		    PRO_PRICE AS PROPRICE,
+		    PRO_STOCK AS PROSTOCK,
+		    PRO_INFO AS PROINFO,
+		    PRO_ISDELETED AS PROISDELETED
+		FROM
+		    PRO INNER JOIN CAT ON PRO_CATCODE = CAT_CODE
+		WHERE 
+		    PRO_USRSELID = #{proUsrselid}
+		    AND
+		    PRO_CODE = #{proCode}
+		    AND
+		    PRO_ISDELETED = 'F'
+		ORDER BY PROCODE DESC
+	</select>	
+<!-- 	<select id="selectProductImage" resultType="ProductImageBean">
+		SELECT
+		    PIG_PROUSRSELID AS PIGPROUSRSELID,
+		    PIG_PROCODE AS PIGPROCODE,
+		    PIG_CODE AS PIGCODE,
+		    PIG_NAME AS PIGNAME,
+		    PIG_PATH AS PIGPATH,
+		    PIG_ISTHUMBNAIL AS PIGISTHUMBNAIL
+		FROM PIG 
+		WHERE 
+		    PIG_PROUSRSELID = #{pigProusrselid} AND PIG_PROCODE = #{pigProcode}
+	</select>	 -->
+	
+  	<select id="selectProductCount" resultType="int">
+	      SELECT COUNT(*) FROM PRO 
+	      WHERE 
+	      	PRO_USRSELID = #{proUsrselid} 
+	      	AND 
+	      	PRO_ISDELETED = 'F'
+  	</select>
+  	<select id="selectProductByPage" resultMap="selectProductImageMap">
+      <![CDATA[
+			SELECT * FROM (
+			    SELECT ROWNUM AS RNUM, A.* FROM (
+			    
+			       SELECT 
+					    PRO_USRSELID AS PROUSRSELID,
+					    PRO_CODE AS PROCODE,
+					    PRO_CATCODE AS PROCATCODE,
+					    CAT_NAME AS CATNAME,
+					    PRO_NAME AS PRONAME,
+					    PRO_PRICE AS PROPRICE,
+					    PRO_STOCK AS PROSTOCK,
+					    PRO_INFO AS PROINFO,
+					    PRO_ISDELETED AS PROISDELETED
+					FROM
+					    PRO INNER JOIN CAT ON PRO_CATCODE = CAT_CODE
+					WHERE 
+					    PRO_USRSELID = #{proUsrselid}
+					    AND
+					    PRO_ISDELETED = 'F'
+			        ORDER BY PROCODE DESC
+			    ) A WHERE ROWNUM <= #{currentPage} * #{itemsPerPage}
+			) WHERE RNUM > (#{currentPage} - 1) * #{itemsPerPage}
+      ]]>
+   </select>
+   
+   <select id="selectQueriedProductCount" resultType="int">
+	      SELECT COUNT(*) 
+	      FROM PRO 
+	      WHERE PRO_USRSELID = #{proUsrselid}
+		      AND 
+		      (
+			      UPPER(PRO_NAME) LIKE '%' || UPPER(#{query}) || '%'
+				  OR
+				  UPPER(PRO_INFO) LIKE '%' || UPPER(#{query}) || '%'
+				)
+			  AND 
+			  (#{proCatcode} IS NULL OR PRO_CATCODE = #{proCatcode})
+			  AND 
+			  PRO_ISDELETED = 'F'
+  </select>
+  
+   <select id="selectProductByPageAndQuery" resultMap="selectProductImageMap">
+   		<![CDATA[
+   			SELECT * FROM (
+			    SELECT ROWNUM AS RNUM, A.* FROM (
+			       SELECT 
+					    PRO_USRSELID AS PROUSRSELID,
+					    PRO_CODE AS PROCODE,
+					    PRO_CATCODE AS PROCATCODE,
+					    CAT_NAME AS CATNAME,
+					    PRO_NAME AS PRONAME,
+					    PRO_PRICE AS PROPRICE,
+					    PRO_STOCK AS PROSTOCK,
+					    PRO_INFO AS PROINFO,
+					    PRO_ISDELETED AS PROISDELETED
+					FROM
+					    PRO INNER JOIN CAT ON PRO_CATCODE = CAT_CODE
+					WHERE 
+					    PRO_USRSELID = #{proUsrselid}
+	                    AND 
+	                    (
+	                        UPPER(PRO_NAME) LIKE '%' || UPPER(#{query}) || '%'
+	                    	OR
+	                        UPPER(PRO_INFO) LIKE '%' || UPPER(#{query}) || '%'
+	                        )
+	                    AND 
+	                    (#{proCatcode} IS NULL OR PRO_CATCODE = #{proCatcode})
+	                    AND
+	                    PRO_ISDELETED = 'F'
+			        ORDER BY PROCODE DESC
+			    ) A WHERE ROWNUM <= #{currentPage} * #{itemsPerPage}
+			) WHERE RNUM > (#{currentPage} - 1) * #{itemsPerPage}
+   		]]>
+   </select>
+   <update id="updateProduct">
+   		UPDATE PRO SET 
+		    PRO_CATCODE = #{proCatcode}, PRO_NAME = #{proName}, 
+		    PRO_PRICE = #{proPrice}, PRO_STOCK = #{proStock}, 
+		    PRO_INFO = #{proInfo}
+		WHERE 
+		    PRO_USRSELID = #{proUsrselid}
+		    AND
+		    PRO_CODE = #{proCode}
+   </update>
+   <update id="deleteProduct">
+   		UPDATE PRO SET 
+		    PRO_ISDELETED = 'T'
+		WHERE 
+		    PRO_USRSELID = #{proUsrselid}
+		    AND
+		    PRO_CODE = #{proCode}
+   </update>
+   <delete id="deleteProductImage">
+   		DELETE FROM PIG
+   		WHERE
+   			PIG_PROUSRSELID = #{proUsrselid}
+   			AND
+   			PIG_PROCODE = #{proCode}
+   </delete>
+</mapper>

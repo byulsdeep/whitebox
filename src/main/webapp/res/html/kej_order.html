@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/member/kej_order.css" />
+  </head>
+  <body>
+    <div class="order_container">
+      <div class="order_title">注文商品</div>
+      <!-- 배송정보 (이메일 / 전화번호) -->
+      <div class="order_infobox">
+        <div class="order_box_title">
+          <span><b>お届け先</b></span>
+          <span><b>お届け先追加</b></span>
+        </div>
+        <div class="inner-line"></div>
+        <div class="order_info">
+          <div>本人</div>
+          <div>基本</div>
+        </div>
+        <div>お名前</div>
+        <label for="email"
+          >メールアドレス:
+          <input
+            type="email"
+            id="email"
+            pattern=".+@gmail\.com"
+            placeholder="example@gmail.com"
+            required
+          />
+        </label>
+        <label for="tel">
+          携帯番号:
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            placeholder="123-456-7678"
+            pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}"
+          />
+        </label>
+        <div class="order_btn">
+          <button class="ord_info_button">お届け先変更</button>
+        </div>
+      </div>
+      <!-- 상품정보 -->
+      <div class="order_pro_info">
+        <div class="order_box_title">
+          <b>
+            <div>ショップ名</div>
+          </b>
+        </div>
+        <div class="inner-line"></div>
+        <div class="order_pro_pr">
+          <div><img src="../img/kej/MAC 썸네일.png" alt="" /></div>
+          <div>
+            [ MAC ] [刻印/ギフトラッピング] 「マックベスト」 テンダートーク
+            リップバーム (3G)
+          </div>
+        </div>
+        <div class="inner-line"></div>
+        <div class="order_pro_py">
+          <div><b>支払い金額</b></div>
+          <div><b>2,000￥</b></div>
+        </div>
+        <div class="order_pro_box">
+          <div class="order_pro_inner">
+            <div>商品金額</div>
+            <div>1,000￥</div>
+          </div>
+          <div class="order_pro_inner">
+            <div>選択数量</div>
+            <div>x 2個</div>
+          </div>
+          <div class="order_pro_inner">
+            <div>受取人数</div>
+            <div>x 2名</div>
+          </div>
+        </div>
+      </div>
+      <!--합계 -->
+      <div class="order_sum">
+        <div class="order_sum_pr">
+          <div><b>合計</b></div>
+          <div><b>4,000￥</b></div>
+        </div>
+        <div class="order_sum_info">
+          <div class="order_sum_inner">
+            <div>商品金額(1)</div>
+            <div>2,000￥</div>
+          </div>
+          <div class="order_sum_inner">
+            <div>商品金額(2)</div>
+            <div>2,000￥</div>
+          </div>
+        </div>
+      </div>
+      <!-- 결제 -->
+      <div class="order_pay">
+        <div class="order_box_title">
+          <div><b>お支払い方法選択</b></div>
+        </div>
+        <div class="inner-line"></div>
+        <div class="order_pay_inner">
+          <div>
+            <label for=""> <input type="radio" /> クレジットカード </label>
+          </div>
+          <div>
+            <label for=""> <input type="radio" /> ソーシャル決済 </label>
+          </div>
+        </div>
+      </div>
+      <div class="order_btn">
+        <button class="ord_pay_button">決済する</button>
+      </div>
+    </div>
+  </body>
+</html>

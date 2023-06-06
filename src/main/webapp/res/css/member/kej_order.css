@@ -1,0 +1,164 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap");
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Noto Sans JP", sans-serif;
+  width: 100%;
+  background-color: #f6fcff;
+}
+.order_container {
+  margin: 0 auto;
+  width: 1142px;
+  height: auto;
+}
+.order_title {
+  margin: 0 auto;
+  display: flex;
+  width: 1120px;
+  align-items: center;
+  font-size: 24px;
+  font-weight: bold;
+  padding: 20px;
+}
+.order_infobox {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 1120px;
+  height: 250px;
+  margin: 0 auto;
+  border: 1px solid #222222;
+  border-radius: 10px;
+  background-color: white;
+}
+.order_info {
+  display: flex;
+  width: 80px;
+  justify-content: space-between;
+}
+.order_box_title {
+  display: flex;
+  padding: 10px;
+  justify-content: space-between;
+}
+.inner-line {
+  border-top: 1px solid #444444;
+  margin: 5px 0px;
+}
+.ord_info_button {
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid #444444;
+  font-size: 15px;
+  font-weight: bold;
+  width: 350px;
+  height: 45px;
+  margin: 15px;
+  text-align: center;
+  line-height: 45px;
+}
+.order_pro_info {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  padding: 10px;
+  width: 1120px;
+  height: auto;
+  border: 1px solid #222222;
+  border-radius: 10px;
+  background-color: white;
+}
+.order_pro_pr {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+.order_pro_py {
+  display: flex;
+  padding: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+.order_pro_info img {
+  width: 100px;
+  height: 100px;
+  border-radius: 5px;
+  margin: 12px;
+}
+.order_pro_box {
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f5f5;
+  width: 1100px;
+  height: a;
+  border-radius: 10px;
+  padding: 10px;
+}
+.order_pro_inner {
+  display: flex;
+  justify-content: space-between;
+}
+.order_sum {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  padding: 10px;
+  width: 1120px;
+  height: auto;
+  border: 1px solid #222222;
+  border-radius: 10px;
+  background-color: white;
+}
+.order_sum_info {
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f5f5;
+  width: 1100px;
+  height: auto;
+  border-radius: 10px;
+  padding: 10px;
+}
+.order_sum_pr {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+.order_sum_inner {
+  display: flex;
+  justify-content: space-between;
+}
+.order_pay {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  padding: 10px;
+  width: 1120px;
+  height: auto;
+  border: 1px solid #222222;
+  border-radius: 10px;
+  background-color: white;
+}
+.order_btn {
+  display: flex;
+  height: auto;
+  align-items: center;
+  justify-content: center;
+}
+.ord_pay_button {
+  font-weight: bold;
+  font-size: 15px;
+  width: 350px;
+  height: 45px;
+  margin: 30px;
+  background-color: #222222;
+  color: white;
+  border-radius: 5px;
+}
+.order_user_info {
+  width: 30%;
+  text-align: left;
+}
+.ord_pay_button {
+  cursor: pointer;
+}

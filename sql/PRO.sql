@@ -1,0 +1,54 @@
+--------------------------------------------------------
+--  File created - ¿ù¿äÀÏ-6¿ù-05-2023   
+--------------------------------------------------------
+REM INSERTING into BYUL.PRODUCT
+SET DEFINE OFF;
+Insert into BYUL.PRODUCT (PRO_USRSELID,PRO_CODE,PRO_CATCODE,PRO_NAME,PRO_PRICE,PRO_STOCK,PRO_INFO,PRO_ISDELETED) values ('seller',1,'CC','µµ¸¶¹ì¸ñµµ¸®',1900,50,'¸ñµµ¸®µµ¸¶¹ì ¼ÒÀç¸¦ ÀÌ¿ëÇÑ ÃÖ°íÀÇ µµ¸¶¹ì¸ñµµ¸®','T');
+Insert into BYUL.PRODUCT (PRO_USRSELID,PRO_CODE,PRO_CATCODE,PRO_NAME,PRO_PRICE,PRO_STOCK,PRO_INFO,PRO_ISDELETED) values ('seller',2,'CE','¾ÆÀÌÆù',20000,10,'°í±Þ ÈÞ´ëÆù','T');
+Insert into BYUL.PRODUCT (PRO_USRSELID,PRO_CODE,PRO_CATCODE,PRO_NAME,PRO_PRICE,PRO_STOCK,PRO_INFO,PRO_ISDELETED) values ('seller',3,'CC','WHITEBOX',1000,20,'õÌÍÔªÎ«×«ì«¼«ó«È','T');
+Insert into BYUL.PRODUCT (PRO_USRSELID,PRO_CODE,PRO_CATCODE,PRO_NAME,PRO_PRICE,PRO_STOCK,PRO_INFO,PRO_ISDELETED) values ('seller_db1',1,'CC','«¹«¦«§«Ã«È',1000,7,'«·«ó«×«ëªÊ«¹«¦«§«Ã«ÈªÇª¹¡£','F');
+Insert into BYUL.PRODUCT (PRO_USRSELID,PRO_CODE,PRO_CATCODE,PRO_NAME,PRO_PRICE,PRO_STOCK,PRO_INFO,PRO_ISDELETED) values ('seller_db1',2,'CC','T«·«ã«Ä',1000,20,'«·«ó«×«ëªÊT«·«ã«ÄªÇª¹¡£','F');
+Insert into BYUL.PRODUCT (PRO_USRSELID,PRO_CODE,PRO_CATCODE,PRO_NAME,PRO_PRICE,PRO_STOCK,PRO_INFO,PRO_ISDELETED) values ('seller_db1',3,'CC','«Ñ?««?',2000,19,'«·«ó«×«ëªÊ«Ñ?««?ªÇª¹¡£','F');
+Insert into BYUL.PRODUCT (PRO_USRSELID,PRO_CODE,PRO_CATCODE,PRO_NAME,PRO_PRICE,PRO_STOCK,PRO_INFO,PRO_ISDELETED) values ('seller_db1',4,'CC','«Ñ?««?ÒïA',2500,20,'«·«ó«×«ëªÊ«Ñ?««?ªÇª¹¡£','F');
+Insert into BYUL.PRODUCT (PRO_USRSELID,PRO_CODE,PRO_CATCODE,PRO_NAME,PRO_PRICE,PRO_STOCK,PRO_INFO,PRO_ISDELETED) values ('seller_db1',5,'CC','«Ñ?««?ÒïB',2500,20,'«·«ó«×«ëªÊ«Ñ?««?ªÇª¹¡£','F');
+Insert into BYUL.PRODUCT (PRO_USRSELID,PRO_CODE,PRO_CATCODE,PRO_NAME,PRO_PRICE,PRO_STOCK,PRO_INFO,PRO_ISDELETED) values ('seller_db1',6,'CK','«Ù«Ó?«Ð«¹',8500,20,'îåªÁªãªóªÎª¿ªáªÎ«Ù«Ó?«Ð«¹ªÇª¹¡£','F');
+Insert into BYUL.PRODUCT (PRO_USRSELID,PRO_CODE,PRO_CATCODE,PRO_NAME,PRO_PRICE,PRO_STOCK,PRO_INFO,PRO_ISDELETED) values ('seller_db1',7,'CK','âíÑÑò¦×Ç',12000,20,'îåªÁªãªóªÎª¿ªáªÎâíÑÑò¦×ÇªÇª¹¡£','F');
+Insert into BYUL.PRODUCT (PRO_USRSELID,PRO_CODE,PRO_CATCODE,PRO_NAME,PRO_PRICE,PRO_STOCK,PRO_INFO,PRO_ISDELETED) values ('seller_db1',8,'CK','«Ù«Ó?á©?',500,20,'îåªÁªãªóªÎª¿ªáªÎ«Ùá©?ªÈêõæã?ªÇª¹¡£','F');
+Insert into BYUL.PRODUCT (PRO_USRSELID,PRO_CODE,PRO_CATCODE,PRO_NAME,PRO_PRICE,PRO_STOCK,PRO_INFO,PRO_ISDELETED) values ('seller_db2',1,'CE','«Î?«È«Ñ«½«³«ó',90000,15,'«·«ó«×«ëªÊ«Î?«È«Ñ«½«³«óªÇª¹¡£','F');
+Insert into BYUL.PRODUCT (PRO_USRSELID,PRO_CODE,PRO_CATCODE,PRO_NAME,PRO_PRICE,PRO_STOCK,PRO_INFO,PRO_ISDELETED) values ('seller_db2',2,'CE','«×«ì«¹«Æ5',60000,12,'«·«ó«×«ëªÊ«×«ì«¹«Æ5ªÇª¹¡£','F');
+Insert into BYUL.PRODUCT (PRO_USRSELID,PRO_CODE,PRO_CATCODE,PRO_NAME,PRO_PRICE,PRO_STOCK,PRO_INFO,PRO_ISDELETED) values ('seller_db2',3,'CE','«â«Ë«¿?',10000,18,'«·«ó«×«ëªÊ«â«Ë«¿?ªÇª¹¡£','F');
+Insert into BYUL.PRODUCT (PRO_USRSELID,PRO_CODE,PRO_CATCODE,PRO_NAME,PRO_PRICE,PRO_STOCK,PRO_INFO,PRO_ISDELETED) values ('seller_db2',4,'CE','«ë«Õ«£«­?«Ü?«É',4900,13,'Ê¦äñª¤«ë«Õ«£«­?«Ü?«ÉªÇª¹¡£','F');
+Insert into BYUL.PRODUCT (PRO_USRSELID,PRO_CODE,PRO_CATCODE,PRO_NAME,PRO_PRICE,PRO_STOCK,PRO_INFO,PRO_ISDELETED) values ('seller_db2',5,'CM','«¦«Ã«É«Þ«°«««Ã«×',4000,19,'«·«ó«×«ëªÊ«¦«Ã«É«Þ«°«««Ã«×ªÇª¹¡£','F');
+Insert into BYUL.PRODUCT (PRO_USRSELID,PRO_CODE,PRO_CATCODE,PRO_NAME,PRO_PRICE,PRO_STOCK,PRO_INFO,PRO_ISDELETED) values ('seller_db2',6,'CM','«««×«»«ë«³?«Ò?«Þ«·«ó',9000,20,'«««×«»«ë«³?«Ò?«Þ«·«óªÇª¹¡£','F');
+Insert into BYUL.PRODUCT (PRO_USRSELID,PRO_CODE,PRO_CATCODE,PRO_NAME,PRO_PRICE,PRO_STOCK,PRO_INFO,PRO_ISDELETED) values ('seller_db2',7,'CM','LP«Ö«ë?«È«¥?«¹«¹«Ô?««?',7000,20,'LP«Ö«ë?«È«¥?«¹«¹«Ô?««?ªÇª¹¡£','F');
+Insert into BYUL.PRODUCT (PRO_USRSELID,PRO_CODE,PRO_CATCODE,PRO_NAME,PRO_PRICE,PRO_STOCK,PRO_INFO,PRO_ISDELETED) values ('seller_db3',1,'CB','«ê«Ã«×«Ð?«à',3630,20,'MAC«°«í?«×«ì«¤«ê«Ã«×«Ð?«àªÇª¹¡£','F');
+Insert into BYUL.PRODUCT (PRO_USRSELID,PRO_CODE,PRO_CATCODE,PRO_NAME,PRO_PRICE,PRO_STOCK,PRO_INFO,PRO_ISDELETED) values ('seller_db3',2,'CB','ØÆÒþ«ß«ë«¯«¹«×«ì«Ã«É',1800,20,'«ª«¹«í«Ã«¯ØÆÒþ«ß«ë«¯«¹«×«ì«Ã«ÉªÇª¹¡£','F');
+Insert into BYUL.PRODUCT (PRO_USRSELID,PRO_CODE,PRO_CATCODE,PRO_NAME,PRO_PRICE,PRO_STOCK,PRO_INFO,PRO_ISDELETED) values ('seller_db3',3,'CB','«Ï«ó«É«¯«ê?«à',3200,20,'«Ï«ó«É«¯«ê?«àªÇª¹¡£','F');
+Insert into BYUL.PRODUCT (PRO_USRSELID,PRO_CODE,PRO_CATCODE,PRO_NAME,PRO_PRICE,PRO_STOCK,PRO_INFO,PRO_ISDELETED) values ('seller_db3',4,'CB','÷«ßæìí«±?«­',4000,20,'÷«ßæìí«±?«­ªÇª¹¡£','F');
+Insert into BYUL.PRODUCT (PRO_USRSELID,PRO_CODE,PRO_CATCODE,PRO_NAME,PRO_PRICE,PRO_STOCK,PRO_INFO,PRO_ISDELETED) values ('seller_db3',5,'CL','«Ö«é«Ã«¯«¯«Ã«·«ç«ó',5600,20,'HERAªÎ«Ö«é«Ã«¯«¯«Ã«·«ç«óªÇª¹¡£','F');
+Insert into BYUL.PRODUCT (PRO_USRSELID,PRO_CODE,PRO_CATCODE,PRO_NAME,PRO_PRICE,PRO_STOCK,PRO_INFO,PRO_ISDELETED) values ('seller_db3',6,'CL','«µ«ó«í?«é«ó««?«É«±?«¹',66000,20,'«µ«ó«í?«é«óªÎ««?«É«±?«¹ªÇª¹¡£','F');
+Insert into BYUL.PRODUCT (PRO_USRSELID,PRO_CODE,PRO_CATCODE,PRO_NAME,PRO_PRICE,PRO_STOCK,PRO_INFO,PRO_ISDELETED) values ('seller_db3',7,'CL','«´?«ë«Ç«ó«°?«¹ü¨',68800,20,'«´?«ë«Ç«ó«°?«¹ü¨ªÇª¹¡£','F');
+Insert into BYUL.PRODUCT (PRO_USRSELID,PRO_CODE,PRO_CATCODE,PRO_NAME,PRO_PRICE,PRO_STOCK,PRO_INFO,PRO_ISDELETED) values ('seller_db1',9,'CC','«¹«¦«§«Ã«È',1000,20,'«·«ó«×«ëªÊ«¹«¦«§«Ã«ÈªÇª¹¡£','F');
+Insert into BYUL.PRODUCT (PRO_USRSELID,PRO_CODE,PRO_CATCODE,PRO_NAME,PRO_PRICE,PRO_STOCK,PRO_INFO,PRO_ISDELETED) values ('seller_db1',10,'CC','T«·«ã«Ä',1000,20,'«·«ó«×«ëªÊT«·«ã«ÄªÇª¹¡£','F');
+Insert into BYUL.PRODUCT (PRO_USRSELID,PRO_CODE,PRO_CATCODE,PRO_NAME,PRO_PRICE,PRO_STOCK,PRO_INFO,PRO_ISDELETED) values ('seller_db1',11,'CC','«Ñ?««?',2000,20,'«·«ó«×«ëªÊ«Ñ?««?ªÇª¹¡£','F');
+Insert into BYUL.PRODUCT (PRO_USRSELID,PRO_CODE,PRO_CATCODE,PRO_NAME,PRO_PRICE,PRO_STOCK,PRO_INFO,PRO_ISDELETED) values ('seller_db1',12,'CC','«Ñ?««?ÒïA',2500,20,'«·«ó«×«ëªÊ«Ñ?««?ªÇª¹¡£','F');
+Insert into BYUL.PRODUCT (PRO_USRSELID,PRO_CODE,PRO_CATCODE,PRO_NAME,PRO_PRICE,PRO_STOCK,PRO_INFO,PRO_ISDELETED) values ('seller_db1',13,'CC','«Ñ?««?ÒïB',2500,20,'«·«ó«×«ëªÊ«Ñ?««?ªÇª¹¡£','F');
+Insert into BYUL.PRODUCT (PRO_USRSELID,PRO_CODE,PRO_CATCODE,PRO_NAME,PRO_PRICE,PRO_STOCK,PRO_INFO,PRO_ISDELETED) values ('seller_db1',14,'CK','«Ù«Ó?«Ð«¹',8500,20,'îåªÁªãªóªÎª¿ªáªÎ«Ù«Ó?«Ð«¹ªÇª¹¡£','F');
+Insert into BYUL.PRODUCT (PRO_USRSELID,PRO_CODE,PRO_CATCODE,PRO_NAME,PRO_PRICE,PRO_STOCK,PRO_INFO,PRO_ISDELETED) values ('seller_db1',15,'CK','âíÑÑò¦×Ç',12000,20,'îåªÁªãªóªÎª¿ªáªÎâíÑÑò¦×ÇªÇª¹¡£','F');
+Insert into BYUL.PRODUCT (PRO_USRSELID,PRO_CODE,PRO_CATCODE,PRO_NAME,PRO_PRICE,PRO_STOCK,PRO_INFO,PRO_ISDELETED) values ('seller_db1',16,'CK','«Ù«Ó?á©?',500,20,'îåªÁªãªóªÎª¿ªáªÎ«Ùá©?ªÈêõæã?ªÇª¹¡£','F');
+Insert into BYUL.PRODUCT (PRO_USRSELID,PRO_CODE,PRO_CATCODE,PRO_NAME,PRO_PRICE,PRO_STOCK,PRO_INFO,PRO_ISDELETED) values ('seller_db2',8,'CE','«Î?«È«Ñ«½«³«ó',90000,20,'«·«ó«×«ëªÊ«Î?«È«Ñ«½«³«óªÇª¹¡£','F');
+Insert into BYUL.PRODUCT (PRO_USRSELID,PRO_CODE,PRO_CATCODE,PRO_NAME,PRO_PRICE,PRO_STOCK,PRO_INFO,PRO_ISDELETED) values ('seller_db2',9,'CE','«×«ì«¹«Æ5',60000,20,'«·«ó«×«ëªÊ«×«ì«¹«Æ5ªÇª¹¡£','F');
+Insert into BYUL.PRODUCT (PRO_USRSELID,PRO_CODE,PRO_CATCODE,PRO_NAME,PRO_PRICE,PRO_STOCK,PRO_INFO,PRO_ISDELETED) values ('seller_db2',10,'CE','«â«Ë«¿?',10000,20,'«·«ó«×«ëªÊ«â«Ë«¿?ªÇª¹¡£','F');
+Insert into BYUL.PRODUCT (PRO_USRSELID,PRO_CODE,PRO_CATCODE,PRO_NAME,PRO_PRICE,PRO_STOCK,PRO_INFO,PRO_ISDELETED) values ('seller_db2',11,'CE','«ë«Õ«£«­?«Ü?«É',4900,20,'Ê¦äñª¤«ë«Õ«£«­?«Ü?«ÉªÇª¹¡£','F');
+Insert into BYUL.PRODUCT (PRO_USRSELID,PRO_CODE,PRO_CATCODE,PRO_NAME,PRO_PRICE,PRO_STOCK,PRO_INFO,PRO_ISDELETED) values ('seller_db2',12,'CM','«¦«Ã«É«Þ«°«««Ã«×',4000,20,'«·«ó«×«ëªÊ«¦«Ã«É«Þ«°«««Ã«×ªÇª¹¡£','F');
+Insert into BYUL.PRODUCT (PRO_USRSELID,PRO_CODE,PRO_CATCODE,PRO_NAME,PRO_PRICE,PRO_STOCK,PRO_INFO,PRO_ISDELETED) values ('seller_db2',13,'CM','«««×«»«ë«³?«Ò?«Þ«·«ó',9000,20,'«««×«»«ë«³?«Ò?«Þ«·«óªÇª¹¡£','F');
+Insert into BYUL.PRODUCT (PRO_USRSELID,PRO_CODE,PRO_CATCODE,PRO_NAME,PRO_PRICE,PRO_STOCK,PRO_INFO,PRO_ISDELETED) values ('seller_db2',14,'CM','LP«Ö«ë?«È«¥?«¹«¹«Ô?««?',7000,20,'LP«Ö«ë?«È«¥?«¹«¹«Ô?««?ªÇª¹¡£','F');
+Insert into BYUL.PRODUCT (PRO_USRSELID,PRO_CODE,PRO_CATCODE,PRO_NAME,PRO_PRICE,PRO_STOCK,PRO_INFO,PRO_ISDELETED) values ('seller_db3',8,'CB','«ê«Ã«×«Ð?«à',3630,20,'MAC«°«í?«×«ì«¤«ê«Ã«×«Ð?«àªÇª¹¡£','F');
+Insert into BYUL.PRODUCT (PRO_USRSELID,PRO_CODE,PRO_CATCODE,PRO_NAME,PRO_PRICE,PRO_STOCK,PRO_INFO,PRO_ISDELETED) values ('seller_db3',9,'CB','ØÆÒþ«ß«ë«¯«¹«×«ì«Ã«É',1800,20,'«ª«¹«í«Ã«¯ØÆÒþ«ß«ë«¯«¹«×«ì«Ã«ÉªÇª¹¡£','F');
+Insert into BYUL.PRODUCT (PRO_USRSELID,PRO_CODE,PRO_CATCODE,PRO_NAME,PRO_PRICE,PRO_STOCK,PRO_INFO,PRO_ISDELETED) values ('seller_db3',10,'CB','«Ï«ó«É«¯«ê?«à',3200,20,'«Ï«ó«É«¯«ê?«àªÇª¹¡£','F');
+Insert into BYUL.PRODUCT (PRO_USRSELID,PRO_CODE,PRO_CATCODE,PRO_NAME,PRO_PRICE,PRO_STOCK,PRO_INFO,PRO_ISDELETED) values ('seller_db3',11,'CB','÷«ßæìí«±?«­',4000,20,'÷«ßæìí«±?«­ªÇª¹¡£','F');
+Insert into BYUL.PRODUCT (PRO_USRSELID,PRO_CODE,PRO_CATCODE,PRO_NAME,PRO_PRICE,PRO_STOCK,PRO_INFO,PRO_ISDELETED) values ('seller_db3',12,'CL','«Ö«é«Ã«¯«¯«Ã«·«ç«ó',5600,20,'HERAªÎ«Ö«é«Ã«¯«¯«Ã«·«ç«óªÇª¹¡£','F');
+Insert into BYUL.PRODUCT (PRO_USRSELID,PRO_CODE,PRO_CATCODE,PRO_NAME,PRO_PRICE,PRO_STOCK,PRO_INFO,PRO_ISDELETED) values ('seller_db3',13,'CL','«µ«ó«í?«é«ó««?«É«±?«¹',66000,20,'«µ«ó«í?«é«óªÎ««?«É«±?«¹ªÇª¹¡£','F');
+Insert into BYUL.PRODUCT (PRO_USRSELID,PRO_CODE,PRO_CATCODE,PRO_NAME,PRO_PRICE,PRO_STOCK,PRO_INFO,PRO_ISDELETED) values ('seller_db3',14,'CL','«´?«ë«Ç«ó«°?«¹ü¨',68800,20,'«´?«ë«Ç«ó«°?«¹ü¨ªÇª¹¡£','F');
+Insert into BYUL.PRODUCT (PRO_USRSELID,PRO_CODE,PRO_CATCODE,PRO_NAME,PRO_PRICE,PRO_STOCK,PRO_INFO,PRO_ISDELETED) values ('seller_db2',15,'CB','best present ever',123,1,'for you ¢½','F');
+Insert into BYUL.PRODUCT (PRO_USRSELID,PRO_CODE,PRO_CATCODE,PRO_NAME,PRO_PRICE,PRO_STOCK,PRO_INFO,PRO_ISDELETED) values ('seller_db2',16,'CB','best present ever',111,22,'for you ¢½','F');
